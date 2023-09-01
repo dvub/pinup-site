@@ -9,7 +9,7 @@ export default function Navbar() {
   return (
     <div>
       <nav
-        className={`${comfortaa.className} flex justify-between nowrap`}
+        className={`${comfortaa.className} flex justify-between nowrap mx-10 text-2xl`}
       >
         <ul className="flex">
           <NavbarItem text="CUSTOM INQUIRY" link="/"></NavbarItem>
