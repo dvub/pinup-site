@@ -4,22 +4,17 @@ import Navbar from "./navbar";
 
 export default function Header() {
   return (
-    <div>
-      <Link
-        className={`${cormorantGaramond.className} text-center`}
-        style={{
-          color: "black",
-          fontSize: "6.25rem",
-          fontStyle: "normal",
-          margin: "0",
-          padding: "0",
-        }}
-        href="/"
-      >
-        by sean hayes
-      </Link>
-
+    <>
+      {/* wrapper flexbox div, this will allow us to center the link*/}
+      <div className="flex justify-center py-0 text-8xl ">
+        <Link
+          className={`${cormorantGaramond.className}`}
+          href="/"
+        >
+          by sean hayes
+        </Link>
+      </div>
       <Navbar></Navbar>
-    </div>
+    </>
   );
 }
