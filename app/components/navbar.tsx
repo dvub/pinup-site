@@ -9,9 +9,9 @@ export const comfortaa = Comfortaa({
 
 export default function Navbar() {
   return (
-    <div>
+    <div className="z-50 sticky top-0 left-0 bg-white w-full h-auto px-2 py-5">
       <nav
-        className={`${comfortaa.className} flex justify-between items-end nowrap m-5 lg:text-xl md:text-lg text-sm`}
+        className={`${comfortaa.className} flex justify-between items-end nowrap lg:text-xl md:text-lg text-sm `}
       >
         <ul className="flex">
           <NavbarItem text="CUSTOM INQUIRY" link="/custom"></NavbarItem>

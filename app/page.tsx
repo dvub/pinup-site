@@ -1,39 +1,84 @@
+"use client";
 import "./globals.css";
 import Image from "next/image";
 import { cormorantGaramond } from "./layout";
-import panels from "../public/home/4panels.png";
 import Navbar from "./components/navbar";
+import * as React from "react";
+
+import panelPic from "../public/home/4panels.png";
+import gridPic from "../public/home/grid pic.png";
+import frontPic from "../public/home/square front.png";
+import backPic from "../public/home/square back.png";
+
 export default function Home() {
+  //
+
+  const [width, setWidth] = React.useState(window.innerWidth);
+  const breakpoint = 1100; // the width of the side-by-side picture on its own
+  const smallBreakpoint = 768;
+
+  React.useEffect(() => {
+    const handleResizeWindow = () => setWidth(window.innerWidth);
+    // subscribe to window resize event "onComponentDidMount"
+    window.addEventListener("resize", handleResizeWindow);
+    return () => {
+      // unsubscribe "onComponentDestroy"
+      window.removeEventListener("resize", handleResizeWindow);
+    };
+  }, []);
+
   return (
     <main>
-      {/* small wrapping div over the navbar because 
-        we have this weird absolute image background thing
-        i SWEAR i know how to code dude im not a fake :)
-
-        */}
-      <div className="z-50 absolute bg-white w-full h-auto ">
-        <Navbar />
+      <Navbar />
+      <div className="absolute flex flex-wrap h-full w-full justify-center items-center">
+        {width > breakpoint && (
+          <div>
+            <Image
+              src={panelPic}
+              alt="Andrew in the Patch Pocket denim for Jack."
+              quality={"100"}
+              priority
+              objectFit="cover"
+              sizes="2001px"
+              fill // fill
+            />
+          </div>
+        )}
+        {width <= breakpoint && (
+          <div>
+            <Image
+              src={gridPic}
+              alt="Andrew in the Patch Pocket denim for Jack."
+              quality={"100"}
+              priority
+              sizes="1080px"
+            />
+            {width <= smallBreakpoint && (
+              <div>
+                <Image
+                  src={frontPic}
+                  alt="Andrew in the Patch Pocket denim for Jack."
+                  quality={"100"}
+                  priority
+                  sizes="2048px" // this will download the image in full quality
+                />
+                <Image
+                  src={backPic}
+                  alt="Andrew in the Patch Pocket denim for Jack."
+                  quality={"100"}
+                  priority
+                  sizes="2048px" // this will download the image in full quality
+                />
+              </div>
+            )}
+          </div>
+        )}
       </div>
-      {/* 
-        this is basically just a background image
-        if stretched or compressed really weirdly the dimensions will start to look weird
-      */}
-      <Image
-        src={panels}
-        alt="Andrew in the Patch Pocket denim for Jack."
-        quality={"100"}
-        priority
-        layout="fill"
-        objectFit="cover"
-      />
-      {/* 
-        here's the footer for the home page, basically just a short description of the background pic item.
-      */}
       <div
-        className={`${cormorantGaramond.className} text-xs lg:text-xl absolute bottom-0 right-0 left-0 bg-white w-full h-auto `}
+        className={`${cormorantGaramond.className} text-xs lg:text-xl sticky bottom-0 bg-white w-full h-auto`}
       >
-        <div className="m-5">
-        <p className="text-left">
+        <div className="px-5 py-2">
+          <p className="text-left">
             above: [Andrew in the] Patch Pocket denim for Jack.
           </p>
           <p className="text-right">
@@ -42,7 +87,6 @@ export default function Home() {
             back pockets inspired by 1940&apos;s denim.
           </p>
         </div>
-
       </div>
     </main>
   );

@@ -10,11 +10,6 @@ export const cormorantGaramond = Cormorant_Garamond({
 });
 
 
-export const metadata: Metadata = {
-  title: "Home | By Sean Hayes",
-
-};
-
 export default function RootLayout({
   children,
 }: {
