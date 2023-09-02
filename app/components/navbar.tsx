@@ -11,14 +11,14 @@ export default function Navbar() {
   return (
     <div>
       <nav
-        className={`${comfortaa.className} flex justify-between items-end nowrap mx-10 text-2xl`}
+        className={`${comfortaa.className} flex justify-between items-end nowrap mx-10 text-xl`}
       >
         <ul className="flex">
           <NavbarItem text="CUSTOM INQUIRY" link="/"></NavbarItem>
           <NavbarItem text="SHOP" link="/"></NavbarItem>
         </ul>
         <Link
-          className={`${cormorantGaramond.className} text-8xl`}
+          className={`${cormorantGaramond.className} text-6xl z-10`}
           href="/"
         >
           by sean hayes.

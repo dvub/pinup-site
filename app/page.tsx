@@ -2,20 +2,19 @@ import "./globals.css";
 import Header from "./components/header";
 import Image from "next/image";
 import { cormorantGaramond } from "./layout";
-import layeredPics from "../public/home/Layered pics.png";
+import panels from "../public/home/4panels.png";
 export default function Home() {
-  const width = '80vw';
+  const width = '85vw';
 
   return (
     <main>
       <Header />
-      <div className="flex justify-center ">
+      <div className="flex justify-center z-0 mt-2">
         <Image
-          src={layeredPics}
+          src={panels}
           alt="Andrew in the Patch Pocket denim for Jack."
           quality={"100"}
-          className={`mt-5`}
-          style={{width: width,}}
+          style={{width: width}}
           priority
         />
       </div>
