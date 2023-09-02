@@ -15,7 +15,7 @@ export default function Home() {
 
   const [width, setWidth] = React.useState(window.innerWidth);
   const breakpoint = 1100; // the width of the side-by-side picture on its own
-  const smallBreakpoint = 768;
+  const smallBreakpoint = 800;
 
   React.useEffect(() => {
     const handleResizeWindow = () => setWidth(window.innerWidth);
@@ -28,54 +28,53 @@ export default function Home() {
   }, []);
 
   return (
-    <main>
+    <main className="flex flex-col min-h-screen">
       <Navbar />
-      <div className="absolute flex flex-wrap h-full w-full justify-center items-center">
-        {width > breakpoint && (
-          <div>
-            <Image
-              src={panelPic}
-              alt="Andrew in the Patch Pocket denim for Jack."
-              quality={"100"}
-              priority
-              objectFit="cover"
-              sizes="2001px"
-              fill // fill
-            />
-          </div>
-        )}
-        {width <= breakpoint && (
-          <div>
-            <Image
-              src={gridPic}
-              alt="Andrew in the Patch Pocket denim for Jack."
-              quality={"100"}
-              priority
-              sizes="1080px"
-            />
-            {width <= smallBreakpoint && (
-              <div>
-                <Image
-                  src={frontPic}
-                  alt="Andrew in the Patch Pocket denim for Jack."
-                  quality={"100"}
-                  priority
-                  sizes="2048px" // this will download the image in full quality
-                />
-                <Image
-                  src={backPic}
-                  alt="Andrew in the Patch Pocket denim for Jack."
-                  quality={"100"}
-                  priority
-                  sizes="2048px" // this will download the image in full quality
-                />
-              </div>
-            )}
-          </div>
-        )}
-      </div>
+      <div className="flex-grow">
+
+      {width > breakpoint && (
+        <div >
+          <Image
+            src={panelPic}
+            alt="Andrew in the Patch Pocket denim for Jack."
+            quality={"100"}
+            priority
+            sizes="2001px"
+            fill
+            objectFit="cover"
+          />
+        </div>
+      )}
+      {width <= breakpoint && (
+        <div>
+          <Image
+            src={gridPic}
+            alt="Andrew in the Patch Pocket denim for Jack."
+            quality={"100"}
+            sizes="1080px"
+          />
+          {width <= smallBreakpoint && (
+            <div>
+              <p className={`absolute w-full text-center ${cormorantGaramond.className}`}>[scroll]</p>
+              <Image
+                src={frontPic}
+                alt="Andrew in the Patch Pocket denim for Jack."
+                quality={"100"}
+                sizes="2048px" // this will download the image in full quality
+              />
+              <Image
+                src={backPic}
+                alt="Andrew in the Patch Pocket denim for Jack."
+                quality={"100"}
+                sizes="2048px" // this will download the image in full quality
+              />
+            </div>
+          )}
+        </div>
+      )}
+            </div>
       <div
-        className={`${cormorantGaramond.className} text-xs lg:text-xl sticky bottom-0 bg-white w-full h-auto`}
+        className={`${cormorantGaramond.className} text-xs lg:text-xl sticky right-0 bottom-0 bg-white w-full h-auto`}
       >
         <div className="px-5 py-2">
           <p className="text-left">
