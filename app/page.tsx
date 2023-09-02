@@ -25,7 +25,6 @@ export default function Home() {
         priority
         layout="fill"
         objectFit="cover"
-        className="z-0 absolute inset-0"
       />
       {/* 
         here's the footer for the home page, basically just a short description of the background pic item.
@@ -35,7 +34,7 @@ export default function Home() {
       >
         <div className="m-5">
         <p className="text-left">
-            <b>CURRENT DISPLAY PIECE:</b> <br/> [Andrew in the] Patch Pocket denim for Jack.
+            above: [Andrew in the] Patch Pocket denim for Jack.
           </p>
           <p className="text-right">
             Made of a 12.5 oz Japanese Selvedge denim.
