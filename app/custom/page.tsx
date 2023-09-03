@@ -1,9 +1,19 @@
+"use client";
+import ImageDisplay from "../components/imageDisplay";
 import Navbar from "../components/navbar";
 import { cormorantGaramond } from "../layout";
 export default function Custom() {
+
+
   return (
+
+
     <main className={`${cormorantGaramond.className} text-6xl m-5`}>
       <Navbar />
+      <div className="blur-lg">
+        <ImageDisplay/>
+      </div>
+
       <h1>
         Custom Inquiry
       </h1>
