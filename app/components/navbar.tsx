@@ -10,7 +10,7 @@ import useWidth from "./hooks/useWidth";
 function Title() {
   return (
     <Link
-      className={`${cormorantGaramond.className} lg:text-6xl md:text-4xl`}
+      className={`${cormorantGaramond.className} lg:text-6xl text-4xl`}
       href="/"
     >
       by sean hayes.
@@ -48,9 +48,9 @@ export default function Navbar() {
             </button>
           </div>
           {openNav && (
-            <div className="pt-5">
+            <div className="p-5">
               <nav>
-                <ul>
+                <ul className="list-['+']">
                   <NavbarItem text="CUSTOM INQUIRY" link="/custom" />
                   <NavbarItem text="SHOP" link="shop" />
                   <NavbarItem text="ABOUT" link="about" />

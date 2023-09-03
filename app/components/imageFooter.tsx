@@ -3,7 +3,7 @@ import { cormorantGaramond } from "../layout";
 export default function ImageFooter() {
   return (
     <div
-      className={`${cormorantGaramond.className} text-xs lg:text-xl fixed right-0 bottom-0 bg-white w-full h-auto px-5 py-2`}
+      className={`${cormorantGaramond.className} text-sm lg:text-xl md:text-md fixed bottom-0 bg-white w-full h-auto px-5 py-2`}
     >
       <div>
         <p className="text-left">
