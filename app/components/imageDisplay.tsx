@@ -5,11 +5,9 @@ import gridPic from "../../public/home/grid pic.png";
 import frontPic from "../../public/home/square front.png";
 import backPic from "../../public/home/square back.png";
 
-import { cormorantGaramond } from "../layout";
-import useWidth from "./useWidth";
-
+import useWidth from "./hooks/useWidth";
 export default function ImageDisplay() {
-    const { width, breakpoints } = useWidth();
+  const { width, breakpoints } = useWidth();
 
   return (
     <div className="flex-grow">
@@ -35,8 +33,6 @@ export default function ImageDisplay() {
             sizes="1080px"
             priority
           />
-
-
           <Image
             src={frontPic}
             alt="Front view"

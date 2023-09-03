@@ -4,13 +4,14 @@ import Navbar from "./components/navbar";
 import * as React from "react";
 import ImageDisplay from "./components/imageDisplay";
 import ImageFooter from "./components/imageFooter";
-import useWidth from "./components/useWidth";
+import ScrollIndicator from "./components/scrollIndicator";
 
 export default function Home() {
-  const { width, breakpoints } = useWidth();
+
   return (
     <main className={"flex flex-col min-h-screen"}>
-      <Navbar/>
+      <Navbar />
+      <ScrollIndicator />
       <ImageDisplay />
       <ImageFooter />
     </main>

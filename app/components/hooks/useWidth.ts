@@ -1,4 +1,9 @@
 import * as React from "react";
+
+// the code for this function was largely adapted from here:
+// https://stackoverflow.com/questions/62954765/how-to-do-conditional-rendering-according-to-screen-width-in-react
+// so thanks!! :)
+
 export default function useWidth() {
   // here
   const [state, setState] = React.useState({

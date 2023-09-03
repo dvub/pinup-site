@@ -8,7 +8,10 @@ export const cormorantGaramond = Cormorant_Garamond({
   variable: "--cormorant-garamond",
   display: 'swap'
 });
-
+export const comfortaa = Comfortaa({
+  subsets: ["latin"],
+  variable: "--comfortaa",
+});
 
 export default function RootLayout({
   children,

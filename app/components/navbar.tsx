@@ -1,15 +1,11 @@
-import { Comfortaa } from "next/font/google";
+
 import NavbarItem from "./navbarItem";
 import Link from "next/link";
-import { cormorantGaramond } from "../layout";
+import { cormorantGaramond, comfortaa } from "../layout";
 import { Bars3Icon } from "@heroicons/react/24/solid";
 import * as React from "react";
-import useWidth from "./useWidth";
+import useWidth from "./hooks/useWidth";
 
-export const comfortaa = Comfortaa({
-  subsets: ["latin"],
-  variable: "--comfortaa",
-});
 
 function Title() {
   return (
@@ -39,7 +35,7 @@ export default function Navbar() {
           <Title />
           <ul className="flex">
             <NavbarItem text="ABOUT" link="about" />
-            <NavbarItem text="CONTACT" link="contact" />
+            <NavbarItem text="CONTACT/QUESTIONS" link="contact" />
           </ul>
         </nav>
       )}
@@ -58,7 +54,7 @@ export default function Navbar() {
                   <NavbarItem text="CUSTOM INQUIRY" link="/custom" />
                   <NavbarItem text="SHOP" link="shop" />
                   <NavbarItem text="ABOUT" link="about" />
-                  <NavbarItem text="CONTACT" link="contact" />
+                  <NavbarItem text="CONTACT/QUESTIONS" link="contact" />
                 </ul>
               </nav>
             </div>
