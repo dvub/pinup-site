@@ -1,6 +1,6 @@
 import { cormorantGaramond } from "../layout";
 
-export default function ImageFooter() {
+export default function Footer() {
   return (
     <div
       className={`${cormorantGaramond.className} text-sm lg:text-xl md:text-md fixed bottom-0 bg-white w-full h-auto px-5 py-2`}

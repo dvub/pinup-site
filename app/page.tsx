@@ -3,7 +3,7 @@ import "./globals.css";
 import Navbar from "./components/navbar";
 import * as React from "react";
 import ImageDisplay from "./components/imageDisplay";
-import ImageFooter from "./components/imageFooter";
+import Footer from "./components/footer";
 import ScrollIndicator from "./components/scrollIndicator";
 
 export default function Home() {
@@ -13,7 +13,7 @@ export default function Home() {
       <Navbar />
       <ScrollIndicator />
       <ImageDisplay />
-      <ImageFooter />
+      <Footer />
     </main>
   );
 }

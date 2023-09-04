@@ -8,7 +8,7 @@ import panelPic from "../../public/home/4panels.png";
 import gridPic from "../../public/home/grid pic.png";
 import frontPic from "../../public/home/square front.png";
 import backPic from "../../public/home/square back.png";
-import ImageFooter from "../components/imageFooter";
+import Footer from "../components/footer";
 
 export default function Custom() {
   return (
@@ -80,7 +80,7 @@ export default function Custom() {
             priority
           />
           <div className="w-full flex">
-            <ImageFooter />
+            <Footer />
           </div>
         </div>
       </div>

@@ -26,11 +26,16 @@ export default function ScrollIndicator() {
     };
   }, []);
   return (
-    <div className="fixed top-[75vh] w-full flex justify-center items-center text-slate-100/25 ">
-      <div className="transition-opacity ease-in duration-50 opacity-100 hover:opacity-0">
-        {!atBottom && <ArrowDownCircleIcon className="w-10 h-10" />}
+    <div className="fixed top-[75vh] w-full h-auto flex justify-center items-center text-slate-100/25 hover:opacity-0 duration-200 ">
+      <div>
+        {!atBottom && (
+          <div>
+            <ArrowDownCircleIcon className="w-10 h-10" />
+          </div>
+        )}
         {atBottom && <ArrowUpCircleIcon className="w-10 h-10" />}
       </div>
+      <p className={`${comfortaa.className} text-center`}>MORE</p>
     </div>
   );
 }

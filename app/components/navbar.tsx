@@ -47,10 +47,11 @@ export default function Navbar() {
               <Bars3Icon className="h-8 w-8 text-black" />
             </button>
           </div>
+
           {openNav && (
-            <div className="p-5">
+            <div className="px-10 pt-5">
               <nav>
-                <ul className="list-['+']">
+                <ul className="list-['→']">
                   <NavbarItem text="CUSTOM INQUIRY" link="/custom" />
                   <NavbarItem text="SHOP" link="shop" />
                   <NavbarItem text="ABOUT" link="about" />
