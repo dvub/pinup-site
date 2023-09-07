@@ -1,11 +1,10 @@
-
 import NavbarItem from "./navbarItem";
 import Link from "next/link";
 import { cormorantGaramond, comfortaa } from "../layout";
 import { Bars3Icon } from "@heroicons/react/24/solid";
 import * as React from "react";
 import useWidth from "./hooks/useWidth";
-
+import { Transition } from "@headlessui/react";
 
 function Title() {
   return (
@@ -24,7 +23,8 @@ export default function Navbar() {
 
   return (
     <div
-      className={`${comfortaa.className} z-50 fixed top-0 left-0 bg-white w-full h-auto px-2 py-5 lg:text-xl md:text-lg text-sm`}
+      className={`${comfortaa.className} z-50 fixed top-0 left-0 bg-white w-full h-auto px-2 py-5 lg:text-xl md:text-lg text-sm `}
+      style={{ transition: "height 2s" }}
     >
       {width >= breakpoints.medium && (
         <nav className={"flex justify-between items-end nowrap"}>
@@ -47,19 +47,25 @@ export default function Navbar() {
               <Bars3Icon className="h-8 w-8 text-black" />
             </button>
           </div>
-
-          {openNav && (
-            <div className="px-10 pt-5">
-              <nav>
-                <ul className="list-['→']">
-                  <NavbarItem text="CUSTOM INQUIRY" link="/custom" />
-                  <NavbarItem text="SHOP" link="shop" />
-                  <NavbarItem text="ABOUT" link="about" />
-                  <NavbarItem text="CONTACT/QUESTIONS" link="contact" />
-                </ul>
-              </nav>
-            </div>
-          )}
+          <Transition
+            className="px-10 pt-5"
+            show={openNav}
+            enter="transition-opacity duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="transition-opacity duration-150"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <nav>
+              <ul className="list-['→']">
+                <NavbarItem text="CUSTOM INQUIRY" link="/custom" />
+                <NavbarItem text="SHOP" link="shop" />
+                <NavbarItem text="ABOUT" link="about" />
+                <NavbarItem text="CONTACT/QUESTIONS" link="contact" />
+              </ul>
+            </nav>
+          </Transition>
         </div>
       )}
     </div>
