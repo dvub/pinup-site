@@ -10,19 +10,17 @@ export default function ImageDisplay() {
   const { width, breakpoints } = useWidth();
 
   return (
-    <div className="flex-grow">
+    <div className=" absolute top-0 left-0 h-full w-full">
       {width > breakpoints.medium && (
-        <div className="h-auto w-auto">
-          <Image
-            src={panelPic}
-            alt="Front view, close-up fit, close-up fabric, Back view"
-            quality={"100"}
-            priority
-            sizes="2001px"
-            fill
-            style={{ objectFit: "cover" }}
-          />
-        </div>
+        <Image
+          src={panelPic}
+          alt="Front view, close-up fit, close-up fabric, Back view"
+          quality={"100"}
+          priority
+          sizes="2001px"
+          fill
+          style={{ objectFit: "cover" }}
+        />
       )}
       {width <= breakpoints.medium && (
         <div>
