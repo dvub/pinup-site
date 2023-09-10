@@ -7,9 +7,8 @@ import Footer from "./components/footer";
 import ScrollIndicator from "./components/scrollIndicator";
 
 export default function Home() {
-
   return (
-    <main className={"flex flex-col min-h-screen"}>
+    <main>
       <Navbar />
       <ScrollIndicator />
       <ImageDisplay />
