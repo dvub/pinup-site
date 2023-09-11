@@ -26,7 +26,7 @@ export default function ScrollIndicator() {
     };
   }, []);
   return (
-    <div className="fixed top-[75vh] w-full h-auto flex justify-center items-center text-slate-100/25 hover:opacity-0 duration-200 z-10 ">
+    <div className="fixed top-[75vh] w-full h-auto flex justify-center items-center text-slate-400/25 hover:opacity-0 duration-200 z-10 ">
       <div>
         {!atBottom && (
           <div>
