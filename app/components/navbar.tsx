@@ -23,7 +23,7 @@ export default function Navbar() {
 
   return (
     <div
-      className={`${comfortaa.className} z-50 fixed top-0 left-0 bg-white w-full h-auto px-2 py-5 lg:text-xl md:text-lg text-sm border-black border-b-2`}
+      className={`${comfortaa.className} z-50 fixed top-0 left-0 bg-white w-full h-auto px-2 py-5 lg:text-xl md:text-lg text-sm border-black border-b-[1px]`}
       style={{ transition: "height 2s" }}
     >
       {width >= breakpoints.medium && (
