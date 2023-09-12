@@ -60,32 +60,38 @@ export default function Footer() {
         </SlideWrapper>
       </Transition>
       {width < breakpoints.medium && (
-        <div className="relative flex w-full justify-center p-2 z-10 h-16">
+        <div className="relative flex w-full justify-around items-center p-2 z-10 h-16">
+          <p>Newsletter</p>
           <button
-            onClick={() => setStatus(!status)}
-            onMouseDown={() => {
+            onClick={() => {
+              setStatus(!status);
+            }}
+            onPointerDown={() => {
               setClicked(true);
             }}
-            onMouseUp={() => {
+            onPointerUp={() => {
               setClicked(false);
             }}
-            className="w-auto"
+            className=""
           >
             {!status && (
               <PlusCircleIcon
                 className={`${
                   clicked ? "w-8 h-8" : "w-10 h-10"
-                } text-center text-black hover:text-slate-300`}
+                } text-center text-black`}
               />
             )}
             {status && (
-              <MinusCircleIcon
-                className={`${
-                  clicked ? "w-8 h-8" : "w-10 h-10"
-                } text-center text-black hover:text-slate-300`}
-              />
+              <div>
+                <MinusCircleIcon
+                  className={`${
+                    clicked ? "w-8 h-8" : "w-10 h-10"
+                  } text-center text-black`}
+                />
+              </div>
             )}
           </button>
+          <p>Socials</p>
         </div>
       )}
     </div>

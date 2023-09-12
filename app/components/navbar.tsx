@@ -59,10 +59,10 @@ export default function Navbar() {
               onClick={() => {
                 setOpenNav(!openNav);
               }}
-              onMouseDown={() => {
+              onPointerDown={() => {
                 setClicked(true);
               }}
-              onMouseUp={() => {
+              onPointerUp={() => {
                 setClicked(false);
               }}
             >
