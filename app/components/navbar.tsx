@@ -5,6 +5,8 @@ import { Bars3Icon } from "@heroicons/react/24/solid";
 import * as React from "react";
 import useWidth from "./hooks/useWidth";
 import { Transition } from "@headlessui/react";
+import SlideWrapper from "./slideWrapper";
+import FadeWrapper from "./fadeWrapper";
 
 function Title() {
   return (
@@ -21,13 +23,22 @@ export default function Navbar() {
   const { width, breakpoints } = useWidth();
   const [openNav, setOpenNav] = React.useState(false);
 
+  React.useEffect(() => {
+    if (width > breakpoints.medium) {
+      setOpenNav(true);
+    }
+    if (width <= breakpoints.medium) {
+      setOpenNav(false);
+    }
+  }, [width, breakpoints]);
+
   return (
     <div
-      className={`${comfortaa.className} z-50 fixed top-0 left-0 bg-white w-full h-auto px-2 py-5 lg:text-xl md:text-lg text-sm border-black border-b-[1px]`}
+      className={`${comfortaa.className} fixed top-0 bg-white w-full h-auto lg:text-xl md:text-lg text-sm z-50 `}
       style={{ transition: "height 2s" }}
     >
       {width >= breakpoints.medium && (
-        <nav className={"flex justify-between items-end nowrap"}>
+        <nav className={"flex justify-between items-end nowrap p-5"}>
           <ul className="flex">
             <NavbarItem text="CUSTOM INQUIRY" link="/custom" />
             <NavbarItem text="SHOP" link="/shop" />
@@ -39,25 +50,34 @@ export default function Navbar() {
           </ul>
         </nav>
       )}
+
       {width < breakpoints.medium && (
         <div>
-          <div className="flex justify-between">
+          <div className="relative z-50 flex justify-between py-5 px-5">
             <Title />
             <button onClick={() => setOpenNav(!openNav)}>
               <Bars3Icon className="h-8 w-8 text-black" />
             </button>
           </div>
 
-          {openNav && (
-            <nav className="px-10 pt-5">
-              <ul className="list-['→']">
-                <NavbarItem text="CUSTOM INQUIRY" link="/custom" />
-                <NavbarItem text="SHOP" link="shop" />
-                <NavbarItem text="ABOUT" link="about" />
-                <NavbarItem text="CONTACT/QUESTIONS" link="contact" />
-              </ul>
-            </nav>
-          )}
+          <Transition show={openNav}>
+            <SlideWrapper translate={"-translate-y-32"}>
+              <div className="bg-white fixed top-0 left-0 w-full h-auto px-10 z-0">
+                <FadeWrapper>
+                  <nav className="my-2">
+                    <div>
+                      <ul className="list-['→']">
+                        <NavbarItem text="CUSTOM INQUIRY" link="/custom" />
+                        <NavbarItem text="SHOP" link="shop" />
+                        <NavbarItem text="ABOUT" link="about" />
+                        <NavbarItem text="CONTACT/QUESTIONS" link="contact" />
+                      </ul>
+                    </div>
+                  </nav>
+                </FadeWrapper>
+              </div>
+            </SlideWrapper>
+          </Transition>
         </div>
       )}
     </div>
