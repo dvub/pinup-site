@@ -22,7 +22,7 @@ function Title() {
 export default function Navbar() {
   const { width, breakpoints } = useWidth();
   const [openNav, setOpenNav] = React.useState(false);
-
+  const [clicked, setClicked] = React.useState(false);
   React.useEffect(() => {
     if (width > breakpoints.medium) {
       setOpenNav(true);
@@ -55,8 +55,20 @@ export default function Navbar() {
         <div>
           <div className="relative z-50 flex justify-between py-5 px-5">
             <Title />
-            <button onClick={() => setOpenNav(!openNav)}>
-              <Bars3Icon className="h-8 w-8 text-black" />
+            <button
+              onClick={() => {
+                setOpenNav(!openNav);
+              }}
+              onMouseDown={() => {
+                setClicked(true);
+              }}
+              onMouseUp={() => {
+                setClicked(false);
+              }}
+            >
+              <Bars3Icon
+                className={`${clicked ? "h-6 w-6" : "h-8 w-8"} text-black`}
+              />
             </button>
           </div>
 

@@ -11,8 +11,8 @@ export default function Footer() {
   const [email, setEmail] = React.useState("");
 
   const [status, setStatus] = React.useState(true);
+  const [clicked, setClicked] = React.useState(false);
   const { width, breakpoints } = useWidth();
-
   // default states for different views
 
   useEffect(() => {
@@ -60,13 +60,30 @@ export default function Footer() {
         </SlideWrapper>
       </Transition>
       {width < breakpoints.medium && (
-        <div className="relative flex w-full justify-center p-2 z-10">
-          <button onClick={() => setStatus(!status)} className="w-auto">
+        <div className="relative flex w-full justify-center p-2 z-10 h-16">
+          <button
+            onClick={() => setStatus(!status)}
+            onMouseDown={() => {
+              setClicked(true);
+            }}
+            onMouseUp={() => {
+              setClicked(false);
+            }}
+            className="w-auto"
+          >
             {!status && (
-              <PlusCircleIcon className="w-10 h-10 text-center text-slate-400" />
+              <PlusCircleIcon
+                className={`${
+                  clicked ? "w-8 h-8" : "w-10 h-10"
+                } text-center text-black hover:text-slate-300`}
+              />
             )}
             {status && (
-              <MinusCircleIcon className="w-10 h-10  text-center text-slate-400" />
+              <MinusCircleIcon
+                className={`${
+                  clicked ? "w-8 h-8" : "w-10 h-10"
+                } text-center text-black hover:text-slate-300`}
+              />
             )}
           </button>
         </div>
