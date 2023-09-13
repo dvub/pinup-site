@@ -12,7 +12,9 @@ export default function Footer() {
 
   const [status, setStatus] = React.useState(true);
   const [clicked, setClicked] = React.useState(false);
+  const [hover, setHover] = React.useState(false);
   const { width, breakpoints } = useWidth();
+
   // default states for different views
 
   useEffect(() => {
@@ -60,8 +62,14 @@ export default function Footer() {
         </SlideWrapper>
       </Transition>
       {width < breakpoints.medium && (
-        <div className="relative flex w-full justify-around items-center p-2 z-10 h-16">
-          <p>Newsletter</p>
+        <div className="relative flex w-full justify-between items-center py-2 px-10 z-10 h-16">
+          <p
+            className={`${
+              !status ? "opacity-100" : "opacity-0"
+            } transition-opacity duration-100 ease-in-out`}
+          >
+            Newsletter
+          </p>
           <button
             onClick={() => {
               setStatus(!status);
@@ -72,26 +80,43 @@ export default function Footer() {
             onPointerUp={() => {
               setClicked(false);
             }}
+            onPointerOver={() => {
+              setHover(true);
+            }}
+            onPointerLeave={() => {
+              if (clicked) setClicked(false);
+              setHover(false);
+            }}
             className=""
           >
             {!status && (
               <PlusCircleIcon
-                className={`${
-                  clicked ? "w-8 h-8" : "w-10 h-10"
-                } text-center text-black`}
+                className={`
+                ${clicked ? "w-8 h-8 duration-[25ms]" : "w-10 h-10"} 
+                ${
+                  hover && !clicked ? "w-11 h-11 duration-100" : ""
+                } text-black transition-width transition-height ease-in-out`}
               />
             )}
             {status && (
               <div>
                 <MinusCircleIcon
-                  className={`${
-                    clicked ? "w-8 h-8" : "w-10 h-10"
-                  } text-center text-black`}
+                  className={`
+                  ${clicked ? "w-8 h-8 duration-[25ms]" : "w-10 h-10"} 
+                  ${
+                    hover && !clicked ? "w-11 h-11 duration-100" : ""
+                  } text-black transition-width transition-height ease-in-out`}
                 />
               </div>
             )}
           </button>
-          <p>Socials</p>
+          <p
+            className={`${
+              !status ? "opacity-100" : "opacity-0"
+            } transition-opacity duration-100 ease-in-out`}
+          >
+            Socials
+          </p>
         </div>
       )}
     </div>

@@ -23,6 +23,7 @@ export default function Navbar() {
   const { width, breakpoints } = useWidth();
   const [openNav, setOpenNav] = React.useState(false);
   const [clicked, setClicked] = React.useState(false);
+  const [hover, setHover] = React.useState(false);
   React.useEffect(() => {
     if (width > breakpoints.medium) {
       setOpenNav(true);
@@ -65,9 +66,21 @@ export default function Navbar() {
               onPointerUp={() => {
                 setClicked(false);
               }}
+              onPointerOver={() => {
+                setHover(true);
+              }}
+              onPointerLeave={() => {
+                setHover(false);
+                if (clicked) setClicked(false);
+              }}
             >
               <Bars3Icon
-                className={`${clicked ? "h-6 w-6" : "h-8 w-8"} text-black`}
+                className={`
+                ${clicked ? "w-6 h-6 duration-[25ms]" : "w-8 h-8"} 
+                ${hover && !clicked ? "w-9 h-9" : ""}
+                ${
+                  openNav ? "rotate-90" : "rotate-0"
+                } text-black transition-width transition-height ease-in-out transition-transform duration-100`}
               />
             </button>
           </div>
