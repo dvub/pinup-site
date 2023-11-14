@@ -92,7 +92,7 @@ export default function Footer() {
             {!status && (
               <PlusCircleIcon
                 className={`
-                ${clicked ? "w-8 h-8 duration-[25ms]" : "w-10 h-10"} 
+                ${clicked ? "w-9 h-9 duration-[25ms]" : "w-10 h-10"} 
                 ${
                   hover && !clicked ? "w-11 h-11 duration-100" : ""
                 } text-black transition-width transition-height ease-in-out`}
@@ -102,7 +102,7 @@ export default function Footer() {
               <div>
                 <MinusCircleIcon
                   className={`
-                  ${clicked ? "w-8 h-8 duration-[25ms]" : "w-10 h-10"} 
+                  ${clicked ? "w-9 h-9 duration-[25ms]" : "w-10 h-10"} 
                   ${
                     hover && !clicked ? "w-11 h-11 duration-100" : ""
                   } text-black transition-width transition-height ease-in-out`}

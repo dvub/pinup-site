@@ -8,6 +8,7 @@ import Link from "next/link";
 export default function Custom() {
   const { width, breakpoints } = useWidth();
   return (
+
     <main className={`${comfortaa.className} `}>
       <Navbar />
       {width > breakpoints.medium && (

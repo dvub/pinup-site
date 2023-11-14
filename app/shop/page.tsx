@@ -10,7 +10,7 @@ export default function Shop() {
         <h1 className={"text-center text-6xl"}>
           Coming Soon..
         </h1>
-        <p className="text-lg">by sean hayes.</p>
+        <p className="text-lg">PINUP RAGS.</p>
       </div>
     </div>
   );

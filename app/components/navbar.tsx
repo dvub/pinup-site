@@ -14,13 +14,15 @@ function Title() {
       className={`${cormorantGaramond.className} lg:text-6xl text-4xl`}
       href="/"
     >
-      by sean hayes.
+      PINUP RAGS.
     </Link>
   );
 }
 
 export default function Navbar() {
+  // ... ermmm
   const { width, breakpoints } = useWidth();
+
   const [openNav, setOpenNav] = React.useState(false);
   const [clicked, setClicked] = React.useState(false);
   const [hover, setHover] = React.useState(false);

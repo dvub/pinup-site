@@ -29,7 +29,6 @@ export default function ImageDisplay() {
             alt="close-up fit, close-up fabric"
             quality={"100"}
             sizes="1080px"
-            priority
           />
           <Image
             src={frontPic}
