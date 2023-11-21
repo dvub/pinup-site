@@ -1,6 +1,6 @@
 import NavbarItem from './navbarItem';
 import Link from 'next/link';
-import { cormorantGaramond, comfortaa } from '../layout';
+import { cormorantGaramond, comfortaa } from '../app/layout';
 import { Bars3Icon } from '@heroicons/react/24/solid';
 import * as React from 'react';
 import useWidth from './hooks/useWidth';
