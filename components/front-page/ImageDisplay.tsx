@@ -17,11 +17,7 @@ export default function ImageDisplay() {
 		<div>
 			{width <= breakpoints.medium && (
 				<div>
-					<ImageLink
-						href='/'
-						title='PRODUCTION.'
-						desc='Andrew in the Patch Pocket denim for Jack. Made of a 12.5 oz Japanese Selvedge denim. Button fly using imported Japanese donut buttons. Front and back pockets inspired by 1940&#39;s denim.'
-					>
+					<ImageLink href='/' title='PRODUCTION.'>
 						<Image
 							src={gridPic}
 							alt='left: close-up fit, right: close-up fabric'
@@ -30,11 +26,7 @@ export default function ImageDisplay() {
 							priority
 						/>
 					</ImageLink>
-					<ImageLink
-						href='/'
-						title='VINTAGE'
-						desc='Patch pocket denim, front.'
-					>
+					<ImageLink href='/' title='VINTAGE'>
 						<Image
 							src={frontPic}
 							alt='Patch pocket denim, front.'
@@ -42,11 +34,7 @@ export default function ImageDisplay() {
 							sizes='2048px' // this will download the image in full quality
 						/>
 					</ImageLink>
-					<ImageLink
-						href='/'
-						title='REWORKED. / RECYCLED.'
-						desc='Patch pocket denim, BACK.'
-					>
+					<ImageLink href='/' title='REWORKED. / RECYCLED.'>
 						<Image
 							src={backPic}
 							alt='Back view'
@@ -58,11 +46,7 @@ export default function ImageDisplay() {
 			)}
 			<div className='flex'>
 				<div className='w-[50%]'>
-					<ImageLink
-						href='/'
-						title='VINTAGE'
-						desc='Patch pocket denim, front.'
-					>
+					<ImageLink href='/' title='VINTAGE'>
 						<Image
 							src={frontPic}
 							alt='Patch pocket denim, front.'
@@ -70,11 +54,7 @@ export default function ImageDisplay() {
 							sizes='2048px' // this will download the image in full quality
 						/>
 					</ImageLink>
-					<ImageLink
-						href='/'
-						title='REWORKED. / RECYCLED.'
-						desc='Patch pocket denim, BACK.'
-					>
+					<ImageLink href='/' title='REWORKED. / RECYCLED.'>
 						<Image
 							src={backPic}
 							alt='Back view'
