@@ -28,7 +28,7 @@ export default function Footer() {
 
 	return (
 		<div
-			className={`${cormorantGaramond.className}text-sm lg:text-xl md:text-md fixed bottom-0 bg-white w-full h-auto z-50`}
+			className={`${cormorantGaramond.className}text-sm lg:text-xl md:text-md sticky bottom-0 bg-white w-full h-auto z-50`}
 		>
 			<Transition show={status}>
 				<SlideWrapper translate='translate-y-32'>
