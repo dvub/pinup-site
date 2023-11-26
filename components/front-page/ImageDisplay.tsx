@@ -72,7 +72,6 @@ export default function ImageDisplay() {
 					<p>$00.00</p>
 				</div>
 			</div>
-			<div className='w-full h-36'></div>
 		</div>
 	);
 }
