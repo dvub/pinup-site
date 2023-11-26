@@ -5,65 +5,74 @@ import gridPic from '../../public/home/grid pic.png';
 import frontPic from '../../public/home/square front.png';
 import backPic from '../../public/home/square back.png';
 
+import pic1 from '../../public/pic1.jpg';
+import pic2 from '../../public/pic2.jpg';
+import pic3 from '../../public/pic3.jpg';
+
 import useWidth from '../hooks/useWidth';
 import Link from 'next/link';
 import ScrollIndicator from '../scrollIndicator';
-import { cormorantGaramond } from '../../app/layout';
+import { comfortaa, cormorantGaramond } from '../../app/layout';
 import ImageLink from './ImageLink';
 export default function ImageDisplay() {
 	const { width, breakpoints } = useWidth();
 
 	return (
-		<div>
-			{width <= breakpoints.medium && (
+		<div className='h-full w-full overflow-hidden'>
+			<Link
+				href='/'
+				className={`${
+					width > breakpoints.medium ? 'flex' : ''
+				} relative w-full`}
+			>
+				<h1
+					className={`${cormorantGaramond.className} text-2xl flex absolute top-10 left-10 bg-white p-2 z-30`}
+				>
+					production.
+				</h1>
+				<Image
+					src={pic1}
+					alt='...'
+					quality={100}
+					priority
+					className={`${
+						width > breakpoints.medium ? 'w-[50%]' : 'w-full'
+					}`}
+				/>
+				<Image
+					src={pic2}
+					alt='...'
+					quality={100}
+					priority
+					className={`${
+						width > breakpoints.medium ? 'w-[50%]' : 'hidden'
+					}`}
+				/>
+			</Link>
+			<div className='flex gap-5 justify-center m-3'>
+				<Link href='/'>
+					<Image src={pic3} alt='...' quality={100} />
+
+					<p>Item 1</p>
+					<p>$00.00</p>
+				</Link>
 				<div>
-					<ImageLink href='/' title='PRODUCTION.'>
-						<Image
-							src={gridPic}
-							alt='left: close-up fit, right: close-up fabric'
-							quality={100}
-							sizes='1080px'
-							priority
-						/>
-					</ImageLink>
-					<ImageLink href='/' title='VINTAGE'>
-						<Image
-							src={frontPic}
-							alt='Patch pocket denim, front.'
-							quality={100}
-							sizes='2048px' // this will download the image in full quality
-						/>
-					</ImageLink>
-					<ImageLink href='/' title='REWORKED. / RECYCLED.'>
-						<Image
-							src={backPic}
-							alt='Back view'
-							quality={100}
-							sizes='2048px' // this will download the image in full quality
-						/>
-					</ImageLink>
+					<Image src={pic3} alt='...' quality={100} />
+					<p>Item 2</p>
+					<p>$00.00</p>
 				</div>
-			)}
-			<div className='flex'>
-				<div className='w-[50%]'>
-					<ImageLink href='/' title='VINTAGE'>
-						<Image
-							src={frontPic}
-							alt='Patch pocket denim, front.'
-							quality={100}
-							sizes='2048px' // this will download the image in full quality
-						/>
-					</ImageLink>
-					<ImageLink href='/' title='REWORKED. / RECYCLED.'>
-						<Image
-							src={backPic}
-							alt='Back view'
-							quality={100}
-							sizes='2048px' // this will download the image in full quality
-						/>
-					</ImageLink>
+				<div>
+					<Image src={pic3} alt='...' quality={100} />
+					<p>Item 3</p>
+					<p>$00.00</p>
+				</div>
+				<div>
+					<Image src={pic3} alt='...' quality={100} />
+					<p>Item 4</p>
+					<p>$00.00</p>
 				</div>
 			</div>
+			<div className='w-full h-36'></div>
 		</div>
 	);
 }
