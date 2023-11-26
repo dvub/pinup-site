@@ -1,5 +1,4 @@
 'use client';
-import ImageDisplay from '../../components/front-page/ImageDisplay';
 import Navbar from '../../components/navbar';
 import { comfortaa } from '../layout';
 
