@@ -1,6 +1,5 @@
 'use client';
-import Navbar from '../../components/navbar';
-import { comfortaa } from '../layout';
+import Navbar from '../../components/navbar/navbar';
 
 import useWidth from '../../components/hooks/useWidth';
 

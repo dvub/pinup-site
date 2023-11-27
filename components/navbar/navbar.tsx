@@ -1,12 +1,12 @@
 import NavbarItem from './navbarItem';
 import Link from 'next/link';
-import { cormorantGaramond, comfortaa } from '../app/layout';
 import { Bars3Icon } from '@heroicons/react/24/solid';
 import * as React from 'react';
-import useWidth from './hooks/useWidth';
+import useWidth from '../hooks/useWidth';
 import { Transition } from '@headlessui/react';
-import SlideWrapper from './slideWrapper';
-import FadeWrapper from './fadeWrapper';
+import SlideWrapper from '../slideWrapper';
+import FadeWrapper from '../fadeWrapper';
+import { cormorantGaramond, comfortaa } from '@/lib/fontLoader';
 
 function Title() {
 	return (
