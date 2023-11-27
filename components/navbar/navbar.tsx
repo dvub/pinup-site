@@ -6,7 +6,7 @@ import useWidth from '../hooks/useWidth';
 import { Transition } from '@headlessui/react';
 import SlideWrapper from '../slideWrapper';
 import FadeWrapper from '../fadeWrapper';
-import { cormorantGaramond, comfortaa } from '@/lib/fontLoader';
+import { cormorantGaramond, comfortaa, roboto } from '@/lib/fontLoader';
 
 function Title() {
 	return (
@@ -37,7 +37,7 @@ export default function Navbar() {
 
 	return (
 		<nav
-			className={`${comfortaa.className} bg-white w-full lg:text-xl md:text-lg text-sm z-50 sticky top-0`}
+			className={`${roboto.className} bg-white w-full lg:text-xl md:text-lg text-sm z-50 sticky top-0`}
 			style={{ transition: 'height 2s' }}
 		>
 			{width >= breakpoints.medium && (

@@ -5,14 +5,14 @@ import * as React from 'react';
 
 import Footer from '../components/footer/footer';
 import Image from 'next/image';
-import { cormorantGaramond } from '@/lib/fontLoader';
+import { cormorantGaramond, roboto } from '@/lib/fontLoader';
 
 import useWidth from '@/components/hooks/useWidth';
 import Link from 'next/link';
 
 import fennvilleFront from '../public/home/fennville-front.jpg';
 import multipleShirts from '../public/home/multiple-shirts.jpg';
-import bags from '../public/home/bags.jpg';
+import ItemPanel from '@/components/home/ItemPanel';
 
 export default function Home() {
 	const { width, breakpoints } = useWidth();
@@ -55,31 +55,7 @@ export default function Home() {
 						</div>
 					)}
 				</Link>
-				<div
-					className={`${cormorantGaramond.className} flex gap-5 justify-center m-3`}
-				>
-					<Link href='/'>
-						<Image src={bags} alt='...' quality={100} />
-
-						<p>Item 1</p>
-						<p>$00.00</p>
-					</Link>
-					<div>
-						<Image src={bags} alt='...' quality={100} />
-						<p>Item 2</p>
-						<p>$00.00</p>
-					</div>
-					<div>
-						<Image src={bags} alt='...' quality={100} />
-						<p>Item 3</p>
-						<p>$00.00</p>
-					</div>
-					<div>
-						<Image src={bags} alt='...' quality={100} />
-						<p>Item 4</p>
-						<p>$00.00</p>
-					</div>
-				</div>
+				<ItemPanel />
 			</div>
 			<div className='h-36'></div>
 			<Footer />
