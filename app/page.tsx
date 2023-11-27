@@ -4,21 +4,15 @@ import Navbar from '../components/navbar/navbar';
 import * as React from 'react';
 
 import Footer from '../components/footer/footer';
+import Image from 'next/image';
+import { cormorantGaramond } from '@/lib/fontLoader';
 
 import useWidth from '@/components/hooks/useWidth';
 import Link from 'next/link';
 
-import panelPic from '../../public/home/4panels.png';
-import gridPic from '../../public/home/grid pic.png';
-import frontPic from '../../public/home/square front.png';
-import backPic from '../../public/home/square back.png';
-
-import pic1 from '../public/pic1.jpg';
-import pic2 from '../public/pic2.jpg';
-import pic3 from '../public/pic3.jpg';
-
-import Image from 'next/image';
-import { cormorantGaramond } from '@/lib/fontLoader';
+import fennvilleFront from '../public/home/fennville-front.jpg';
+import multipleShirts from '../public/home/multiple-shirts.jpg';
+import bags from '../public/home/bags.jpg';
 
 export default function Home() {
 	const { width, breakpoints } = useWidth();
@@ -38,7 +32,7 @@ export default function Home() {
 						} relative h-[50em]`}
 					>
 						<Image
-							src={pic1}
+							src={fennvilleFront}
 							alt='...'
 							quality={100}
 							priority
@@ -49,7 +43,7 @@ export default function Home() {
 					{width > breakpoints.medium && (
 						<div className='relative w-[50%] h-[50rem]'>
 							<Image
-								src={pic2}
+								src={multipleShirts}
 								alt='...'
 								quality={100}
 								priority
@@ -65,23 +59,23 @@ export default function Home() {
 					className={`${cormorantGaramond.className} flex gap-5 justify-center m-3`}
 				>
 					<Link href='/'>
-						<Image src={pic3} alt='...' quality={100} />
+						<Image src={bags} alt='...' quality={100} />
 
 						<p>Item 1</p>
 						<p>$00.00</p>
 					</Link>
 					<div>
-						<Image src={pic3} alt='...' quality={100} />
+						<Image src={bags} alt='...' quality={100} />
 						<p>Item 2</p>
 						<p>$00.00</p>
 					</div>
 					<div>
-						<Image src={pic3} alt='...' quality={100} />
+						<Image src={bags} alt='...' quality={100} />
 						<p>Item 3</p>
 						<p>$00.00</p>
 					</div>
 					<div>
-						<Image src={pic3} alt='...' quality={100} />
+						<Image src={bags} alt='...' quality={100} />
 						<p>Item 4</p>
 						<p>$00.00</p>
 					</div>
