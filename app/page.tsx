@@ -7,14 +7,13 @@ import Footer from '../components/footer/footer';
 import Image from 'next/image';
 import { cormorantGaramond, roboto } from '@/lib/fontLoader';
 
-import useWidth from '@/components/hooks/useWidth';
 import Link from 'next/link';
 
 import fennvilleFront from '../public/home/fennville-front.jpg';
 import multipleShirts from '../public/home/multiple-shirts.jpg';
 import ItemPanel from '@/components/home/ItemPanel';
 import Client from 'shopify-buy';
-import useProducts from '@/components/hooks/useProducts';
+import useWidth from '@/hooks/useWidth';
 export default function Home() {
 	const { width, breakpoints } = useWidth();
 
