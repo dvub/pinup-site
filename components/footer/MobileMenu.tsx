@@ -1,5 +1,5 @@
 import React from 'react';
-import useWidth from '../hooks/useWidth';
+import useWidth from '../../hooks/useWidth';
 import { PlusCircleIcon, MinusCircleIcon } from '@heroicons/react/24/solid';
 
 export default function MobileMenu(props: {

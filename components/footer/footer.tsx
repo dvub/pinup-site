@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import useWidth from '../hooks/useWidth';
+import useWidth from '../../hooks/useWidth';
 import Socials from './socials';
 import { Transition } from '@headlessui/react';
 import SlideWrapper from '../slideWrapper';

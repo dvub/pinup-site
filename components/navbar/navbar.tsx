@@ -2,7 +2,7 @@ import NavbarItem from './navbarItem';
 import Link from 'next/link';
 import { Bars3Icon } from '@heroicons/react/24/solid';
 import * as React from 'react';
-import useWidth from '../hooks/useWidth';
+import useWidth from '../../hooks/useWidth';
 import { Transition } from '@headlessui/react';
 import SlideWrapper from '../slideWrapper';
 import FadeWrapper from '../fadeWrapper';
