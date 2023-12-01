@@ -14,13 +14,13 @@ import multipleShirts from '../public/home/multiple-shirts.jpg';
 import ItemPanel from '@/components/home/ItemPanel';
 import Client from 'shopify-buy';
 import useWidth from '@/hooks/useWidth';
+import useProducts from '@/hooks/useProducts';
 export default function Home() {
 	const { width, breakpoints } = useWidth();
-
 	return (
 		<main>
 			<Navbar />
-			<div className='h-full w-full overflow-hidden'>
+			<div className='w-full'>
 				<Link href='/' className={'flex relative'}>
 					<h1
 						className={`${cormorantGaramond.className} text-2xl flex absolute top-10 left-10 bg-white p-2 z-30`}
@@ -56,8 +56,8 @@ export default function Home() {
 						</div>
 					)}
 				</Link>
-				<ItemPanel />
 			</div>
+			<ItemPanel type={'production'} />
 			<div className='h-36'></div>
 			<Footer />
 		</main>
