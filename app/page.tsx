@@ -14,10 +14,9 @@ import fennvilleFront from '../public/home/fennville-front.jpg';
 import multipleShirts from '../public/home/multiple-shirts.jpg';
 import ItemPanel from '@/components/home/ItemPanel';
 import Client from 'shopify-buy';
+import useProducts from '@/components/hooks/useProducts';
 export default function Home() {
 	const { width, breakpoints } = useWidth();
-
-	fetch('/products/api').then((x) => console.log(x.json()));
 
 	return (
 		<main>
