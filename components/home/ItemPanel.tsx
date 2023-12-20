@@ -29,7 +29,7 @@ export default function ItemPanel(props: { type: string }) {
 	</div>
 
 	*/
-
+	console.log(products);
 	const items = products.map((product: Product) => {
 		return (
 			<div key={product.id} className='relative h-24 w-24'>
