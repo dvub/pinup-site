@@ -25,7 +25,7 @@ export default function Home() {
 					<h1
 						className={`text-2xl flex absolute top-10 left-10 bg-white p-2 z-30`}
 					>
-						production.
+						production
 					</h1>
 					<div
 						className={`${

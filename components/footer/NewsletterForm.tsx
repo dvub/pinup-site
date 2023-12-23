@@ -18,7 +18,7 @@ export default function NewsletterForm() {
 
 				<input
 					type='text'
-					placeholder='Email...'
+					placeholder='email...'
 					className='w-full border-black border-2 p-2'
 					value={email}
 					onChange={(e) => setEmail(e.target.value)}
