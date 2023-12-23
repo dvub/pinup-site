@@ -1,4 +1,9 @@
-import { Cormorant_Garamond, Comfortaa, Roboto } from 'next/font/google';
+import {
+	Cormorant_Garamond,
+	Comfortaa,
+	Roboto,
+	Hedvig_Letters_Serif,
+} from 'next/font/google';
 
 export const cormorantGaramond = Cormorant_Garamond({
 	weight: '400',
@@ -15,4 +20,10 @@ export const roboto = Roboto({
 	display: 'swap',
 	weight: '400',
 	variable: '--roboto',
+});
+export const hedvig = Hedvig_Letters_Serif({
+	subsets: ['latin'],
+	display: 'swap',
+	weight: '400',
+	variable: '--hedvig',
 });

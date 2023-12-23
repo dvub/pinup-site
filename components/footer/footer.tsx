@@ -12,7 +12,7 @@ export default function Footer() {
 	const [status, setStatus] = React.useState(true);
 	return (
 		<div
-			className={`${cormorantGaramond.className} bg-white text-sm lg:text-xl md:text-md fixed bottom-0 w-full h-auto z-50`}
+			className={` bg-white text-sm lg:text-xl md:text-md fixed bottom-0 w-full h-auto z-50`}
 		>
 			<Transition show={status}>
 				<SlideWrapper translate='translate-y-32'>

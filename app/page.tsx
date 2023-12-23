@@ -23,7 +23,7 @@ export default function Home() {
 			<div className='w-full'>
 				<Link href='/' className={'flex relative'}>
 					<h1
-						className={`${cormorantGaramond.className} text-2xl flex absolute top-10 left-10 bg-white p-2 z-30`}
+						className={`text-2xl flex absolute top-10 left-10 bg-white p-2 z-30`}
 					>
 						production.
 					</h1>

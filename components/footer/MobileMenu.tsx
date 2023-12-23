@@ -31,7 +31,7 @@ export default function MobileMenu(props: {
 							!status ? 'opacity-100' : 'opacity-0'
 						} transition-opacity duration-100 ease-in-out`}
 					>
-						Newsletter
+						newsletter
 					</p>
 					<button
 						className={`
@@ -65,7 +65,7 @@ export default function MobileMenu(props: {
 							!status ? 'opacity-100' : 'opacity-0'
 						} transition-opacity duration-100 ease-in-out`}
 					>
-						Socials
+						socials
 					</p>
 				</div>
 			)}

@@ -49,5 +49,5 @@ export default function ItemPanel(props: { type: string }) {
 		);
 	});
 
-	return <div className={`${roboto.className} flex gap-5  m-3`}>{items}</div>;
+	return <div className={`flex gap-5  m-3`}>{items}</div>;
 }

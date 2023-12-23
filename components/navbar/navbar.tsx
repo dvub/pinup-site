@@ -6,17 +6,10 @@ import useWidth from '../../hooks/useWidth';
 import { Transition } from '@headlessui/react';
 import SlideWrapper from '../slideWrapper';
 import FadeWrapper from '../fadeWrapper';
-import { cormorantGaramond, comfortaa, roboto } from '@/lib/fontLoader';
+import { cormorantGaramond, comfortaa, roboto, hedvig } from '@/lib/fontLoader';
 
 function Title() {
-	return (
-		<Link
-			className={`${cormorantGaramond.className} lg:text-6xl text-4xl`}
-			href='/'
-		>
-			PINUP RAGS.
-		</Link>
-	);
+	return <Link href='/'>pinup</Link>;
 }
 
 export default function Navbar() {
@@ -37,20 +30,20 @@ export default function Navbar() {
 
 	return (
 		<nav
-			className={`${roboto.className} bg-white w-full lg:text-xl md:text-lg text-sm z-50 sticky top-0`}
+			className={` bg-white w-full lg:text-xl md:text-lg text-sm z-50 sticky top-0`}
 			style={{ transition: 'height 2s' }}
 		>
 			{width >= breakpoints.medium && (
 				<nav className={'flex justify-between items-center nowrap p-3'}>
 					<Title />
 					<ul className='flex'>
-						<NavbarItem text='PRODUCTION.' link='/production' />
-						<NavbarItem text='VINTAGE.' link='/vintage' />
-						<NavbarItem text='REWORKED.' link='/reworked' />
+						<NavbarItem text='production' link='/production' />
+						<NavbarItem text='vintage' link='/vintage' />
+						<NavbarItem text='reworked' link='/reworked' />
 					</ul>
 					<ul className='flex'>
-						<NavbarItem text='ABOUT.' link='about' />
-						<NavbarItem text='CONTACT.' link='contact' />
+						<NavbarItem text='about' link='about' />
+						<NavbarItem text='contact' link='contact' />
 					</ul>
 				</nav>
 			)}
