@@ -11,22 +11,37 @@ import Link from 'next/link';
 
 import fennvilleFront from '../public/home/fennville-front.jpg';
 import multipleShirts from '../public/home/multiple-shirts.jpg';
-import ItemPanel from '@/components/home/ItemPanel';
-import Client from 'shopify-buy';
+import ItemPanel from '@/components/footer/home/ItemPanel';
+import Client, { Media, Product } from 'shopify-buy';
 import useWidth from '@/hooks/useWidth';
 import useProducts from '@/hooks/useProducts';
 export default function Home() {
 	const { width, breakpoints } = useWidth();
+	const { data, error, isLoading } = useProducts();
+
+	let d: Product[] = data;
+	let image: Media[];
+	d.map((p) => {
+		if (p.productType === 'display') {
+			image = p.media;
+		}
+	});
+
 	return (
 		<main>
 			<Navbar />
+			{/* important section */}
 			<div className='w-full'>
-				<Link href='/' className={'flex relative'}>
+				<Link
+					href='/production'
+					className={'flex relative justify-center items-center'}
+				>
 					<h1
-						className={`text-2xl flex absolute top-10 left-10 bg-white p-2 z-30`}
+						className={`text-2xl flex absolute  p-2 z-30 text-center `}
 					>
-						production
+						production <br /> shop now
 					</h1>
+					{/* image display, checks the width to determine 1 or 2 images */}
 					<div
 						className={`${
 							width > breakpoints.medium ? 'w-[50%]' : 'w-full'
@@ -58,7 +73,6 @@ export default function Home() {
 				</Link>
 			</div>
 			<ItemPanel type={'production'} />
-			<div className='h-36'></div>
 			<Footer />
 		</main>
 	);

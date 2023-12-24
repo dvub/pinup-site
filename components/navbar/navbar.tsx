@@ -1,6 +1,6 @@
 import NavbarItem from './navbarItem';
 import Link from 'next/link';
-import { Bars3Icon } from '@heroicons/react/24/solid';
+import { Bars3Icon, ShoppingBagIcon } from '@heroicons/react/24/solid';
 import * as React from 'react';
 import useWidth from '../../hooks/useWidth';
 import { Transition } from '@headlessui/react';
@@ -34,17 +34,19 @@ export default function Navbar() {
 			style={{ transition: 'height 2s' }}
 		>
 			{width >= breakpoints.medium && (
-				<nav className={'flex justify-between items-center nowrap p-3'}>
-					<Title />
-					<ul className='flex'>
-						<NavbarItem text='production' link='/production' />
-						<NavbarItem text='vintage' link='/vintage' />
-						<NavbarItem text='reworked' link='/reworked' />
-					</ul>
-					<ul className='flex'>
-						<NavbarItem text='about' link='about' />
-						<NavbarItem text='contact' link='contact' />
-					</ul>
+				<nav className={'flex items-center nowrap p-3 justify-between'}>
+					<div className='flex gap-10'>
+						<Title />
+						<ul className='flex gap-5'>
+							<NavbarItem text='production' link='/production' />
+							<NavbarItem text='vintage' link='/vintage' />
+							<NavbarItem text='reworked' link='/reworked' />
+							<NavbarItem text='about' link='about' />
+						</ul>
+					</div>
+					<button className='flex gap-2'>
+						<ShoppingBagIcon className='w-6 h-6' /> <p>0</p>
+					</button>
 				</nav>
 			)}
 
@@ -72,11 +74,9 @@ export default function Navbar() {
 						>
 							<Bars3Icon
 								className={`
-                ${clicked ? 'w-6 h-6 duration-[25ms]' : 'w-8 h-8'} 
-                ${hover && !clicked ? 'w-9 h-9' : ''}
                 ${
 					openNav ? 'rotate-90' : 'rotate-0'
-				} text-black transition-width transition-height ease-in-out transition-transform duration-100`}
+				}  w-9 h-9 text-black transition-width transition-height ease-in-out transition-transform duration-500`}
 							/>
 						</button>
 					</div>
@@ -89,24 +89,20 @@ export default function Navbar() {
 										<div>
 											<ul className="list-['→']">
 												<NavbarItem
-													text='PRODUCTION.'
+													text='production'
 													link='/production'
 												/>
 												<NavbarItem
-													text='VINTAGE.'
+													text='vintage'
 													link='/vintage'
 												/>
 												<NavbarItem
-													text='REWORKED.'
+													text='reworked'
 													link='/reworked'
 												/>
 												<NavbarItem
-													text='ABOUT.'
-													link='about'
-												/>
-												<NavbarItem
-													text='CONTACT.'
-													link='contact'
+													text='about'
+													link='/about'
 												/>
 											</ul>
 										</div>
