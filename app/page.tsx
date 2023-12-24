@@ -12,21 +12,33 @@ import Link from 'next/link';
 import fennvilleFront from '../public/home/fennville-front.jpg';
 import multipleShirts from '../public/home/multiple-shirts.jpg';
 import ItemPanel from '@/components/footer/home/ItemPanel';
-import Client, { Media, Product } from 'shopify-buy';
+import Client, { Image as ShopifyImage, Media, Product } from 'shopify-buy';
 import useWidth from '@/hooks/useWidth';
 import useProducts from '@/hooks/useProducts';
 export default function Home() {
 	const { width, breakpoints } = useWidth();
 	const { data, error, isLoading } = useProducts();
 
-	let d: Product[] = data;
-	let image: Media[];
-	d.map((p) => {
-		if (p.productType === 'display') {
-			image = p.media;
+	if (error) {
+		return <p>error</p>;
+	}
+
+	if (isLoading) {
+		return <h1> loading</h1>;
+	}
+
+	console.log(data);
+	let image: ShopifyImage[];
+	data.forEach((product: Product) => {
+		console.log(product.tags);
+		if (
+			product.tags &&
+			product.tags.includes('display') &&
+			product.tags.includes('production')
+		) {
+			image = product.images;
 		}
 	});
-
 	return (
 		<main>
 			<Navbar />
@@ -48,7 +60,7 @@ export default function Home() {
 						} relative h-[50em]`}
 					>
 						<Image
-							src={fennvilleFront}
+							src={image![0].url!}
 							alt='...'
 							quality={100}
 							priority
