@@ -39,6 +39,7 @@ export default function Home() {
 			image = product.images;
 		}
 	});
+	console.log(image!);
 	return (
 		<main>
 			<Navbar />
