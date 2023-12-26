@@ -15,9 +15,12 @@ import ItemPanel from '@/components/footer/home/ItemPanel';
 import Client, { Image as ShopifyImage, Media, Product } from 'shopify-buy';
 import useWidth from '@/hooks/useWidth';
 import useProducts from '@/hooks/useProducts';
+import axios from 'axios';
+import useSWR from 'swr';
 export default function Home() {
 	const { width, breakpoints } = useWidth();
-	const { data, error, isLoading } = useProducts();
+	const fetcher = (args: any) => axios.get(args).then((res) => res.data);
+	const { data, error, isLoading } = useSWR('/api/products', fetcher);
 
 	if (error) {
 		return <p>error</p>;
@@ -28,18 +31,6 @@ export default function Home() {
 	}
 
 	console.log(data);
-	let image: ShopifyImage[];
-	data.forEach((product: Product) => {
-		console.log(product.tags);
-		if (
-			product.tags &&
-			product.tags.includes('display') &&
-			product.tags.includes('production')
-		) {
-			image = product.images;
-		}
-	});
-	console.log(image!);
 	return (
 		<main>
 			<Navbar />
@@ -59,16 +50,7 @@ export default function Home() {
 						className={`${
 							width > breakpoints.medium ? 'w-[50%]' : 'w-full'
 						} relative h-[50em]`}
-					>
-						<Image
-							src={image![0].url!}
-							alt='...'
-							quality={100}
-							priority
-							fill
-							className='object-cover'
-						/>
-					</div>
+					></div>
 					{width > breakpoints.medium && (
 						<div className='relative w-[50%] h-[50rem]'>
 							<Image
@@ -85,7 +67,7 @@ export default function Home() {
 					)}
 				</Link>
 			</div>
-			<ItemPanel type={'production'} />
+			{/*	<ItemPanel type={'production'} /> */}
 			<Footer />
 		</main>
 	);
