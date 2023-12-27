@@ -18,24 +18,30 @@ export default function Home() {
 	const { width, breakpoints } = useWidth();
 	const { data: products, error, isLoading } = useProducts();
 
-	let frontPageImages: ShopifyImage[] | undefined;
+	console.log(products);
+	let [displayImages, setDisplayImages] = React.useState<
+		ShopifyImage[] | undefined
+	>(undefined);
 	React.useEffect(() => {
-		if (!isLoading) {
-			products!.forEach((x) => {
-				if (
-					x.tags &&
-					x.tags.includes('display') &&
-					x.tags.includes('production')
-				) {
-					frontPageImages = x.images;
-					console.log('success');
-				}
-			});
+		if (isLoading) {
+			return;
 		}
+		console.log(products![1].description);
+
+		let n = products!.filter(
+			(x) =>
+				x.tags &&
+				x.tags.includes('display') &&
+				x.tags.includes('production')
+		);
+
+		let a = n.map((x) => x.images).flat();
+		console.log(n, a);
+		setDisplayImages(a);
 	}, [isLoading, products]);
 
 	const ImageEl = () =>
-		frontPageImages ? (
+		displayImages ? (
 			<div>
 				<div
 					className={`${
@@ -49,8 +55,6 @@ export default function Home() {
 						priority
 						fill
 						className='object-cover'
-						placeholder='blur'
-						blurDataURL='/pic1'
 					/>
 				</div>
 				{width > breakpoints.medium && (
@@ -62,8 +66,6 @@ export default function Home() {
 							priority
 							fill
 							className='object-cover'
-							placeholder='blur'
-							blurDataURL='/pic1'
 						/>
 					</div>
 				)}
@@ -81,13 +83,13 @@ export default function Home() {
 					href='/production'
 					className={'flex relative justify-center items-center'}
 				>
+					<ImageEl />
 					<h1
 						className={`text-2xl flex absolute  p-2 z-30 text-center `}
 					>
 						production <br /> shop now
 					</h1>
 					{/* image display, checks the width to determine 1 or 2 images */}
-					<ImageEl></ImageEl>
 				</Link>
 			</div>
 			{/*	<ItemPanel type={'production'} /> */}

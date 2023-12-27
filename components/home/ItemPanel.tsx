@@ -29,6 +29,7 @@ export default function ItemPanel(props: { type: string }) {
 	</div>
 
 	*/
+	/*
 	const items = products.map((product: Product) => {
 		return (
 			<div key={product.id} className='relative h-24 w-24'>
@@ -47,6 +48,6 @@ export default function ItemPanel(props: { type: string }) {
 			</div>
 		);
 	});
-
-	return <div className={`flex gap-5  m-3`}>{items}</div>;
+*/
+	return <div className={`flex gap-5  m-3`}>asd</div>;
 }
