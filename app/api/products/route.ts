@@ -26,5 +26,6 @@ export async function GET(request: Request) {
 	});
 
 	const data = await client.product.fetchAll();
+	console.log(data.length);
 	return new Response(JSON.stringify(data));
 }
