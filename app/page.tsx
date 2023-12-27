@@ -8,29 +8,70 @@ import Image from 'next/image';
 import { cormorantGaramond, roboto } from '@/lib/fontLoader';
 
 import Link from 'next/link';
-
+import { Image as ShopifyImage } from 'shopify-buy';
 import fennvilleFront from '../public/home/fennville-front.jpg';
 import multipleShirts from '../public/home/multiple-shirts.jpg';
-import ItemPanel from '@/components/footer/home/ItemPanel';
-import Client, { Image as ShopifyImage, Media, Product } from 'shopify-buy';
 import useWidth from '@/hooks/useWidth';
 import useProducts from '@/hooks/useProducts';
-import axios from 'axios';
-import useSWR from 'swr';
+
 export default function Home() {
 	const { width, breakpoints } = useWidth();
-	const fetcher = (args: any) => axios.get(args).then((res) => res.data);
-	const { data, error, isLoading } = useSWR('/api/products', fetcher);
+	const { data: products, error, isLoading } = useProducts();
 
-	if (error) {
-		return <p>error</p>;
-	}
+	let frontPageImages: ShopifyImage[] | undefined;
+	React.useEffect(() => {
+		if (!isLoading) {
+			products!.forEach((x) => {
+				if (
+					x.tags &&
+					x.tags.includes('display') &&
+					x.tags.includes('production')
+				) {
+					frontPageImages = x.images;
+					console.log('success');
+				}
+			});
+		}
+	}, [isLoading, products]);
 
-	if (isLoading) {
-		return <h1> loading</h1>;
-	}
+	const ImageEl = () =>
+		frontPageImages ? (
+			<div>
+				<div
+					className={`${
+						width > breakpoints.medium ? 'w-[50%]' : 'w-full'
+					} relative h-[50em]`}
+				>
+					<Image
+						src={multipleShirts}
+						alt='...'
+						quality={100}
+						priority
+						fill
+						className='object-cover'
+						placeholder='blur'
+						blurDataURL='/pic1'
+					/>
+				</div>
+				{width > breakpoints.medium && (
+					<div className='relative w-[50%] h-[50rem]'>
+						<Image
+							src={multipleShirts}
+							alt='...'
+							quality={100}
+							priority
+							fill
+							className='object-cover'
+							placeholder='blur'
+							blurDataURL='/pic1'
+						/>
+					</div>
+				)}
+			</div>
+		) : (
+			<p>loading...</p>
+		);
 
-	console.log(data);
 	return (
 		<main>
 			<Navbar />
@@ -46,25 +87,7 @@ export default function Home() {
 						production <br /> shop now
 					</h1>
 					{/* image display, checks the width to determine 1 or 2 images */}
-					<div
-						className={`${
-							width > breakpoints.medium ? 'w-[50%]' : 'w-full'
-						} relative h-[50em]`}
-					></div>
-					{width > breakpoints.medium && (
-						<div className='relative w-[50%] h-[50rem]'>
-							<Image
-								src={multipleShirts}
-								alt='...'
-								quality={100}
-								priority
-								fill
-								className='object-cover'
-								placeholder='blur'
-								blurDataURL='/pic1'
-							/>
-						</div>
-					)}
+					<ImageEl></ImageEl>
 				</Link>
 			</div>
 			{/*	<ItemPanel type={'production'} /> */}
