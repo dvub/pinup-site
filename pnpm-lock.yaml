@@ -20,9 +20,6 @@ dependencies:
   '@types/react-dom':
     specifier: 18.2.18
     version: 18.2.18
-  '@types/shopify-buy':
-    specifier: ^2.17.4
-    version: 2.17.4
   autoprefixer:
     specifier: 10.4.16
     version: 10.4.16(postcss@8.4.32)
@@ -68,6 +65,11 @@ dependencies:
   typescript:
     specifier: 5.3.3
     version: 5.3.3
+
+devDependencies:
+  '@types/shopify-buy':
+    specifier: ^2.17.4
+    version: 2.17.4
 
 packages:
 
@@ -573,7 +575,7 @@ packages:
 
   /@types/shopify-buy@2.17.4:
     resolution: {integrity: sha512-svTrPgQJaKcKv0yGAdQAsgHR8JF8qSWPQThPU+cawSq2+2Wj/ZD8AVXn3FenXwEVfhqGcRhZOKJJfSd7+gipYg==}
-    dev: false
+    dev: true
 
   /@typescript-eslint/parser@6.16.0(eslint@8.56.0)(typescript@5.3.3):
     resolution: {integrity: sha512-H2GM3eUo12HpKZU9njig3DF5zJ58ja6ahj1GoHEHOgQvYxzoFJJEvC1MQ7T2l9Ha+69ZSOn7RTxOdpC/y3ikMw==}

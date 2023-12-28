@@ -6,7 +6,6 @@ import useWidth from '../../hooks/useWidth';
 import { Transition } from '@headlessui/react';
 import SlideWrapper from '../slideWrapper';
 import FadeWrapper from '../fadeWrapper';
-import { cormorantGaramond, comfortaa, roboto, hedvig } from '@/lib/fontLoader';
 
 function Title() {
 	return <Link href='/'>pinup</Link>;

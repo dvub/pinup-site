@@ -1,6 +1,7 @@
 //import { client } from '@/lib/shopify';
 import Client from 'shopify-buy';
 export async function GET(request: Request) {
+	const { searchParams } = new URL(request.url);
 	const apiVersion = process.env.SHOPIFY_API_VERSION;
 	const domain = process.env.SHOPIFY_DOMAIN;
 	const token = process.env.SHOPIFY_STOREFRONT_TOKEN;
@@ -27,8 +28,16 @@ export async function GET(request: Request) {
 		storefrontAccessToken: process.env.SHOPIFY_STOREFRONT_TOKEN!,
 		apiVersion: process.env.SHOPIFY_API_VERSION!,
 	});
-
 	const data = await client.product.fetchAll();
+
+	// Create a new Response with the data and set Cache-Control to disable caching
+	const response = new Response(JSON.stringify(data), {
+		headers: {
+			'Content-Type': 'application/json',
+			'Cache-Control': 'no-store, max-age=0',
+		},
+	});
+
 	console.log(data.length);
-	return new Response(JSON.stringify(data));
+	return response;
 }

@@ -1,16 +1,15 @@
-
-import "../globals.css";
-import type { Metadata } from "next";
-
+import { hedvig } from '@/lib/fontLoader';
+import '../globals.css';
+import type { Metadata } from 'next';
 
 export default function RootLayout({
-  children,
+	children,
 }: {
-  children: React.ReactNode;
+	children: React.ReactNode;
 }) {
-  return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
-  );
+	return (
+		<html lang='en'>
+			<body className={hedvig.className}>{children}</body>
+		</html>
+	);
 }
