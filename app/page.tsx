@@ -18,7 +18,6 @@ export default function Home() {
 	const { width, breakpoints } = useWidth();
 	const { data: products, error, isLoading } = useProducts();
 
-	console.log(products);
 	let [displayImages, setDisplayImages] = React.useState<
 		ShopifyImage[] | undefined
 	>(undefined);
@@ -26,18 +25,7 @@ export default function Home() {
 		if (isLoading) {
 			return;
 		}
-		console.log(products![1].description);
-
-		let n = products!.filter(
-			(x) =>
-				x.tags &&
-				x.tags.includes('display') &&
-				x.tags.includes('production')
-		);
-
-		let a = n.map((x) => x.images).flat();
-		console.log(n, a);
-		setDisplayImages(a);
+		products!.map((x) => console.log(x));
 	}, [isLoading, products]);
 
 	const ImageEl = () =>

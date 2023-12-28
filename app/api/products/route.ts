@@ -1,7 +1,14 @@
 //import { client } from '@/lib/shopify';
 import Client from 'shopify-buy';
+import { Client as UnoptimizedClient } from 'shopify-buy/index.unoptimized.umd';
+
 export async function GET(request: Request) {
-	const { searchParams } = new URL(request.url);
+	// supposedly required
+	const headers = request.headers;
+	if (!headers) {
+		console.log('erm...');
+		return;
+	}
 	const apiVersion = process.env.SHOPIFY_API_VERSION;
 	const domain = process.env.SHOPIFY_DOMAIN;
 	const token = process.env.SHOPIFY_STOREFRONT_TOKEN;
@@ -28,16 +35,20 @@ export async function GET(request: Request) {
 		storefrontAccessToken: process.env.SHOPIFY_STOREFRONT_TOKEN!,
 		apiVersion: process.env.SHOPIFY_API_VERSION!,
 	});
+
+	const productsQuery = client.graphQLClient.query((root) => {
+		root.addConnection(
+			'products',
+			{ args: { first: 10 } },
+			(product: any) => {
+				product.add('tags'); // Add fields to be returned
+			}
+		);
+	});
+
 	const data = await client.product.fetchAll();
 
 	// Create a new Response with the data and set Cache-Control to disable caching
-	const response = new Response(JSON.stringify(data), {
-		headers: {
-			'Content-Type': 'application/json',
-			'Cache-Control': 'no-store, max-age=0',
-		},
-	});
-
-	console.log(data.length);
+	const response = new Response(JSON.stringify(data));
 	return response;
 }
