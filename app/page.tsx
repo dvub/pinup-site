@@ -8,7 +8,7 @@ import Image from 'next/image';
 import { cormorantGaramond, roboto } from '@/lib/fontLoader';
 
 import Link from 'next/link';
-import { Image as ShopifyImage } from 'shopify-buy';
+import { Product, Image as ShopifyImage } from 'shopify-buy';
 import fennvilleFront from '../public/home/fennville-front.jpg';
 import multipleShirts from '../public/home/multiple-shirts.jpg';
 import useWidth from '@/hooks/useWidth';
@@ -25,19 +25,36 @@ export default function Home() {
 		if (isLoading) {
 			return;
 		}
-		console.log(products);
+		products!.map((product: Product) => {
+			if (
+				product.tags.includes('display') &&
+				product.tags.includes('production')
+			) {
+				setDisplayImages(product.images);
+			}
+		});
 	}, [isLoading, products]);
 
-	const ImageEl = () =>
-		displayImages ? (
-			<div>
-				<div
-					className={`${
-						width > breakpoints.medium ? 'w-[50%]' : 'w-full'
-					} relative h-[50em]`}
-				>
+	const ImageEl = () => (
+		<div>
+			<div
+				className={`${
+					width > breakpoints.medium ? 'w-[50%]' : 'w-full'
+				} h-[50em]`}
+			>
+				<Image
+					src={multipleShirts}
+					alt='...'
+					quality={100}
+					priority
+					fill
+					className='object-cover'
+				/>
+			</div>
+			{width > breakpoints.medium && (
+				<div className='w-[50%] h-[50rem]'>
 					<Image
-						src={multipleShirts}
+						src={displayImages![1].src}
 						alt='...'
 						quality={100}
 						priority
@@ -45,33 +62,20 @@ export default function Home() {
 						className='object-cover'
 					/>
 				</div>
-				{width > breakpoints.medium && (
-					<div className='relative w-[50%] h-[50rem]'>
-						<Image
-							src={multipleShirts}
-							alt='...'
-							quality={100}
-							priority
-							fill
-							className='object-cover'
-						/>
-					</div>
-				)}
-			</div>
-		) : (
-			<p>loading...</p>
-		);
-
+			)}
+		</div>
+	);
 	return (
 		<main>
 			<Navbar />
+
 			{/* important section */}
 			<div className='w-full'>
 				<Link
 					href='/production'
 					className={'flex relative justify-center items-center'}
 				>
-					<ImageEl />
+					{displayImages && <ImageEl />}
 					<h1
 						className={`text-2xl flex absolute  p-2 z-30 text-center `}
 					>

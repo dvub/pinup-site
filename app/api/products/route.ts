@@ -55,7 +55,8 @@ export async function GET(request: Request) {
 		data.map((d: any) => {
 			// set the tags of the product
 			if (d.id === x.id) {
-				d.tags = x.tags;
+				let ts = x.tags.map((t: any) => t.value);
+				d.tags = ts;
 			}
 			return d;
 		});
