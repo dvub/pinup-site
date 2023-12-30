@@ -25,7 +25,7 @@ export default function Home() {
 		if (isLoading) {
 			return;
 		}
-		products!.map((x) => console.log(x));
+		console.log(products);
 	}, [isLoading, products]);
 
 	const ImageEl = () =>

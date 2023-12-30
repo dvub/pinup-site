@@ -1,7 +1,7 @@
 //import { client } from '@/lib/shopify';
-import Client from 'shopify-buy';
-import { Client as UnoptimizedClient } from 'shopify-buy/index.unoptimized.umd';
-
+// @ts-ignore
+import Client from 'shopify-buy/index.unoptimized.umd';
+//import Client from 'shopify-buy';
 export async function GET(request: Request) {
 	// supposedly required
 	const headers = request.headers;
@@ -36,19 +36,33 @@ export async function GET(request: Request) {
 		apiVersion: process.env.SHOPIFY_API_VERSION!,
 	});
 
-	const productsQuery = client.graphQLClient.query((root) => {
+	const data = await client.product.fetchAll();
+
+	// this is some of the most sketch shit i have ever done.
+	const productsQuery = client.graphQLClient.query((root: any) => {
 		root.addConnection(
 			'products',
 			{ args: { first: 10 } },
 			(product: any) => {
-				product.add('tags'); // Add fields to be returned
+				product.add('id');
+				product.add('tags');
 			}
 		);
 	});
+	const tags = await client.graphQLClient.send(productsQuery);
 
-	const data = await client.product.fetchAll();
+	tags.model.products.forEach((x: any) => {
+		data.map((d: any) => {
+			// set the tags of the product
+			if (d.id === x.id) {
+				d.tags = x.tags;
+			}
+			return d;
+		});
+	});
 
 	// Create a new Response with the data and set Cache-Control to disable caching
 	const response = new Response(JSON.stringify(data));
+	// .model.products
 	return response;
 }
