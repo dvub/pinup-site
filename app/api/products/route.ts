@@ -1,4 +1,3 @@
-//import { client } from '@/lib/shopify';
 // @ts-ignore
 import Client from 'shopify-buy/index.unoptimized.umd';
 //import Client from 'shopify-buy';
@@ -35,10 +34,6 @@ export async function GET(request: Request) {
 		storefrontAccessToken: process.env.SHOPIFY_STOREFRONT_TOKEN!,
 		apiVersion: process.env.SHOPIFY_API_VERSION!,
 	});
-
-	const data = await client.product.fetchAll();
-
-	// this is some of the most sketch shit i have ever done.
 	const productsQuery = client.graphQLClient.query((root: any) => {
 		root.addConnection(
 			'products',
@@ -46,24 +41,22 @@ export async function GET(request: Request) {
 			(product: any) => {
 				product.add('id');
 				product.add('tags');
+				product.addConnection(
+					'variants',
+					{ args: { first: 20 } },
+					(variants: any) => {
+						variants.add('id');
+						variants.add('title');
+						variants.add('price', (price: any) => {
+							price.add('amount');
+							price.add('currencyCode');
+						});
+					}
+				);
 			}
 		);
 	});
-	const tags = await client.graphQLClient.send(productsQuery);
+	const data = await client.graphQLClient.send(productsQuery);
 
-	tags.model.products.forEach((x: any) => {
-		data.map((d: any) => {
-			// set the tags of the product
-			if (d.id === x.id) {
-				let ts = x.tags.map((t: any) => t.value);
-				d.tags = ts;
-			}
-			return d;
-		});
-	});
-
-	// Create a new Response with the data and set Cache-Control to disable caching
-	const response = new Response(JSON.stringify(data));
-	// .model.products
-	return response;
+	return new Response(JSON.stringify(data.model.products));
 }

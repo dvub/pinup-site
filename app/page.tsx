@@ -25,6 +25,7 @@ export default function Home() {
 		if (isLoading) {
 			return;
 		}
+		console.log(products);
 		products!.map((product: Product) => {
 			if (
 				product.tags.includes('display') &&
