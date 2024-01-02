@@ -5,41 +5,46 @@ import * as React from 'react';
 
 import Footer from '../components/footer/footer';
 import Image from 'next/image';
-import { cormorantGaramond, roboto } from '@/lib/fontLoader';
 
 import Link from 'next/link';
-import { Product, Image as ShopifyImage } from 'shopify-buy';
-import fennvilleFront from '../public/home/fennville-front.jpg';
-import multipleShirts from '../public/home/multiple-shirts.jpg';
+import { Shop, Image as ShopifyImage } from 'shopify-buy';
 import useWidth from '@/hooks/useWidth';
 import useProducts from '@/hooks/useProducts';
+import { ExclamationTriangleIcon } from '@heroicons/react/24/solid';
 
 // TODO: FIX IMAGE HEIGHTS
 
 // font is broken on redirect
 // footer is broken lol
+const Loading = () => {
+	// TODO: make random loading text
+	const loadingText = 'threads otw';
 
-export default function Home() {
+	return (
+		<div className='w-full h-[50rem] flex justify-center items-center'>
+			{/* TODO: match height to the total page height when loaded.  */}
+			<div>
+				<h1 className='text-2xl text-right'>...loading</h1>
+				<h1 className='text-4xl'>pinup rags</h1>
+				<p className='py-1'>{loadingText}</p>
+			</div>
+		</div>
+	);
+};
+
+const ShowcaseSection = (props: { images: ShopifyImage[]; error: any }) => {
 	const { width, breakpoints } = useWidth();
-	const { data: products, error, isLoading } = useProducts();
+	const { images, error } = props;
 
-	let [displayImages, setDisplayImages] = React.useState<
-		ShopifyImage[] | undefined
-	>(undefined);
-	React.useEffect(() => {
-		if (isLoading) {
-			return;
-		}
-		console.log(products);
-		products!.map((product: any) => {
-			if (product.tags[0].value === 'display') {
-				setDisplayImages(product.images);
-			}
-		});
-	}, [isLoading, products]);
+	const ErrorBackground = () => {
+		return (
+			<div>
+				<div className='w-full h-[50rem] bg-gray-200'></div>
+			</div>
+		);
+	};
 
-	const ImageEl = () => {
-		console.log(displayImages);
+	const Background = () => {
 		return (
 			<div className='flex'>
 				<div
@@ -48,7 +53,7 @@ export default function Home() {
 					} relative h-[50em]`}
 				>
 					<Image
-						src={displayImages![0].url}
+						src={images[0].url}
 						alt='...'
 						quality={100}
 						priority
@@ -59,7 +64,7 @@ export default function Home() {
 				{width > breakpoints.medium && (
 					<div className='relative w-[50%] h-[50rem]'>
 						<Image
-							src={displayImages![1].url}
+							src={images[1].url}
 							alt='...'
 							quality={100}
 							priority
@@ -67,43 +72,70 @@ export default function Home() {
 							className='object-cover'
 						/>
 					</div>
-				)}{' '}
+				)}
 			</div>
 		);
 	};
 
+	const Overlay = () => {
+		return (
+			<>
+				{/* OVERLAY DIV */}
+				{error && (
+					<ExclamationTriangleIcon className='w-5 h-5 absolute m-5 text-red-500' />
+				)}
+				<div className='z-50 absolute h-full w-full flex justify-center items-center'>
+					<h1 className={`text-2xl text-center`}>
+						production <br /> shop now
+					</h1>
+				</div>
+			</>
+		);
+	};
+	return (
+		<Link href='/production' className='w-full relative'>
+			<div>
+				<Overlay />
+				{!error && <Background />}
+				{error && <ErrorBackground />}
+			</div>
+			{/* <ItemPanel type={'production'} /> */}
+		</Link>
+	);
+};
+
+export default function Home() {
+	const { data: products, error, isLoading } = useProducts();
+
+	let [ShowcaseImages, setShowcaseImages] = React.useState<
+		ShopifyImage[] | undefined
+	>(undefined);
+
+	React.useEffect(() => {
+		if (isLoading || error) {
+			return;
+		}
+
+		for (let product of products!) {
+			if (product.tags.includes('display')) {
+				setShowcaseImages(product.images);
+			}
+		}
+	}, [isLoading, products, error]);
+
 	return (
 		<main>
 			<Navbar />
-			{/* important section */}
 			<div>
-				<Link href='/production' className='w-full relative'>
-					{displayImages && (
-						<div>
-							{/* OVERLAY DIV */}
-							<div className='z-50 absolute h-full w-full flex  justify-center items-center'>
-								<h1 className={`text-2xl w-full text-center`}>
-									production <br /> shop now
-								</h1>
-							</div>
-
-							<ImageEl />
-						</div>
-					)}
-					{!displayImages && (
-						<div className='w-full h-[50rem] flex justify-center items-center'>
-							{/* TODO: match height to the total page height when loaded.  */}
-							<div>
-								<h1 className='text-2xl'>loading...</h1>
-								<h1 className='text-4xl'>pinup rags</h1>
-								<p>rags will be there soon</p>
-							</div>
-						</div>
-					)}
-				</Link>
+				{/* LOADING */}
+				{!ShowcaseImages && !error && <Loading />}
+				{/* if all goes well */}
+				{ShowcaseImages && (
+					<ShowcaseSection images={ShowcaseImages} error={error} />
+				)}
 			</div>
-			{/*	<ItemPanel type={'production'} /> 
-			<Footer />*/}
+
+			{/* <Footer />*/}
 		</main>
 	);
 }
