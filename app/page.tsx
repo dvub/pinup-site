@@ -26,36 +26,24 @@ export default function Home() {
 			return;
 		}
 		console.log(products);
-		products!.map((product: Product) => {
-			if (
-				product.tags.includes('display') &&
-				product.tags.includes('production')
-			) {
+		products!.map((product: any) => {
+			if (product.tags[0].value === 'display') {
 				setDisplayImages(product.images);
 			}
 		});
 	}, [isLoading, products]);
 
-	const ImageEl = () => (
-		<div>
-			<div
-				className={`${
-					width > breakpoints.medium ? 'w-[50%]' : 'w-full'
-				} h-[50em]`}
-			>
-				<Image
-					src={multipleShirts}
-					alt='...'
-					quality={100}
-					priority
-					fill
-					className='object-cover'
-				/>
-			</div>
-			{width > breakpoints.medium && (
-				<div className='w-[50%] h-[50rem]'>
+	const ImageEl = () => {
+		console.log(displayImages);
+		return (
+			<div className='flex'>
+				<div
+					className={`${
+						width > breakpoints.medium ? 'w-[50%]' : 'w-full'
+					}  h-[50em]`}
+				>
 					<Image
-						src={displayImages![1].src}
+						src={displayImages![0].url}
 						alt='...'
 						quality={100}
 						priority
@@ -63,9 +51,22 @@ export default function Home() {
 						className='object-cover'
 					/>
 				</div>
-			)}
-		</div>
-	);
+				{width > breakpoints.medium && (
+					<div className='w-[50%] h-[50rem]'>
+						<Image
+							src={displayImages![1].url}
+							alt='...'
+							quality={100}
+							priority
+							fill
+							className='object-cover'
+						/>
+					</div>
+				)}{' '}
+			</div>
+		);
+	};
+
 	return (
 		<main>
 			<Navbar />
@@ -78,7 +79,7 @@ export default function Home() {
 				>
 					{displayImages && <ImageEl />}
 					<h1
-						className={`text-2xl flex absolute  p-2 z-30 text-center `}
+						className={`text-2xl flex absolute p-2 z-30 text-center `}
 					>
 						production <br /> shop now
 					</h1>

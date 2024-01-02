@@ -34,23 +34,48 @@ export async function GET(request: Request) {
 		storefrontAccessToken: process.env.SHOPIFY_STOREFRONT_TOKEN!,
 		apiVersion: process.env.SHOPIFY_API_VERSION!,
 	});
+
+	// https://github.com/vercel/commerce/blob/main/lib/shopify/fragments/image.ts
+	// https://github.com/vercel/commerce/blob/main/lib/shopify/fragments/product.ts
 	const productsQuery = client.graphQLClient.query((root: any) => {
 		root.addConnection(
 			'products',
 			{ args: { first: 10 } },
 			(product: any) => {
 				product.add('id');
+				product.add('handle');
+				product.add('availableForSale');
+				product.add('title');
 				product.add('tags');
+				product.add('description');
+
 				product.addConnection(
 					'variants',
 					{ args: { first: 20 } },
 					(variants: any) => {
 						variants.add('id');
 						variants.add('title');
+						variants.add('availableForSale');
 						variants.add('price', (price: any) => {
 							price.add('amount');
 							price.add('currencyCode');
 						});
+					}
+				);
+
+				product.add('featuredImage', (featuredImage: any) => {
+					featuredImage.add('id');
+					featuredImage.add('originalSrc');
+				});
+
+				product.addConnection(
+					'images',
+					{ args: { first: 5 } },
+					(images: any) => {
+						images.add('url');
+						images.add('altText');
+						images.add('width');
+						images.add('height');
 					}
 				);
 			}
