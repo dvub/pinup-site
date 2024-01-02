@@ -13,21 +13,29 @@ export default function useWidth() {
 			small: 800,
 		},
 	});
-
 	React.useEffect(() => {
-		setState({ ...state, width: window.innerWidth });
+		// Set the initial width
+		setState((prevState) => ({
+			...prevState,
+			width: window.innerWidth,
+		}));
 
 		const handleResizeWindow = () => {
-			setState({ ...state, width: window.innerWidth });
+			// Update the width on window resize
+			setState((prevState) => ({
+				...prevState,
+				width: window.innerWidth,
+			}));
 		};
 
-		// subscribe to window resize event "onComponentDidMount"
+		// Subscribe to window resize event on component mount
 		window.addEventListener('resize', handleResizeWindow);
+
+		// Unsubscribe on component unmount
 		return () => {
-			// unsubscribe "onComponentDestroy"
 			window.removeEventListener('resize', handleResizeWindow);
 		};
-	}, []);
+	}, []); // Empty dependency array ensures that the effect runs only once on mount
 
 	return state;
 }

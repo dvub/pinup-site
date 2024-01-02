@@ -14,6 +14,11 @@ import multipleShirts from '../public/home/multiple-shirts.jpg';
 import useWidth from '@/hooks/useWidth';
 import useProducts from '@/hooks/useProducts';
 
+// TODO: FIX IMAGE HEIGHTS
+
+// font is broken on redirect
+// footer is broken lol
+
 export default function Home() {
 	const { width, breakpoints } = useWidth();
 	const { data: products, error, isLoading } = useProducts();
@@ -40,7 +45,7 @@ export default function Home() {
 				<div
 					className={`${
 						width > breakpoints.medium ? 'w-[50%]' : 'w-full'
-					}  h-[50em]`}
+					} relative h-[50em]`}
 				>
 					<Image
 						src={displayImages![0].url}
@@ -52,7 +57,7 @@ export default function Home() {
 					/>
 				</div>
 				{width > breakpoints.medium && (
-					<div className='w-[50%] h-[50rem]'>
+					<div className='relative w-[50%] h-[50rem]'>
 						<Image
 							src={displayImages![1].url}
 							alt='...'
@@ -70,24 +75,35 @@ export default function Home() {
 	return (
 		<main>
 			<Navbar />
-
 			{/* important section */}
-			<div className='w-full'>
-				<Link
-					href='/production'
-					className={'flex relative justify-center items-center'}
-				>
-					{displayImages && <ImageEl />}
-					<h1
-						className={`text-2xl flex absolute p-2 z-30 text-center `}
-					>
-						production <br /> shop now
-					</h1>
-					{/* image display, checks the width to determine 1 or 2 images */}
+			<div>
+				<Link href='/production' className='w-full relative'>
+					{displayImages && (
+						<div>
+							{/* OVERLAY DIV */}
+							<div className='z-50 absolute h-full w-full flex  justify-center items-center'>
+								<h1 className={`text-2xl w-full text-center`}>
+									production <br /> shop now
+								</h1>
+							</div>
+
+							<ImageEl />
+						</div>
+					)}
+					{!displayImages && (
+						<div className='w-full h-[50rem] flex justify-center items-center'>
+							{/* TODO: match height to the total page height when loaded.  */}
+							<div>
+								<h1 className='text-2xl'>loading...</h1>
+								<h1 className='text-4xl'>pinup rags</h1>
+								<p>rags will be there soon</p>
+							</div>
+						</div>
+					)}
 				</Link>
 			</div>
-			{/*	<ItemPanel type={'production'} /> */}
-			<Footer />
+			{/*	<ItemPanel type={'production'} /> 
+			<Footer />*/}
 		</main>
 	);
 }
