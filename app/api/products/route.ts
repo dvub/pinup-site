@@ -1,46 +1,19 @@
-// @ts-ignore
-import Client from 'shopify-buy/index.unoptimized.umd';
-//import Client from 'shopify-buy';
+import generateClient from '@/lib/shopify';
+import '@shopify/shopify-api/adapters/node';
 export async function GET(request: Request) {
-	// supposedly required
-	const headers = request.headers;
-	if (!headers) {
-		console.log('erm...');
+	const url = request.url;
+	if (!request.url) {
 		return;
 	}
-	const apiVersion = process.env.SHOPIFY_API_VERSION;
-	const domain = process.env.SHOPIFY_DOMAIN;
-	const token = process.env.SHOPIFY_STOREFRONT_TOKEN;
 
-	if (apiVersion === undefined)
-		throw Error(
-			'Error fetching products: API Version not specified. Check your .env file.'
-		);
-	if (apiVersion.length === 0) {
-		console.log(
-			'API Version not specified. This may cause (breaking) issues.'
-		);
-	}
-	if (!domain)
-		throw Error(
-			'Error fetching products: Shopify domain not specified. Check your .env file.'
-		);
-	if (!token)
-		throw Error(
-			'Error fetching products: Storefront Token not specified. Check your .env file.'
-		);
-	const client = Client.buildClient({
-		domain: process.env.SHOPIFY_DOMAIN!,
-		storefrontAccessToken: process.env.SHOPIFY_STOREFRONT_TOKEN!,
-		apiVersion: process.env.SHOPIFY_API_VERSION!,
-	});
+	const client = generateClient();
 
 	// https://github.com/vercel/commerce/blob/main/lib/shopify/fragments/image.ts
 	// https://github.com/vercel/commerce/blob/main/lib/shopify/fragments/product.ts
 	const productsQuery = client.graphQLClient.query((root: any) => {
 		root.addConnection(
 			'products',
-			{ args: { first: 10 } },
+			{ args: { first: 100 } },
 			(product: any) => {
 				product.add('id');
 				product.add('handle');
@@ -70,7 +43,7 @@ export async function GET(request: Request) {
 
 				product.addConnection(
 					'images',
-					{ args: { first: 5 } },
+					{ args: { first: 100 } },
 					(images: any) => {
 						images.add('url');
 						images.add('altText');
@@ -82,6 +55,5 @@ export async function GET(request: Request) {
 		);
 	});
 	const data = await client.graphQLClient.send(productsQuery);
-
 	return new Response(JSON.stringify(data.model.products));
 }

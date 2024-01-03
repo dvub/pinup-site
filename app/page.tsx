@@ -32,7 +32,10 @@ const Loading = () => {
 	);
 };
 
-const ShowcaseSection = (props: { images: ShopifyImage[]; error: any }) => {
+const ShowcaseSection = (props: {
+	images: ShopifyImage[] | undefined;
+	error: any;
+}) => {
 	const { width, breakpoints } = useWidth();
 	const { images, error } = props;
 
@@ -53,10 +56,9 @@ const ShowcaseSection = (props: { images: ShopifyImage[]; error: any }) => {
 					} relative h-[50em]`}
 				>
 					<Image
-						src={images[0].url}
+						src={images![0].url}
 						alt='...'
 						quality={100}
-						priority
 						fill
 						className='object-cover'
 					/>
@@ -64,7 +66,7 @@ const ShowcaseSection = (props: { images: ShopifyImage[]; error: any }) => {
 				{width > breakpoints.medium && (
 					<div className='relative w-[50%] h-[50rem]'>
 						<Image
-							src={images[1].url}
+							src={images![1].url}
 							alt='...'
 							quality={100}
 							priority
@@ -95,8 +97,8 @@ const ShowcaseSection = (props: { images: ShopifyImage[]; error: any }) => {
 	return (
 		<Link href='/production' className='w-full relative'>
 			<div>
-				<Overlay />
-				{!error && <Background />}
+				{(images || error) && <Overlay />}
+				{!error && images && <Background />}
 				{error && <ErrorBackground />}
 			</div>
 			{/* <ItemPanel type={'production'} /> */}
@@ -106,8 +108,11 @@ const ShowcaseSection = (props: { images: ShopifyImage[]; error: any }) => {
 
 export default function Home() {
 	const { data: products, error, isLoading } = useProducts();
-
 	let [ShowcaseImages, setShowcaseImages] = React.useState<
+		ShopifyImage[] | undefined
+	>(undefined);
+
+	let [alternateImages, setAlternateImages] = React.useState<
 		ShopifyImage[] | undefined
 	>(undefined);
 
@@ -115,10 +120,26 @@ export default function Home() {
 		if (isLoading || error) {
 			return;
 		}
+		// annoyingly, we have to do some extraction and cleaning to our tags :/
+		// TODO: fix this
+		for (const product of products!) {
+			let tags: string[] = [];
+			(product.tags as any).forEach((tag: { value: string }) => {
+				tags.push(tag.value.toLowerCase());
+			});
+			product.tags = tags;
+		}
 
-		for (let product of products!) {
+		for (const product of products!) {
 			if (product.tags.includes('display')) {
-				setShowcaseImages(product.images);
+				if (product.tags.includes('production')) {
+					setShowcaseImages(product.images);
+				}
+				if (product.tags.includes('vintage')) {
+					setAlternateImages(alternateImages?.push(product.images));
+				}
+				if (product.tags.includes('reworked')) {
+				}
 			}
 		}
 	}, [isLoading, products, error]);
@@ -130,9 +151,7 @@ export default function Home() {
 				{/* LOADING */}
 				{!ShowcaseImages && !error && <Loading />}
 				{/* if all goes well */}
-				{ShowcaseImages && (
-					<ShowcaseSection images={ShowcaseImages} error={error} />
-				)}
+				<ShowcaseSection images={ShowcaseImages} error={error} />
 			</div>
 
 			{/* <Footer />*/}
