@@ -1,5 +1,6 @@
 import generateClient from '@/lib/shopify';
 import '@shopify/shopify-api/adapters/node';
+import { Product } from 'shopify-buy';
 export async function GET(request: Request) {
 	const url = request.url;
 	if (!request.url) {
@@ -55,5 +56,13 @@ export async function GET(request: Request) {
 		);
 	});
 	const data = await client.graphQLClient.send(productsQuery);
-	return new Response(JSON.stringify(data.model.products));
+	const res = data.model.products;
+
+	// extract values from tags. TODO:  fix ??
+	const products = res.map((product: Product) => {
+		const tags = product.tags.map((tag: any) => tag.value.toLowerCase());
+		return { ...product, tags };
+	});
+
+	return new Response(JSON.stringify(products));
 }

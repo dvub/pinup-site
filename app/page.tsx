@@ -7,141 +7,50 @@ import Footer from '../components/footer/footer';
 import Image from 'next/image';
 
 import Link from 'next/link';
-import { Shop, Image as ShopifyImage } from 'shopify-buy';
+import { Image as ShopifyImage } from 'shopify-buy';
 import useWidth from '@/hooks/useWidth';
 import useProducts from '@/hooks/useProducts';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/solid';
+import { Section } from '@/components/home/Section';
+import { Loading } from '@/components/home/Loading';
 
 // TODO: FIX IMAGE HEIGHTS
 
 // font is broken on redirect
 // footer is broken lol
-const Loading = () => {
-	// TODO: make random loading text
-	const loadingText = 'threads otw';
-
-	return (
-		<div className='w-full h-[50rem] flex justify-center items-center'>
-			{/* TODO: match height to the total page height when loaded.  */}
-			<div>
-				<h1 className='text-2xl text-right'>...loading</h1>
-				<h1 className='text-4xl'>pinup rags</h1>
-				<p className='py-1'>{loadingText}</p>
-			</div>
-		</div>
-	);
-};
-
-const ShowcaseSection = (props: {
-	images: ShopifyImage[] | undefined;
-	error: any;
-}) => {
-	const { width, breakpoints } = useWidth();
-	const { images, error } = props;
-
-	const ErrorBackground = () => {
-		return (
-			<div>
-				<div className='w-full h-[50rem] bg-gray-200'></div>
-			</div>
-		);
-	};
-
-	const Background = () => {
-		return (
-			<div className='flex'>
-				<div
-					className={`${
-						width > breakpoints.medium ? 'w-[50%]' : 'w-full'
-					} relative h-[50em]`}
-				>
-					<Image
-						src={images![0].url}
-						alt='...'
-						quality={100}
-						fill
-						className='object-cover'
-					/>
-				</div>
-				{width > breakpoints.medium && (
-					<div className='relative w-[50%] h-[50rem]'>
-						<Image
-							src={images![1].url}
-							alt='...'
-							quality={100}
-							priority
-							fill
-							className='object-cover'
-						/>
-					</div>
-				)}
-			</div>
-		);
-	};
-
-	const Overlay = () => {
-		return (
-			<>
-				{/* OVERLAY DIV */}
-				{error && (
-					<ExclamationTriangleIcon className='w-5 h-5 absolute m-5 text-red-500' />
-				)}
-				<div className='z-50 absolute h-full w-full flex justify-center items-center'>
-					<h1 className={`text-2xl text-center`}>
-						production <br /> shop now
-					</h1>
-				</div>
-			</>
-		);
-	};
-	return (
-		<Link href='/production' className='w-full relative'>
-			<div>
-				{(images || error) && <Overlay />}
-				{!error && images && <Background />}
-				{error && <ErrorBackground />}
-			</div>
-			{/* <ItemPanel type={'production'} /> */}
-		</Link>
-	);
-};
 
 export default function Home() {
 	const { data: products, error, isLoading } = useProducts();
-	let [ShowcaseImages, setShowcaseImages] = React.useState<
-		ShopifyImage[] | undefined
-	>(undefined);
 
-	let [alternateImages, setAlternateImages] = React.useState<
-		ShopifyImage[] | undefined
-	>(undefined);
+	// state for the images
+	let [images, setImages] = React.useState<{
+		production: ShopifyImage[] | undefined;
+		vintage: ShopifyImage[] | undefined;
+		reworked: ShopifyImage[] | undefined;
+	}>({
+		production: undefined,
+		vintage: undefined,
+		reworked: undefined,
+	});
 
 	React.useEffect(() => {
 		if (isLoading || error) {
 			return;
 		}
-		// annoyingly, we have to do some extraction and cleaning to our tags :/
-		// TODO: fix this
-		for (const product of products!) {
-			let tags: string[] = [];
-			(product.tags as any).forEach((tag: { value: string }) => {
-				tags.push(tag.value.toLowerCase());
-			});
-			product.tags = tags;
-		}
 
-		for (const product of products!) {
-			if (product.tags.includes('display')) {
-				if (product.tags.includes('production')) {
-					setShowcaseImages(product.images);
-				}
-				if (product.tags.includes('vintage')) {
-					setAlternateImages(alternateImages?.push(product.images));
-				}
-				if (product.tags.includes('reworked')) {
+		for (const product of products || []) {
+			if (product.tags && product.tags.includes('display')) {
+				for (const tag of Object.keys(images)) {
+					if (product.tags.includes(tag)) {
+						setImages((prevState) => ({
+							...prevState,
+							[tag]: product.images,
+						}));
+					}
 				}
 			}
 		}
+		// 90% sure the dependency has to be missing or else it will break. double check that though.
 	}, [isLoading, products, error]);
 
 	return (
@@ -149,9 +58,37 @@ export default function Home() {
 			<Navbar />
 			<div>
 				{/* LOADING */}
-				{!ShowcaseImages && !error && <Loading />}
+				{!images.production && !error && <Loading />}
+
 				{/* if all goes well */}
-				<ShowcaseSection images={ShowcaseImages} error={error} />
+
+				{images.production && (
+					<Section
+						images={images.production}
+						error={error}
+						wide={true}
+						title='production'
+					/>
+				)}
+				<div className='flex'>
+					{images.vintage && (
+						<Section
+							images={images.vintage}
+							error={error}
+							wide={false}
+							title='vintage'
+						/>
+					)}
+
+					{images.reworked && (
+						<Section
+							images={images.reworked}
+							error={error}
+							wide={false}
+							title='reworked'
+						/>
+					)}
+				</div>
 			</div>
 
 			{/* <Footer />*/}
