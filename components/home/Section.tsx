@@ -27,15 +27,17 @@ export const Section = (props: {
 			<div className='flex'>
 				<div
 					className={`${
-						width > breakpoints.medium ? 'w-[50%]' : 'w-full'
+						width > breakpoints.medium && wide
+							? 'w-[50%]'
+							: 'w-full'
 					} relative h-[50em]`}
 				>
 					<Image
 						src={images![0].url}
-						alt='...'
+						alt={images![0].altText || 'alt'}
 						quality={100}
 						fill
-						className='object-cover'
+						className='object-cover '
 					/>
 				</div>
 				{wide && width > breakpoints.medium && (
@@ -56,21 +58,26 @@ export const Section = (props: {
 
 	const Overlay = () => {
 		return (
-			<>
+			<div className='h-full w-full'>
 				{/* OVERLAY DIV */}
 				{error && (
 					<ExclamationTriangleIcon className='w-5 h-5 absolute m-5 text-red-500' />
 				)}
-				<div className='z-50 absolute h-full w-full flex justify-center items-center'>
+				<div className='z-30 absolute w-full h-full flex justify-center items-center'>
 					<h1 className={`text-2xl text-center`}>
 						{title} <br /> shop now
 					</h1>
 				</div>
-			</>
+			</div>
 		);
 	};
 	return (
-		<Link href='/production' className='w-full relative'>
+		<Link
+			href='/production'
+			className={`${
+				width > breakpoints.medium && wide ? 'w-[50%]' : 'w-full'
+			} relative h-[50em]`}
+		>
 			<div>
 				{<Overlay />}
 				{

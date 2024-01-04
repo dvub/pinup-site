@@ -1,16 +1,12 @@
 'use client';
 import './globals.css';
-import Navbar from '../components/navbar/navbar';
+
 import * as React from 'react';
-
-import Footer from '../components/footer/footer';
-import Image from 'next/image';
-
-import Link from 'next/link';
 import { Image as ShopifyImage } from 'shopify-buy';
-import useWidth from '@/hooks/useWidth';
+
 import useProducts from '@/hooks/useProducts';
-import { ExclamationTriangleIcon } from '@heroicons/react/24/solid';
+
+import Navbar from '@/components/navbar/navbar';
 import { Section } from '@/components/home/Section';
 import { Loading } from '@/components/home/Loading';
 
