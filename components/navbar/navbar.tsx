@@ -17,7 +17,6 @@ export default function Navbar() {
 
 	const [openNav, setOpenNav] = React.useState(false);
 	const [clicked, setClicked] = React.useState(false);
-	const [hover, setHover] = React.useState(false);
 	React.useEffect(() => {
 		if (width > breakpoints.medium) {
 			setOpenNav(true);
@@ -29,7 +28,7 @@ export default function Navbar() {
 
 	return (
 		<nav
-			className={` bg-white w-full lg:text-xl md:text-lg text-sm z-50 sticky top-0`}
+			className={`w-full lg:text-xl md:text-lg text-sm z-50 sticky top-0 bg-white`}
 			style={{ transition: 'height 2s' }}
 		>
 			{width >= breakpoints.medium && (
@@ -62,13 +61,6 @@ export default function Navbar() {
 							}}
 							onPointerUp={() => {
 								setClicked(false);
-							}}
-							onPointerOver={() => {
-								setHover(true);
-							}}
-							onPointerLeave={() => {
-								setHover(false);
-								if (clicked) setClicked(false);
 							}}
 						>
 							<Bars3Icon

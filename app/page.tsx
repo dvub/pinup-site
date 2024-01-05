@@ -1,13 +1,13 @@
 'use client';
-import './globals.css';
 
 import * as React from 'react';
 import { Image as ShopifyImage } from 'shopify-buy';
 
-import useProducts from '@/hooks/useProducts';
+import useDisplayProducts from '@/hooks/useDisplayProducts';
 
 import Navbar from '@/components/navbar/navbar';
 import { Section } from '@/components/home/Section';
+import ItemPanel from '@/components/ItemPanel';
 import { Loading } from '@/components/home/Loading';
 import clsx from 'clsx';
 import useWidth from '@/hooks/useWidth';
@@ -18,7 +18,7 @@ import useWidth from '@/hooks/useWidth';
 // footer is broken lol
 
 export default function Home() {
-	const { data: products, error, isLoading } = useProducts();
+	const { data: products, error, isLoading } = useDisplayProducts();
 
 	const { width, breakpoints } = useWidth();
 
@@ -80,6 +80,7 @@ export default function Home() {
 							/>
 						</div>
 					)}
+					<ItemPanel type={'production'} />
 					<div
 						className={clsx(
 							width > breakpoints.medium && 'flex',

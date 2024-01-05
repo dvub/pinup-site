@@ -3,7 +3,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-	title: 'pinup rags | home',
+	title: 'Home | PINUP',
 	description: '..',
 };
 
@@ -13,8 +13,8 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang='en'>
-			<body className={hedvig.className}>{children}</body>
+		<html lang='en' className={hedvig.className}>
+			<body>{children}</body>
 		</html>
 	);
 }

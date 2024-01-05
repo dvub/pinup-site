@@ -102,8 +102,6 @@ export const Section = (props: {
 			</div>
 			{images && <Background />}
 			{error && <ErrorBackground />}
-
-			{/* <ItemPanel type={'production'} /> */}
 		</Link>
 	);
 };

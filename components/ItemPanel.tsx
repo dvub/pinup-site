@@ -4,13 +4,8 @@ import Link from 'next/link';
 import bags from '../../public/home/bags.jpg';
 import Image from 'next/image';
 import { Product } from 'shopify-buy';
-import useProducts from '@/hooks/useProducts';
 
 export default function ItemPanel(props: { type: string }) {
-	const { data: products, isLoading, error } = useProducts();
-
-	if (isLoading) return <div>loading</div>;
-
 	/* 
 	
 		<div

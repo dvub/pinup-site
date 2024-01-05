@@ -2,17 +2,8 @@ import generateClient from '@/lib/shopify';
 import { Product } from 'shopify-buy';
 export async function GET(request: Request) {
 	const url = request.url;
-
-	const split = url.split('?');
-	const params = split[1].split('&');
-
-	let query = '';
-
-	for (const param of params) {
-		const split = param.split('=');
-		if (split[0] === 'tag') {
-			query = `tag:${split[1]}`;
-		}
+	if (!request.url) {
+		return;
 	}
 
 	const client = generateClient();
@@ -33,6 +24,49 @@ export async function GET(request: Request) {
 				},
 			},
 			(product: any) => {
+				product.add('title');
+				product.add('tags');
+
+				/*
+				product.add('featuredImage', (featuredImage: any) => {
+					featuredImage.add('id');
+					featuredImage.add('originalSrc');
+				});
+				*/
+				product.addConnection(
+					'images',
+					{ args: { first: 10 } },
+					(images: any) => {
+						images.add('url');
+						images.add('altText');
+						images.add('width');
+						images.add('height');
+					}
+				);
+			}
+		);
+	});
+	const data = await client.graphQLClient.send(productsQuery);
+	const res = data.model.products;
+
+	// extract values from tags. TODO:  fix ??
+	const products = res.map((product: Product) => {
+		const tags = product.tags.map((tag: any) => tag.value.toLowerCase());
+		return { ...product, tags };
+	});
+
+	return new Response(JSON.stringify(products));
+}
+/*
+
+			'products',
+			{
+				args: {
+					first: 100,
+					query: 'tag:display',
+				},
+			},
+			(product: any) => {
 				product.add('id');
 				product.add('handle');
 				product.add('availableForSale');
@@ -42,7 +76,7 @@ export async function GET(request: Request) {
 
 				product.addConnection(
 					'variants',
-					{ args: { first: 10 } },
+					{ args: { first: 20 } },
 					(variants: any) => {
 						variants.add('id');
 						variants.add('title');
@@ -71,15 +105,5 @@ export async function GET(request: Request) {
 				);
 			}
 		);
-	});
-	const data = await client.graphQLClient.send(productsQuery);
-	const res = data.model.products;
 
-	// extract values from tags. TODO:  fix ??
-	const products = res.map((product: Product) => {
-		const tags = product.tags.map((tag: any) => tag.value.toLowerCase());
-		return { ...product, tags };
-	});
-
-	return new Response(JSON.stringify(products));
-}
+		*/
