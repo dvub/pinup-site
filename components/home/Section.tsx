@@ -83,9 +83,9 @@ export const Section = (props: {
 				{error && (
 					<ExclamationTriangleIcon className='w-5 h-5 absolute m-5 text-red-500' />
 				)}
-				<div className='z-30 absolute w-full h-full flex justify-center items-center'>
+				<div className=' z-30 absolute w-full h-full flex justify-center items-center'>
 					<div>
-						<h1 className='bg-white text-2xl text-center text-black my-2 p-2'>
+						<h1 className='bg-white text-2xl text-center text-black my-2 p-1'>
 							{title}
 						</h1>
 						<h1 className='bg-white w-full text-center text-md text-black my-2 p-2'>

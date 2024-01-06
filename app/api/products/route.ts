@@ -3,14 +3,13 @@ import { NextRequest } from 'next/server';
 import { Product } from 'shopify-buy';
 export async function GET(request: NextRequest) {
 	const params = request.nextUrl.searchParams;
-	const queryBy = 'collection';
+	const queryBy = 'tag';
 	const value = params.get(queryBy);
 
 	let query = '';
 	if (value) {
 		query = `${queryBy}:${value}`;
 	}
-	console.log(query);
 
 	const client = generateClient();
 	/*
