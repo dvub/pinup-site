@@ -1,22 +1,18 @@
 import generateClient from '@/lib/shopify';
+import { NextRequest } from 'next/server';
 import { Product } from 'shopify-buy';
-export async function GET(request: Request) {
-	const url = request.url;
-
-	const split = url.split('?');
-	const params = split[1].split('&');
+export async function GET(request: NextRequest) {
+	const params = request.nextUrl.searchParams;
+	const queryBy = 'collection';
+	const value = params.get(queryBy);
 
 	let query = '';
-
-	for (const param of params) {
-		const split = param.split('=');
-		if (split[0] === 'tag') {
-			query = `tag:${split[1]}`;
-		}
+	if (value) {
+		query = `${queryBy}:${value}`;
 	}
+	console.log(query);
 
 	const client = generateClient();
-
 	/*
 	const tagsArray = ['display']; // Add your desired tags to this array
 	const tagsQuery = tagsArray.map((tag) => `tag:${tag}`).join(' OR ');
@@ -29,7 +25,7 @@ export async function GET(request: Request) {
 			{
 				args: {
 					first: 100,
-					query: 'tag:display',
+					query: query,
 				},
 			},
 			(product: any) => {
@@ -53,7 +49,6 @@ export async function GET(request: Request) {
 						});
 					}
 				);
-
 				product.add('featuredImage', (featuredImage: any) => {
 					featuredImage.add('id');
 					featuredImage.add('originalSrc');
@@ -73,7 +68,7 @@ export async function GET(request: Request) {
 		);
 	});
 	const data = await client.graphQLClient.send(productsQuery);
-	const res = data.model.products;
+	const res: Product[] = data.model.products;
 
 	// extract values from tags. TODO:  fix ??
 	const products = res.map((product: Product) => {
@@ -81,5 +76,6 @@ export async function GET(request: Request) {
 		return { ...product, tags };
 	});
 
+	console.log(products.length);
 	return new Response(JSON.stringify(products));
 }

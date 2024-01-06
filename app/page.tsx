@@ -80,7 +80,7 @@ export default function Home() {
 							/>
 						</div>
 					)}
-					<ItemPanel type={'production'} />
+					<ItemPanel type={'Production'} />
 					<div
 						className={clsx(
 							width > breakpoints.medium && 'flex',
