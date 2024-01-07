@@ -11,6 +11,7 @@ import ItemPanel from '@/components/ItemPanel';
 import { Loading } from '@/components/Loading';
 import clsx from 'clsx';
 import useWidth from '@/hooks/useWidth';
+import Footer from '@/components/footer/footer';
 
 // TODO: FIX IMAGE HEIGHTS
 
@@ -65,7 +66,7 @@ export default function Home() {
 	return (
 		<>
 			<Navbar />
-			<div>
+			<div className='main h-auto'>
 				{/* if all goes well */}
 				{images.production && (
 					<div className='h-[100vh]'>
@@ -109,10 +110,8 @@ export default function Home() {
 					<p>contact: EMAIL@DOMAIN.COM</p>
 					<p className=''>site feedback/bugs: dvubdevs@gmail.com</p>
 				</div>
-				ain
 			</div>
-
-			{/* <Footer />*/}
+			<Footer />
 		</>
 	);
 }
