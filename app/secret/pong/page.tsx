@@ -34,100 +34,104 @@ export default function Page() {
 		x: 200,
 		y: 150,
 	});
+	const [ballSpeed, setBallSpeed] = React.useState({ x: 0.5, y: -0.5 });
 
-	const [ballSpeed, setBallSpeed] = React.useState({ x: 3, y: -3 });
+	const handlePointer = (event: React.PointerEvent) => {
+		setPaddleY(event.clientY - 30);
+	};
 
-	// Separate useEffect for handling mouse move
-	React.useEffect(() => {
-		const handleWindowMouseMove = (event: any) => {
-			setPaddleY(event.clientY);
-		};
-		window.addEventListener('mousemove', handleWindowMouseMove);
-
-		return () => {
-			window.removeEventListener('mousemove', handleWindowMouseMove);
-		};
-	}, []); // Empty dependency array to run once on mount
-
-	React.useEffect(() => {
-		const updateGame = () => {
-			// Update ball position
+	const checkCollision = () => {
+		// Ball collisions with walls
+		if (ballCoordinates.x >= 390) {
+			console.log('Hit right edge');
 			setBallCoordinates((prevState) => ({
-				y: ballCoordinates.y + ballSpeed.y,
-				x: ballCoordinates.x + ballSpeed.x,
+				...prevState,
+				x: prevState.x - 10,
 			}));
+			setBallSpeed((prevState) => ({
+				...prevState,
+				x: -ballSpeed.x,
+			}));
+		}
 
-			// Ball collisions with walls
-			if (ballCoordinates.x >= 390) {
-				setBallCoordinates((prevState) => ({
-					...prevState,
-					x: prevState.x - 10,
-				}));
-				setBallSpeed((prevState) => ({
-					...prevState,
-					x: -ballSpeed.x,
-				}));
-			}
+		if (ballCoordinates.y <= 0) {
+			console.log('Hit top');
+			setBallCoordinates((prevState) => ({
+				...prevState,
+				y: prevState.y + 10,
+			}));
+			setBallSpeed((prevState) => ({
+				...prevState,
+				y: -ballSpeed.y,
+			}));
+		}
+		if (ballCoordinates.y >= 290) {
+			console.log('Hit bottom');
+			setBallCoordinates((prevState) => ({
+				...prevState,
+				y: prevState.y - 10,
+			}));
+			setBallSpeed((prevState) => ({
+				...prevState,
+				y: -ballSpeed.y,
+			}));
+		}
 
-			if (ballCoordinates.y <= 0) {
-				console.log('hit top!');
-				setBallCoordinates((prevState) => ({
-					...prevState,
-					y: prevState.y + 10,
-				}));
-				setBallSpeed((prevState) => ({
-					...prevState,
-					y: -ballSpeed.y,
-				}));
-			}
-			if (ballCoordinates.y >= 290) {
-				console.log('hit bottom');
-				setBallCoordinates((prevState) => ({
-					...prevState,
-					y: prevState.y - 10,
-				}));
-				setBallSpeed((prevState) => ({
-					...prevState,
-					y: -ballSpeed.y,
-				}));
-			}
+		// Ball collisions with paddle
+		const paddleTop = paddleY;
+		const paddleBottom = paddleY + 60;
+		const paddleLeft = 10;
+		const paddleRight = 20;
 
-			// Ball collisions with paddle
-			const paddleTop = paddleY;
-			const paddleBottom = paddleY + 60;
-			const paddleLeft = 10;
-			const paddleRight = 20;
+		if (
+			ballCoordinates.x <= paddleRight &&
+			ballCoordinates.y >= paddleTop &&
+			ballCoordinates.y <= paddleBottom &&
+			ballCoordinates.x >= paddleLeft
+		) {
+			setBallSpeed((prevState) => ({
+				...prevState,
+				x: -ballSpeed.x,
+			}));
+			setBallCoordinates((prevState) => ({
+				...prevState,
+				x: prevState.x + 10,
+			}));
+			setScore((prevScore) => prevScore + 1);
+		}
+	};
 
-			if (
-				ballCoordinates.x <= paddleRight &&
-				ballCoordinates.y >= paddleTop &&
-				ballCoordinates.y <= paddleBottom &&
-				ballCoordinates.x >= paddleLeft
-			) {
-				setBallSpeed((prevState) => ({
-					...prevState,
-					x: -ballSpeed.x,
-				}));
-				setBallCoordinates((prevState) => ({
-					...prevState,
-					x: prevState.x + 10,
-				}));
-				setScore(score + 1);
-			}
-		};
+	const updateGame = (
+		coords: { x: number; y: number },
+		speed: { x: number; y: number }
+	) => {
+		// Update ball position
+		setBallCoordinates((prevState) => ({
+			y: prevState.y + ballSpeed.y,
+			x: prevState.x + ballSpeed.x,
+		}));
 
-		const gameLoop = setInterval(updateGame, 16);
+		// Use requestAnimationFrame for smoother animations
+		requestAnimationFrame(updateGame);
+	};
 
-		return () => {
-			clearInterval(gameLoop);
-		};
-	}, [ballCoordinates, ballSpeed, paddleY]);
+	React.useEffect(() => {
+		checkCollision();
+	}, [ballCoordinates]);
+
+	// Initial call to start the animation loop
+	React.useEffect(() => {
+		updateGame();
+	}, []);
 
 	return (
 		<div>
 			<p>{score}</p>
 			<div
 				tabIndex={0}
+				onPointerMove={(e) => {
+					handlePointer(e);
+				}}
 				style={{
 					position: 'relative',
 					width: '400px',
