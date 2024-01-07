@@ -54,7 +54,6 @@ export async function GET(request: Request) {
 		const tags = product.tags.map((tag: any) => tag.value.toLowerCase());
 		return { ...product, tags };
 	});
-
 	return new Response(JSON.stringify(products));
 }
 /*

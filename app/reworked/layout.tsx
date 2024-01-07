@@ -8,8 +8,8 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang='en'>
-			<body className={hedvig.className}>{children}</body>
+		<html lang='en' className={hedvig.className}>
+			<body>{children}</body>
 		</html>
 	);
 }

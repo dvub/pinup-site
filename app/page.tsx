@@ -8,7 +8,7 @@ import useDisplayProducts from '@/hooks/useDisplayProducts';
 import Navbar from '@/components/navbar/navbar';
 import { Section } from '@/components/home/Section';
 import ItemPanel from '@/components/ItemPanel';
-import { Loading } from '@/components/home/Loading';
+import { Loading } from '@/components/Loading';
 import clsx from 'clsx';
 import useWidth from '@/hooks/useWidth';
 
@@ -43,7 +43,7 @@ export default function Home() {
 			return;
 		}
 		// parse all products and set images in state depending on products that have the matching tag
-		for (const product of products || []) {
+		for (const product of products!) {
 			if (product.tags && product.tags.includes(displayTag)) {
 				for (const tag of Object.keys(images)) {
 					if (product.tags.includes(tag)) {
@@ -64,59 +64,55 @@ export default function Home() {
 
 	return (
 		<>
-			<main>
-				<Navbar />
-				<div>
-					{/* if all goes well */}
-
-					{images.production && (
-						<div className='h-[100vh]'>
-							<Section
-								images={images.production}
-								error={error}
-								wide={true}
-								title='production'
-								href='/production'
-							/>
-						</div>
+			<Navbar />
+			<div>
+				{/* if all goes well */}
+				{images.production && (
+					<div className='h-[100vh]'>
+						<Section
+							images={images.production}
+							error={error}
+							wide={true}
+							title='production'
+							href='/production'
+						/>
+					</div>
+				)}
+				<ItemPanel type={'Production'} />
+				<div
+					className={clsx(
+						width > breakpoints.medium && 'flex',
+						'h-[50rem]'
 					)}
-					<ItemPanel type={'Production'} />
-					<div
-						className={clsx(
-							width > breakpoints.medium && 'flex',
-							'h-[50rem]'
-						)}
-					>
-						{images.vintage && (
-							<Section
-								images={images.vintage}
-								error={error}
-								wide={false}
-								title='vintage'
-								href='/vintage'
-							/>
-						)}
+				>
+					{images.vintage && (
+						<Section
+							images={images.vintage}
+							error={error}
+							wide={false}
+							title='vintage'
+							href='/vintage'
+						/>
+					)}
 
-						{images.reworked && (
-							<Section
-								images={images.reworked}
-								error={error}
-								wide={false}
-								title='reworked'
-								href='/reworked'
-							/>
-						)}
-					</div>
-					<div className='text-xl m-5 w-full text-center'>
-						<p>contact: EMAIL@DOMAIN.COM</p>
-						<p className=''>
-							site feedback/bugs: dvubdevs@gmail.com
-						</p>
-					</div>
+					{images.reworked && (
+						<Section
+							images={images.reworked}
+							error={error}
+							wide={false}
+							title='reworked'
+							href='/reworked'
+						/>
+					)}
 				</div>
+				<div className='text-xl m-5 w-full text-center'>
+					<p>contact: EMAIL@DOMAIN.COM</p>
+					<p className=''>site feedback/bugs: dvubdevs@gmail.com</p>
+				</div>
+				ain
+			</div>
 
-				{/* <Footer />*/}
-			</main>
+			{/* <Footer />*/}
 		</>
 	);
 }

@@ -9,9 +9,11 @@ export default function Custom() {
 	return (
 		<main>
 			<Navbar />
-			<h1 className='w-full text-6xl text-center'>Production</h1>
-			<p>Some stuff about production pieces...</p>
-			<ItemPanel type='production' />
+			<div className='m-2'>
+				<h1 className='text-6xl'>Production</h1>
+				<p>Some stuff about production pieces...</p>
+				<ItemPanel type='production' />
+			</div>
 		</main>
 	);
 }

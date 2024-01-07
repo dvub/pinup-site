@@ -10,7 +10,7 @@ export const Loading = () => {
 		'threads otw...',
 		"hopefully this doesn't take long...",
 		'be right back...',
-		'be back in a second!',
+		'be back in a second...',
 		'loading content...',
 		'almost there...',
 	];
@@ -19,9 +19,7 @@ export const Loading = () => {
 		'dvub says hi!',
 		'this text is rare!',
 		'is this working?',
-		'you found a hidden message!',
-		'rare text = rare clothes?',
-		'rare text = rare pieces?',
+		'does anyone read this..?',
 	];
 	const [loadingText, setLoadingText] = useState('. . .');
 
@@ -37,8 +35,8 @@ export const Loading = () => {
 	return (
 		<div className='w-screen h-screen flex justify-center items-center'>
 			<div>
-				<h1 className='text-2xl text-right'>...loading</h1>
-				<h1 className='text-4xl'>pinup rags</h1>
+				<h1 className='text-2xl text-right'>Loading</h1>
+				<h1 className='text-4xl'>pinup</h1>
 				<p className='py-1'>{loadingText}</p>
 			</div>
 		</div>

@@ -28,7 +28,7 @@ export default function Navbar() {
 
 	return (
 		<nav
-			className={`w-full lg:text-xl md:text-lg text-sm z-50 sticky top-0 bg-white`}
+			className={`w-full lg:text-xl md:text-lg text-sm z-50 sticky top-0 bg-white border-b-gray-400 border-b-[1px] border-b-solid`}
 			style={{ transition: 'height 2s' }}
 		>
 			{width >= breakpoints.medium && (

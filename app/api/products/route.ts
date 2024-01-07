@@ -75,6 +75,5 @@ export async function GET(request: NextRequest) {
 		return { ...product, tags };
 	});
 
-	console.log(products.length);
 	return new Response(JSON.stringify(products));
 }

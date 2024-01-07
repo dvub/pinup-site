@@ -1,14 +1,12 @@
 'use client';
+import ComingSoon from '@/components/ComingSoon';
 import Navbar from '@/components/navbar/navbar';
+import Link from 'next/link';
 
 export default function Page() {
 	return (
-		<div>
-			<Navbar />
-			<h1 className='text-2xl m-5'>Vintage</h1>
-			<div className='flex w-screen justify-center items-center'>
-				<p>Coming soon..</p>
-			</div>
-		</div>
+		<main>
+			<ComingSoon pageName='Vintage' />
+		</main>
 	);
 }
