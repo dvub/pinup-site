@@ -37,15 +37,17 @@ export default function Page() {
 
 	const [ballSpeed, setBallSpeed] = React.useState({ x: 3, y: -3 });
 
-	const handleKeyDown = (e) => {
-		e.preventDefault(); // Prevent default key event behavior
+	// Separate useEffect for handling mouse move
+	React.useEffect(() => {
+		const handleWindowMouseMove = (event: any) => {
+			setPaddleY(event.clientY);
+		};
+		window.addEventListener('mousemove', handleWindowMouseMove);
 
-		if (e.key === 'ArrowUp' && paddleY > 0) {
-			setPaddleY(paddleY - 10);
-		} else if (e.key === 'ArrowDown' && paddleY < 290) {
-			setPaddleY(paddleY + 10);
-		}
-	};
+		return () => {
+			window.removeEventListener('mousemove', handleWindowMouseMove);
+		};
+	}, []); // Empty dependency array to run once on mount
 
 	React.useEffect(() => {
 		const updateGame = () => {
@@ -126,7 +128,6 @@ export default function Page() {
 			<p>{score}</p>
 			<div
 				tabIndex={0}
-				onKeyDown={handleKeyDown}
 				style={{
 					position: 'relative',
 					width: '400px',
