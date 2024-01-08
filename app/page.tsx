@@ -64,12 +64,11 @@ export default function Home() {
 	}
 
 	return (
-		<>
+		<div className='overflow-hidden'>
 			<Navbar />
-			<div className='main h-auto'>
-				{/* if all goes well */}
+			<div className='w-full h-full'>
 				{images.production && (
-					<div className='h-[100vh]'>
+					<div className='h-screen'>
 						<Section
 							images={images.production}
 							error={error}
@@ -80,12 +79,7 @@ export default function Home() {
 					</div>
 				)}
 				<ItemPanel type={'Production'} />
-				<div
-					className={clsx(
-						width > breakpoints.medium && 'flex',
-						'h-[50rem]'
-					)}
-				>
+				<div className={clsx(width > breakpoints.medium && 'flex', '')}>
 					{images.vintage && (
 						<Section
 							images={images.vintage}
@@ -106,12 +100,8 @@ export default function Home() {
 						/>
 					)}
 				</div>
-				<div className='text-xl m-5 w-full text-center'>
-					<p>contact: EMAIL@DOMAIN.COM</p>
-					<p className=''>site feedback/bugs: dvubdevs@gmail.com</p>
-				</div>
 			</div>
 			<Footer />
-		</>
+		</div>
 	);
 }

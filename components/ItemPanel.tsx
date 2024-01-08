@@ -9,7 +9,6 @@ export default function ItemPanel(props: { type: string }) {
 	if (isLoading) {
 		return <h1>Loading</h1>;
 	}
-	console.log(data);
 
 	const items = data!.map((product: Product) => {
 		return (
