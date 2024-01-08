@@ -11,18 +11,25 @@ export default function ItemPanel(props: { type: string }) {
 	}
 
 	const items = data!.map((product: Product) => {
+		if (product.tags.includes(process.env.NEXT_PUBLIC_EXCLUDE_TAG!)) {
+			return;
+		}
+
+		console.log(product.images);
+
 		return (
-			<div key={product.id} className=''>
+			<div key={product.id} className='text-sm relative'>
 				<Link href={`/products/${product.handle}`} className='relative'>
-					<div className='bg-gray-600 w-24 h-24'></div>
 					{product.images[0] && (
-						<Image
-							src={product.images[0].url}
-							alt='...'
-							quality={100}
-							className='object-cover'
-							fill
-						/>
+						<div className='relative w-24 h-24 bg-gray-500'>
+							<Image
+								src={product.images[0].url}
+								alt={product.images[0].altText || 'alt text'}
+								quality={100}
+								fill
+								className='object-cover'
+							/>
+						</div>
 					)}
 					<p>{product.title}</p>
 					<p>{product.variants[0].price.amount} usd</p>
