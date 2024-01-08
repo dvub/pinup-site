@@ -1,12 +1,12 @@
 import useWidth from '@/hooks/useWidth';
-import clsx from 'clsx';
 import Link from 'next/link';
 
+// simplicity is sometimes best
 export default function Footer() {
 	const { width, breakpoints } = useWidth();
 	return (
 		<div
-			className={`w-full m-5 text-md z-50 ${
+			className={`w-full p-5 text-md z-50 relative ${
 				width > breakpoints.medium && 'flex gap-5'
 			}`}
 		>
@@ -33,6 +33,11 @@ export default function Footer() {
 					<p className='bg-black text-white px-3 py-1 w-min'>
 						instagram
 					</p>
+				</Link>
+			</div>
+			<div className=' text-xs absolute bottom-0 left-0 text-black/50'>
+				<Link href='https://www.dvub.net/'>
+					<p>made by dvub</p>
 				</Link>
 			</div>
 		</div>

@@ -79,25 +79,34 @@ export default function Home() {
 					</div>
 				)}
 				<ItemPanel type={'Production'} />
-				<div className={clsx(width > breakpoints.medium && 'flex', '')}>
+				<div
+					className={clsx(
+						width > breakpoints.medium && 'flex w-full',
+						''
+					)}
+				>
 					{images.vintage && (
-						<Section
-							images={images.vintage}
-							error={error}
-							wide={false}
-							title='vintage'
-							href='/vintage'
-						/>
+						<div className='h-[50vh]'>
+							<Section
+								images={images.vintage}
+								error={error}
+								wide={false}
+								title='vintage'
+								href='/vintage'
+							/>
+						</div>
 					)}
 
 					{images.reworked && (
-						<Section
-							images={images.reworked}
-							error={error}
-							wide={false}
-							title='reworked'
-							href='/reworked'
-						/>
+						<div className='h-[50vh]'>
+							<Section
+								images={images.reworked}
+								error={error}
+								wide={false}
+								title='reworked'
+								href='/reworked'
+							/>
+						</div>
 					)}
 				</div>
 			</div>

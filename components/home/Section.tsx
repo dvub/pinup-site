@@ -102,7 +102,7 @@ export const Section = (props: {
 			className='w-full
 			h-full relative flex'
 		>
-			<div className='HELP w-full h-full absolute'>
+			<div className='w-full h-full absolute'>
 				<Overlay />
 			</div>
 			{images && <Background />}
