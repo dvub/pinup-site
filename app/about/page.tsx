@@ -1,7 +1,11 @@
+'use client';
+import Navbar from '@/components/navbar/navbar';
+
 export default function About() {
-  return (
-    <main>
-      <h1>About</h1>
-    </main>
-  )
+	return (
+		<main>
+			<Navbar />
+			<h1>About</h1>
+		</main>
+	);
 }

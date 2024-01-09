@@ -59,7 +59,7 @@ export default function Home() {
 		// 90% sure the dependency has to be missing or else it will break. double check that though.
 	}, [isLoading, products, error]);
 
-	if (!images.production && !error) {
+	if (isLoading && !error) {
 		return <Loading />;
 	}
 
@@ -67,47 +67,42 @@ export default function Home() {
 		<div className='overflow-hidden'>
 			<Navbar />
 			<div className='w-full h-full'>
-				{images.production && (
-					<div className='h-screen'>
-						<Section
-							images={images.production}
-							error={error}
-							wide={true}
-							title='production'
-							href='/production'
-						/>
-					</div>
-				)}
-				<ItemPanel type={'Production'} />
+				<div className='h-screen'>
+					<Section
+						images={images.production}
+						error={error}
+						wide={true}
+						title='vintage'
+						href='/vintage'
+					/>
+				</div>
+
+				<ItemPanel type={'v'} numItems={4} />
 				<div
 					className={clsx(
 						width > breakpoints.medium && 'flex w-full',
 						''
 					)}
 				>
-					{images.vintage && (
-						<div className='h-[50vh]'>
-							<Section
-								images={images.vintage}
-								error={error}
-								wide={false}
-								title='vintage'
-								href='/vintage'
-							/>
-						</div>
-					)}
+					<div className='h-[50vh]'>
+						<Section
+							images={images.vintage}
+							error={error}
+							wide={false}
+							title='production'
+							href='/production'
+						/>
+					</div>
 
-					{images.reworked && (
-						<div className='h-[50vh]'>
-							<Section
-								images={images.reworked}
-								error={error}
-								wide={false}
-								title='reworked'
-								href='/reworked'
-							/>
-						</div>
-					)}
+					<div className='h-[50vh]'>
+						<Section
+							images={images.reworked}
+							error={error}
+							wide={false}
+							title='reworked'
+							href='/reworked'
+						/>
+					</div>
 				</div>
 			</div>
 			<Footer />

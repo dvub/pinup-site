@@ -38,8 +38,8 @@ const MainView = () => {
 			<div className='flex gap-5'>
 				<Title />
 				<ul className='flex gap-5'>
-					<NavbarItem text='production' link='/production' />
 					<NavbarItem text='vintage' link='/vintage' />
+					<NavbarItem text='production' link='/production' />
 					<NavbarItem text='reworked' link='/reworked' />
 					<NavbarItem text='about' link='about' />
 				</ul>

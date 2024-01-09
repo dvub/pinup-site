@@ -10,7 +10,7 @@ import clsx from 'clsx';
 export const Section = (props: {
 	title: string;
 	wide: boolean;
-	images: ShopifyImage[];
+	images: ShopifyImage[] | undefined;
 	error: any;
 	href: string;
 }) => {
@@ -44,28 +44,34 @@ export const Section = (props: {
 				<div
 					className={clsx(
 						'relative',
-						isFullSize ? 'w-[50%]' : 'w-full'
+						isFullSize ? 'w-[50%]' : 'w-full',
+						!images && 'bg-gray-500'
 					)}
 				>
-					<Image
-						src={images![0].url}
-						alt={images![0].altText || defaultAltText}
-						quality={100}
-						fill
-						className='object-cover'
-					/>
+					{images && (
+						<Image
+							src={images[0].url}
+							alt={images[0].altText || defaultAltText}
+							quality={100}
+							fill
+							className='object-cover'
+						/>
+					)}
 				</div>
 				{isFullSize && (
 					<div className='relative w-[50%]'>
-						{images[1] && (
+						{images && (
 							<Image
-								src={images![1].url}
-								alt={images![1].altText || defaultAltText}
+								src={images[1].url}
+								alt={images[1].altText || defaultAltText}
 								quality={100}
 								priority
 								fill
 								className='object-cover'
 							/>
+						)}
+						{!images && (
+							<div className='bg-gray-500 w-full h-full'></div>
 						)}
 					</div>
 				)}

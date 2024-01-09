@@ -3,14 +3,18 @@ import Link from 'next/link';
 import { Product } from 'shopify-buy';
 import Image from 'next/image';
 
-export default function ItemPanel(props: { type: string }) {
+export default function ItemPanel(props: {
+	type: string;
+	numItems: number | undefined;
+}) {
 	const { data, isLoading, error } = useProducts(props.type);
 
-	if (isLoading) {
+	if (isLoading || !data) {
 		return <h1>Loading</h1>;
 	}
+	const slice = data.slice(0, props.numItems);
 
-	const items = data!.map((product: Product) => {
+	const items = slice.map((product: Product) => {
 		if (product.tags.includes(process.env.NEXT_PUBLIC_EXCLUDE_TAG!)) {
 			return;
 		}
@@ -18,7 +22,10 @@ export default function ItemPanel(props: { type: string }) {
 		console.log(product.images);
 
 		return (
-			<div key={product.id} className='text-sm relative'>
+			<div
+				key={product.id}
+				className='text-sm relative border-2 border-solid border-black p-2'
+			>
 				<Link href={`/products/${product.handle}`} className='relative'>
 					{product.images[0] && (
 						<div className='relative w-24 h-24 bg-gray-500'>
@@ -38,5 +45,9 @@ export default function ItemPanel(props: { type: string }) {
 		);
 	});
 
-	return <div className={`w-full flex  m-5 gap-5`}>{items}</div>;
+	return (
+		<div className={`grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5`}>
+			{items}
+		</div>
+	);
 }
