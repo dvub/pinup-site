@@ -26,7 +26,7 @@ export const Section = (props: {
 	const ErrorBackground = () => {
 		return (
 			<div>
-				<div className='w-full h-full bg-gray-200'></div>
+				<div className='NO-IMAGE-BG w-full h-full bg-gray-500'></div>
 			</div>
 		);
 	};
@@ -40,12 +40,12 @@ export const Section = (props: {
 
 		//
 		return (
-			<div className='flex w-full h-full'>
+			<div className='BACKGROUND flex w-full h-full'>
 				<div
 					className={clsx(
 						'relative',
-						isFullSize ? 'w-[50%]' : 'w-full',
-						!images && 'bg-gray-500'
+						isFullSize ? 'w-[50%]' : 'w-full'
+						// !images && 'bg-gray-500'
 					)}
 				>
 					{images && (
@@ -85,11 +85,17 @@ export const Section = (props: {
 	//
 	const Overlay = () => {
 		return (
-			<div>
+			<div className='OVERLAY z-10 absolute w-full h-full'>
+				{/* if something goes really wrong, red exclamation */}
 				{error && (
 					<ExclamationTriangleIcon className='w-5 h-5 absolute m-5 text-red-500' />
 				)}
-				<div className=' z-10 absolute w-full h-full flex justify-center items-center'>
+				{/* if something kind of goes wrong, specifically not getting images, just a yellow exclamation */}
+				{!images && (
+					<ExclamationTriangleIcon className='w-5 h-5 absolute m-5 text-yellow-500' />
+				)}
+				{/* we want to maintain functionality so render the text regardless of any issues */}
+				<div className='w-full h-full flex justify-center items-center'>
 					<div>
 						<h1 className=' text-2xl text-center text-white my-2 p-1'>
 							{title}
@@ -108,11 +114,11 @@ export const Section = (props: {
 			className='w-full
 			h-full relative flex'
 		>
-			<div className='w-full h-full absolute'>
+			<div className='w-full h-full absolute '>
 				<Overlay />
 			</div>
 			{images && <Background />}
-			{error && <ErrorBackground />}
+			{(error || !images) && <ErrorBackground />}
 		</Link>
 	);
 };
