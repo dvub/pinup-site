@@ -14,8 +14,15 @@ export default function ItemPanel(props: {
 	}
 	const slice = data.slice(0, props.numItems);
 
+  const exclude = process.env.NEXT_PUBLIC_EXCLUDE_TAG;
+  if (!exclude) {
+    throw Error("Exclude tag not found in .env. Please set it!!");
+  
+    
+  }
+
 	const items = slice.map((product: Product) => {
-		if (product.tags.includes(process.env.NEXT_PUBLIC_EXCLUDE_TAG!)) {
+		if (product.tags && product.tags.includes(process.env.NEXT_PUBLIC_EXCLUDE_TAG!)) {
 			return;
 		}
 
