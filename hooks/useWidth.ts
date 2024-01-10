@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 
 // the code for this function was largely adapted from here:

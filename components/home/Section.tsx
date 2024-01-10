@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -5,6 +6,7 @@ import { Image as ShopifyImage } from 'shopify-buy';
 import useWidth from '@/hooks/useWidth';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/solid';
 import clsx from 'clsx';
+import { Product } from 'shopify-buy';
 
 // TODO: make sure 2 images exist at all
 export const Section = (props: {
@@ -50,8 +52,8 @@ export const Section = (props: {
 				>
 					{images && (
 						<Image
-							src={images[0].url}
-							alt={images[0].altText || defaultAltText}
+							src={images[0]}
+							alt={defaultAltText}
 							quality={100}
 							fill
 							className='object-cover'
@@ -62,8 +64,8 @@ export const Section = (props: {
 					<div className='relative w-[50%]'>
 						{images && (
 							<Image
-								src={images[1].url}
-								alt={images[1].altText || defaultAltText}
+								src={images[1]}
+								alt={defaultAltText}
 								quality={100}
 								priority
 								fill

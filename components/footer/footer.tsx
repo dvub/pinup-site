@@ -1,3 +1,4 @@
+'use client';
 import useWidth from '@/hooks/useWidth';
 import Link from 'next/link';
 

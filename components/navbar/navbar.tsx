@@ -1,3 +1,4 @@
+'use client';
 import NavbarItem from './navbarItem';
 import Link from 'next/link';
 import { ShoppingBagIcon } from '@heroicons/react/24/solid';
