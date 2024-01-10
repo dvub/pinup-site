@@ -1,4 +1,4 @@
-import generateClient from '@/lib/shopify';
+import { generateClient } from '@/lib/shopify';
 import { NextRequest } from 'next/server';
 import { Product } from 'shopify-buy';
 import Client from 'shopify-buy';
