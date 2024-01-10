@@ -1,13 +1,7 @@
 import Navbar from '@/components/navbar/navbar';
-import Image from 'next/image';
-import Client, { Product } from 'shopify-buy';
-import useWidth from '@/hooks/useWidth';
+import Client from 'shopify-buy';
 import clsx from 'clsx';
-import axios from 'axios';
-import useSWR from 'swr';
-import { Loading } from '@/components/Loading';
 import React from 'react';
-import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/solid';
 import { generateClient } from '@/lib/shopify';
 import ProductInfo from '@/components/Product/ProductInfo';
 import ProductDisplay from '@/components/Product/ProductDisplay';
@@ -15,6 +9,10 @@ import ProductDisplay from '@/components/Product/ProductDisplay';
 export default async function Page({ params }: { params: { handle: string } }) {
 	const client: Client = generateClient();
 	const product = await client.product.fetchByHandle(params.handle);
+
+	if (!product) {
+		return <h1>No such product :(</h1>;
+	}
 
 	const info = {
 		title: product.title,

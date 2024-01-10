@@ -6,6 +6,14 @@ import { Section } from '@/components/home/Section';
 
 // TODO: fix mobile navbar animation :(
 
+// TODO:
+// finish product page (image navigation)
+// improve product-not-found page thing
+// create 404 page
+// create checkout
+
+// final polish
+// testing
 export default async function Page() {
 	const a = await getDisplayImages();
 	const images = a.map((x) => x.images.map((i) => i.url)).flat();
