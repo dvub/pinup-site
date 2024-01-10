@@ -1,10 +1,7 @@
 import { hedvig } from '@/lib/fontLoader';
 import './globals.css';
 import type { Metadata } from 'next';
-export const metadata: Metadata = {
-	title: 'Home | PINUP',
-	description: '..',
-};
+import { Analytics } from '@vercel/analytics/react';
 
 export default function RootLayout({
 	children,
@@ -13,7 +10,10 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang='en' className={hedvig.className}>
-			<body>{children}</body>
+			<body>
+				{children}
+				<Analytics />
+			</body>
 		</html>
 	);
 }

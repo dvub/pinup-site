@@ -4,8 +4,6 @@ import { getDisplayImages } from '@/lib/shopify';
 import ItemPanel from '@/components/ItemPanel';
 import { Section } from '@/components/home/Section';
 
-// font is broken on redirect
-
 export default async function Page() {
 	const a = await getDisplayImages();
 	const images = a.map((x) => x.images.map((i) => i.url)).flat();
