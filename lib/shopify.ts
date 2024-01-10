@@ -63,7 +63,7 @@ export async function getDisplayImages() {
 		);
 	});
 	const data = await client.graphQLClient.send(productsQuery);
-	const res = data.model.products;
+	const res: Product[] = data.model.products;
 
 	return res;
 }

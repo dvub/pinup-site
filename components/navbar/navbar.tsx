@@ -27,9 +27,9 @@ export const Title = () => {
 
 export const Cart = () => {
 	return (
-		<button className='flex'>
+		<Link href='/cart' className='flex'>
 			<ShoppingBagIcon className='w-6 h-6' /> <p>0</p>
-		</button>
+		</Link>
 	);
 };
 

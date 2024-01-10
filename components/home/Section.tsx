@@ -12,7 +12,7 @@ import { Product } from 'shopify-buy';
 export const Section = (props: {
 	title: string;
 	wide: boolean;
-	images: ShopifyImage[] | undefined;
+	images: string[] | undefined;
 	error: any;
 	href: string;
 }) => {
@@ -26,11 +26,7 @@ export const Section = (props: {
 	// if there's an error, just render a gray background
 	// TODO: fallback/default images
 	const ErrorBackground = () => {
-		return (
-			<div>
-				<div className='NO-IMAGE-BG w-full h-full bg-gray-500'></div>
-			</div>
-		);
+		return <div className='NO-IMAGE-BG w-full h-full bg-gray-400'></div>;
 	};
 
 	//
@@ -61,7 +57,7 @@ export const Section = (props: {
 					)}
 				</div>
 				{isFullSize && (
-					<div className='relative w-[50%]'>
+					<div className='relative w-[50%] '>
 						{images && (
 							<Image
 								src={images[1]}
@@ -71,9 +67,6 @@ export const Section = (props: {
 								fill
 								className='object-cover'
 							/>
-						)}
-						{!images && (
-							<div className='bg-gray-500 w-full h-full'></div>
 						)}
 					</div>
 				)}
@@ -92,17 +85,17 @@ export const Section = (props: {
 				{error && (
 					<ExclamationTriangleIcon className='w-5 h-5 absolute m-5 text-red-500' />
 				)}
-				{/* if something kind of goes wrong, specifically not getting images, just a yellow exclamation */}
+				{/* if something kind of goes wrong, specifically not getting images, just a yellow exclamation }
 				{!images && (
 					<ExclamationTriangleIcon className='w-5 h-5 absolute m-5 text-yellow-500' />
-				)}
+				)} */}
 				{/* we want to maintain functionality so render the text regardless of any issues */}
 				<div className='w-full h-full flex justify-center items-center'>
 					<div>
 						<h1 className=' text-2xl text-center text-white my-2 p-1'>
 							{title}
 						</h1>
-						<h1 className='bg-white w-full text-center text-md text-black my-2 p-2'>
+						<h1 className='bg-black w-full text-center text-md text-white my-2 py-2 px-8'>
 							shop now
 						</h1>
 					</div>
@@ -119,8 +112,8 @@ export const Section = (props: {
 			<div className='w-full h-full absolute '>
 				<Overlay />
 			</div>
-			{images && <Background />}
-			{(error || !images) && <ErrorBackground />}
+			{images && images.length > 0 && <Background />}
+			{(error || !images || images.length === 0) && <ErrorBackground />}
 		</Link>
 	);
 };

@@ -2,6 +2,7 @@
 // https://www.geeksforgeeks.org/ping-pong-game-using-react/
 
 import * as React from 'react';
+/*
 export default function App() {
 	const initialBallState = { x: 300, y: 200, speedX: 5, speedY: 5 };
 	const initialPaddleState = { left: 150, right: 150 };
@@ -140,4 +141,8 @@ export default function App() {
 			{gameOver && <div className='game-over'>Game Over</div>}
 		</div>
 	);
+}
+*/
+export default function Page() {
+	return <h1>Secret not done ;)</h1>;
 }

@@ -25,10 +25,7 @@ export default async function ItemPanel(props: {
 		query: `tag:${props.type}`,
 	});
 
-	if (!products) {
-		return <p>oh no</p>;
-	}
-	const items = products.map((product: Product) => {
+	const items = products.slice(0, props.numItems).map((product: Product) => {
 		if (
 			(product.tags &&
 				product.tags.includes(process.env.NEXT_PUBLIC_EXCLUDE_TAG!)) ||
