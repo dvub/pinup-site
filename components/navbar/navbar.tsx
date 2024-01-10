@@ -42,7 +42,7 @@ const MainView = () => {
 					<NavbarItem text='vintage' link='/vintage' />
 					<NavbarItem text='production' link='/production' />
 					<NavbarItem text='reworked' link='/reworked' />
-					<NavbarItem text='about' link='about' />
+					<NavbarItem text='about' link='/about' />
 				</ul>
 			</div>
 			<Cart />

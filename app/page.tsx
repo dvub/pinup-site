@@ -4,6 +4,8 @@ import { getDisplayImages } from '@/lib/shopify';
 import ItemPanel from '@/components/ItemPanel';
 import { Section } from '@/components/home/Section';
 
+// TODO: fix mobile navbar animation :(
+
 export default async function Page() {
 	const a = await getDisplayImages();
 	const images = a.map((x) => x.images.map((i) => i.url)).flat();
