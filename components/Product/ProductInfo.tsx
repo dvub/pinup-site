@@ -11,18 +11,6 @@ export default function ProductInfo(props: {
 	};
 	url: string;
 }) {
-	React.useEffect(() => {
-		if (!sessionStorage.getItem('checkoutURL')) {
-			console.log(
-				"Didn't find a checkout URL in session storage, adding it to storage now. "
-			);
-			sessionStorage.setItem('checkoutURL', props.url);
-		} else {
-			console.log('Found a checkout URL already in storage.');
-		}
-		console.log(sessionStorage.getItem('checkoutURL'));
-	}, []);
-
 	const addToCart = () => {};
 
 	return (
