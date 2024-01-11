@@ -3,7 +3,7 @@ import Footer from '@/components/footer/footer';
 import { getDisplayImages } from '@/lib/shopify';
 import ItemPanel from '@/components/ItemPanel';
 import { Section } from '@/components/home/Section';
-
+import { getVintageTag } from '@/lib/variables';
 // TODO: fix mobile navbar animation :(
 
 // TODO:
@@ -14,9 +14,18 @@ import { Section } from '@/components/home/Section';
 
 // final polish
 // testing
+
+// force dynamic feels wrong
+// mayube figure out a way to cache here?
+export const dynamic = 'force-dynamic';
 export default async function Page() {
 	const a = await getDisplayImages();
-	const images = a.map((x) => x.images.map((i) => i.url)).flat();
+	// TODO: fix this, super jank!
+	const images = a.map((x) => x.images.map((i) => i.url || i.src)).flat();
+
+	const tag = getVintageTag();
+
+	// TODO: fix this bullshit
 	const error = undefined;
 	return (
 		<div className='overflow-hidden'>
@@ -31,7 +40,7 @@ export default async function Page() {
 						href='/vintage'
 					/>
 				</div>
-				<ItemPanel type={'v'} numItems={5} />
+				<ItemPanel type={tag} numItems={5} />
 				{/*
 				<div className='SMALL-SECTIONS w-full lg:flex xl:flex'>
 					<div className='h-[50vh] w-full'>
@@ -54,7 +63,7 @@ export default async function Page() {
 						/>
 					</div>
 				</div>
-	*/}
+				*/}
 				<div className='w-full h-screen flex justify-center items-center bg-gray-400'>
 					<h1 className='text-white/50 text-3xl text-center'>
 						production & reworked coming soon <br /> stay tuned :)

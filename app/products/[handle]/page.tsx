@@ -6,6 +6,7 @@ import { generateClient } from '@/lib/shopify';
 import ProductInfo from '@/components/Product/ProductInfo';
 import ProductDisplay from '@/components/Product/ProductDisplay';
 
+export const dynamic = 'force-dynamic';
 export default async function Page({ params }: { params: { handle: string } }) {
 	const client: Client = generateClient();
 	const product = await client.product.fetchByHandle(params.handle);

@@ -1,7 +1,7 @@
 'use client';
 import NavbarItem from './navbarItem';
 import Link from 'next/link';
-import { ShoppingBagIcon } from '@heroicons/react/24/solid';
+import { ShoppingBagIcon } from '@heroicons/react/24/outline';
 import * as React from 'react';
 import useWidth from '../../hooks/useWidth';
 import MobileMenu from './mobile/MobileMenu';
@@ -28,7 +28,9 @@ export const Title = () => {
 export const Cart = () => {
 	return (
 		<Link href='/cart' className='flex'>
-			<ShoppingBagIcon className='w-6 h-6' /> <p>0</p>
+			<p className='text-black border-2 border-black px-4 py-1 '>
+				cart: 0
+			</p>
 		</Link>
 	);
 };
@@ -55,7 +57,7 @@ export default function Navbar() {
 
 	return (
 		<nav
-			className={`w-full text-md z-30 sticky top-0 bg-white border-b-gray-400 border-b-[1px] border-b-solid`}
+			className={`w-full text-md z-50 sticky top-0 bg-white border-b-gray-400 border-b-[1px] border-b-solid`}
 			style={{ transition: 'height 2s' }}
 		>
 			{/* conditional rendering based on view */}
