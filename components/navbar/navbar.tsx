@@ -28,9 +28,7 @@ export const Title = () => {
 export const Cart = () => {
 	return (
 		<Link href='/cart' className='flex'>
-			<p className='text-black border-2 border-black px-4 py-1 '>
-				cart: 0
-			</p>
+			<ShoppingBagIcon className='w-6 h-6' />
 		</Link>
 	);
 };

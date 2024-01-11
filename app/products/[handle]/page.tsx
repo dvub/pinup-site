@@ -12,9 +12,6 @@ export default async function Page({ params }: { params: { handle: string } }) {
 	const client: Client = generateClient();
 	const product = await client.product.fetchByHandle(params.handle);
 
-	// this could be really horrible
-	const url = (await client.checkout.create()).webUrl;
-
 	if (!product) {
 		return <h1>No such product :(</h1>;
 	}
@@ -25,6 +22,7 @@ export default async function Page({ params }: { params: { handle: string } }) {
 		cc: product.variants[0].price.currencyCode,
 		availableForSale: product.availableForSale,
 		description: product.description,
+		variantId: product.variants[0].id,
 	};
 	const images = product.images.map((i) => {
 		return {
@@ -46,7 +44,7 @@ export default async function Page({ params }: { params: { handle: string } }) {
 					<ProductDisplay images={images} />
 				</div>
 				<div className={clsx('right', 'lg:w-50% md:w-full')}>
-					<ProductInfo product={info} url={url} />
+					<ProductInfo product={info} />
 				</div>
 			</div>
 		</div>

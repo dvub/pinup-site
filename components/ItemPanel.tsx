@@ -35,7 +35,7 @@ export default async function ItemPanel(props: {
 				)}
 
 				{/* this div defines the boundaries of the image, and also provides a background color in case the image fails to load for some reason. */}
-				<div className='relative w-full h-96 bg-gray-500'>
+				<div className='relative w-full  bg-gray-500 h-72'>
 					{product.images[0] && (
 						<Image
 							// TODO: fix using images[0]
@@ -47,6 +47,11 @@ export default async function ItemPanel(props: {
 							// DO NOT SET QUALITY HERE! since many are rendered, best to let quality be automatically determined
 							className='object-cover'
 						/>
+					)}
+					{product.images.length === 0 && (
+						<div className='w-full h-full z-10 flex justify-center items-center'>
+							<p className='text-white'>no images available</p>
+						</div>
 					)}
 				</div>
 				{/* TEXT!! */}

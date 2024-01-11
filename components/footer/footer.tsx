@@ -7,7 +7,7 @@ export default function Footer() {
 	const { width, breakpoints } = useWidth();
 	return (
 		<div
-			className={`bg-white w-full p-5 text-md z-50 relative border-t-[1px] border-t-gray-400 ${
+			className={`bg-white text-sm w-full p-5 text-md z-50 relative border-t-[1px] border-t-gray-400 ${
 				width > breakpoints.medium && 'flex gap-5'
 			}`}
 		>

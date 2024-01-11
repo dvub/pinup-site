@@ -14,7 +14,7 @@ export default function RootLayout({
 		return (
 			<div className='w-screen h-screen flex justify-center items-center'>
 				<div className='text-center'>
-					<h1 className='text-4xl'>pinup</h1>
+					<h1 className='text-2xl'>pinup</h1>
 					<p className='py-1'>
 						The site isn&apos;t open right now. <br /> We&apos;ll be
 						back soon. Check out our socials to know about the next

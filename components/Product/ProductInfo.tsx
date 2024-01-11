@@ -1,5 +1,7 @@
 'use client';
+import { addToCart, getCheckoutUrl } from '@/actions/checkout';
 import * as React from 'react';
+import CartButton from './CartButton';
 
 export default function ProductInfo(props: {
 	product: {
@@ -8,10 +10,22 @@ export default function ProductInfo(props: {
 		cc: string;
 		description: string;
 		availableForSale: boolean;
+		variantId: string;
 	};
-	url: string;
 }) {
-	const addToCart = () => {};
+	// server actions are the fucking SHIT
+	// they are really cool
+	React.useEffect(() => {
+		const checkoutUrl = localStorage.getItem('checkoutUrl');
+		const updateCheckoutUrl = async () => {
+			if (!checkoutUrl) {
+				const newUrl = await getCheckoutUrl();
+				localStorage.setItem('checkoutUrl', newUrl.url);
+				localStorage.setItem('checkoutId', newUrl.id);
+			} else console.log('already have a URL..', checkoutUrl);
+		};
+		updateCheckoutUrl();
+	}, []);
 
 	return (
 		<div>
@@ -28,14 +42,9 @@ export default function ProductInfo(props: {
 				</div>
 				<div>
 					{props.product.availableForSale && (
-						<button
-							className='bg-black text-white px-4 py-1 float-right my-10'
-							onClick={() => {
-								addToCart();
-							}}
-						>
-							add to cart
-						</button>
+						<CartButton
+							product={{ variantId: props.product.variantId }}
+						/>
 					)}
 					{!props.product.availableForSale && (
 						<div className='bg-gray-500 text-white px-4 py-1 float-right my-10'>

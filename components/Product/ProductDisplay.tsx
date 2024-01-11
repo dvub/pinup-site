@@ -31,10 +31,10 @@ export default function ProductDisplay(props: {
 	return (
 		<div>
 			<div className='relative bg-gray-500'>
-				{props.images[0].src && (
+				{props.images.length > 0 && (
 					<div>
 						<Image
-							src={props.images[0].src}
+							src={props.images[0].src!}
 							alt={props.images[0].alt || 'alt'}
 							width={800}
 							height={800}
@@ -46,6 +46,11 @@ export default function ProductDisplay(props: {
 						<button onClick={() => lastImage()}>
 							<ArrowLeftIcon className='w-6 h-6 absolute left-0' />
                 </button>*/}
+					</div>
+				)}
+				{props.images.length === 0 && (
+					<div className='w-[800px] h-[800px] bg-gray-500 flex justify-center items-center'>
+						<p>Images not available</p>
 					</div>
 				)}
 			</div>

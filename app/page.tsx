@@ -15,6 +15,9 @@ import { getVintageTag } from '@/lib/variables';
 // final polish
 // testing
 
+// improve documentation
+// improve logging
+
 // force dynamic feels wrong
 // mayube figure out a way to cache here?
 export const dynamic = 'force-dynamic';
@@ -65,7 +68,7 @@ export default async function Page() {
 				</div>
 				*/}
 				<div className='w-full h-screen flex justify-center items-center bg-gray-400'>
-					<h1 className='text-white/50 text-3xl text-center'>
+					<h1 className='text-white/50 text-xl text-center'>
 						production & reworked coming soon <br /> stay tuned :)
 					</h1>
 				</div>
