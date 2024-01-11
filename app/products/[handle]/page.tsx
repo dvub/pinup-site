@@ -5,7 +5,6 @@ import React from 'react';
 import { generateClient } from '@/lib/shopify';
 import ProductInfo from '@/components/Product/ProductInfo';
 import ProductDisplay from '@/components/Product/ProductDisplay';
-import { UserCircleIcon } from '@heroicons/react/24/outline';
 
 export const dynamic = 'force-dynamic';
 export default async function Page({ params }: { params: { handle: string } }) {
@@ -13,7 +12,14 @@ export default async function Page({ params }: { params: { handle: string } }) {
 	const product = await client.product.fetchByHandle(params.handle);
 
 	if (!product) {
-		return <h1>No such product :(</h1>;
+		return (
+			<div className='flex w-screen h-screen overflow-hidden justify-center items-center text-center'>
+				<div>
+					<h1 className='text-2xl my-2'>Error: No such product :(</h1>
+					<p>Try again with something different. </p>
+				</div>
+			</div>
+		);
 	}
 
 	const info = {

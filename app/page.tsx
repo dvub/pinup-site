@@ -7,13 +7,14 @@ import { getVintageTag } from '@/lib/variables';
 // TODO: fix mobile navbar animation :(
 
 // TODO:
-// finish product page (image navigation)
-// improve product-not-found page thing
+// finish product page (image navigation) - DONE
+// improve product-not-found page thing - DONE
 // create 404 page
-// create checkout
+// create checkout - DONE
+// error handling for server actions
 
-// final polish
-// testing
+// final polish - IN PROGRESS
+// testing - IN PROGRESS
 
 // improve documentation
 // improve logging

@@ -3,6 +3,8 @@
 import { generateClient } from '@/lib/shopify';
 import { revalidatePath } from 'next/cache';
 
+// TODO: IMPLEMENT SERVER ACTION ERROR HANDLING
+
 export async function getCheckoutUrl() {
 	// TODO: FIX THIS
 	revalidatePath('/');
@@ -28,6 +30,11 @@ export async function getCheckout(id: string) {
 	revalidatePath('/');
 	const client = generateClient();
 	const checkout = await client.checkout.fetch(id);
+
+	if (!checkout) {
+		return undefined;
+	}
+
 	const items = checkout.lineItems.map((item) => {
 		return {
 			title: item.title,
