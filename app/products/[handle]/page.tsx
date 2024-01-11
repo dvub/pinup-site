@@ -5,11 +5,15 @@ import React from 'react';
 import { generateClient } from '@/lib/shopify';
 import ProductInfo from '@/components/Product/ProductInfo';
 import ProductDisplay from '@/components/Product/ProductDisplay';
+import { UserCircleIcon } from '@heroicons/react/24/outline';
 
 export const dynamic = 'force-dynamic';
 export default async function Page({ params }: { params: { handle: string } }) {
 	const client: Client = generateClient();
 	const product = await client.product.fetchByHandle(params.handle);
+
+	// this could be really horrible
+	const url = (await client.checkout.create()).webUrl;
 
 	if (!product) {
 		return <h1>No such product :(</h1>;
@@ -42,7 +46,7 @@ export default async function Page({ params }: { params: { handle: string } }) {
 					<ProductDisplay images={images} />
 				</div>
 				<div className={clsx('right', 'lg:w-50% md:w-full')}>
-					<ProductInfo product={info} />
+					<ProductInfo product={info} url={url} />
 				</div>
 			</div>
 		</div>

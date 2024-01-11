@@ -10,7 +10,7 @@ import { getVintageTag } from '@/lib/variables';
 // finish product page (image navigation)
 // improve product-not-found page thing
 // create 404 page
-// create checkout
+// create checkout - will HAVE TO use a route handler to go from client <-> server (i think, and this is what i'll do for now.)
 
 // final polish
 // testing
