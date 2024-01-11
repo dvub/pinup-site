@@ -1,7 +1,5 @@
-import ComingSoon from '@/components/ComingSoon';
 import ItemPanel from '@/components/ItemPanel';
 import Navbar from '@/components/navbar/navbar';
-import Link from 'next/link';
 import { getVintageTag } from '@/lib/variables';
 
 export const dynamic = 'force-dynamic';
@@ -10,8 +8,8 @@ export default function Page() {
 	return (
 		<main>
 			<Navbar />
-			<div className='my-2'>
-				<h1>vintage</h1>
+			<div className=''>
+				<h1 className='m-2 text-xl'>showing: all vintage products</h1>
 				<ItemPanel type={tag} numItems={10000} />
 			</div>
 		</main>

@@ -12,7 +12,7 @@ export default function MobileMenu() {
 
 	return (
 		<div>
-			<div className='relative z-50 flex justify-between p-3 items-center align-middle'>
+			<div className='relative z-50 flex justify-between p-3 items-center align-middle text-2xl'>
 				<Title />
 				{/* cart button/information and dropdown button go here, on the right side in their own flex */}
 				<div className='flex gap-3 items-center'>

@@ -35,9 +35,6 @@ export default function About() {
 					</p>
 				</div>
 			</div>
-			<div className='absolute bottom-0 w-full'>
-				<Footer />
-			</div>
 		</div>
 	);
 }

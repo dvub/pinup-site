@@ -1,51 +1,46 @@
 'use client';
+import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
+import React from 'react';
 export default function ProductDisplay(props: {
 	images: { src: string | undefined; alt: string | undefined }[];
 }) {
-	/*
+	const [index, setIndex] = React.useState(0);
+	const [current, setCurrent] = React.useState(props.images[index]);
 	const nextImage = () => {
-		const nextIndex = image.index + 1;
-		if (nextIndex >= product.images.length) {
+		const nextIndex = index + 1;
+		if (nextIndex >= props.images.length) {
 			return;
 		}
-		setImage({
-			src: product.images[nextIndex].src,
-			index: nextIndex,
-		});
+		setIndex(nextIndex);
+		setCurrent(props.images[nextIndex]);
 	};
 	const lastImage = () => {
-		if (!product) {
-			return;
-		}
-		const nextIndex = image.index - 1;
+		const nextIndex = index - 1;
 		if (nextIndex < 0) {
 			return;
 		}
-		setImage({
-			src: product.images[nextIndex].src,
-			index: nextIndex,
-		});
+		setIndex(nextIndex);
+		setCurrent(props.images[nextIndex]);
 	};
-*/
+
 	return (
 		<div>
-			<div className='relative bg-gray-500'>
+			<div className='relative '>
 				{props.images.length > 0 && (
 					<div>
 						<Image
-							src={props.images[0].src!}
-							alt={props.images[0].alt || 'alt'}
+							src={current.src!}
+							alt={current.alt || 'alt'}
 							width={800}
 							height={800}
 						/>
-						{/*
 						<button onClick={() => nextImage()}>
 							<ArrowRightIcon className='w-6 h-6 absolute right-0' />
 						</button>
 						<button onClick={() => lastImage()}>
 							<ArrowLeftIcon className='w-6 h-6 absolute left-0' />
-                </button>*/}
+						</button>
 					</div>
 				)}
 				{props.images.length === 0 && (

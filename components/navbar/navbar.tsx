@@ -35,8 +35,8 @@ export const Cart = () => {
 
 const MainView = () => {
 	return (
-		<nav className={'flex items-center nowrap p-3 justify-between'}>
-			<div className='flex gap-5'>
+		<nav className={'flex items-center nowrap p-3 justify-between text-md'}>
+			<div className='flex gap-5 items-center'>
 				<Title />
 				<ul className='flex gap-5'>
 					<NavbarItem text='vintage' link='/vintage' />
@@ -55,11 +55,12 @@ export default function Navbar() {
 
 	return (
 		<nav
-			className={`w-full text-md z-50 sticky top-0 bg-white border-b-gray-400 border-b-[1px] border-b-solid`}
+			className={`w-full z-50 sticky top-0 bg-white border-b-gray-400 border-b-[1px] border-b-solid`}
 			style={{ transition: 'height 2s' }}
 		>
 			{/* conditional rendering based on view */}
 			{width >= breakpoints.medium && <MainView />}
+
 			{width < breakpoints.medium && <MobileMenu />}
 		</nav>
 	);
