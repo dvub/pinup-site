@@ -20,7 +20,8 @@ import { getVintageTag } from '@/lib/variables';
 // improve logging
 
 // available text on itempanel moves when text wraps
-//
+// cart icon to text
+// swipe
 
 // force dynamic feels wrong
 // mayube figure out a way to cache here?
