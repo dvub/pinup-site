@@ -27,9 +27,10 @@ import { getVintageTag } from '@/lib/variables';
 // mayube figure out a way to cache here?
 export const dynamic = 'force-dynamic';
 export default async function Page() {
-	const a = await getDisplayImages('v');
+	const res = await getDisplayImages('v');
+	console.log(res.length);
 	// TODO: fix this, super jank!
-	const images = a.map((x) => x.images.map((i) => i.url || i.src)).flat();
+	const images = res.map((x) => x.images.map((i) => i.url)).flat();
 	const tag = getVintageTag();
 	// TODO: fix this bullshit
 	const error = undefined;

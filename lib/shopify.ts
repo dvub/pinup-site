@@ -6,6 +6,9 @@ import { getDisplayTag, getExcludeTag, getVintageTag } from './variables';
 import { revalidatePath } from 'next/cache';
 // creates a new client from variables provided from env variables.
 // IMPORTANT!! this will throw an error if the environment variable(s) isnt/arent set.
+
+export const dynamic = 'force-dynamic';
+
 export function generateClient() {
 	const apiVersion = process.env.SHOPIFY_API_VERSION;
 	const domain = process.env.SHOPIFY_DOMAIN;
@@ -85,8 +88,6 @@ export async function getDisplayImages(type: string) {
 		);
 	});*/
 	// ... make query, etc. got rid of that shit
-
-	revalidatePath('/');
 	const displayTag = getDisplayTag();
 	const vintageTag = getVintageTag();
 
