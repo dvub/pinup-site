@@ -41,7 +41,6 @@ export async function getProducts(type: string) {
 // IMPORTANT!! this will throw an error if the environment variable(s) isnt/arent set.
 
 export async function getDisplayImages(type: string) {
-	revalidatePath('/');
 	// OLD CODE!
 	// this is old code that i was using for making custom graphQL queries, using the unoptimized client.
 	// TODO: remove
@@ -87,6 +86,7 @@ export async function getDisplayImages(type: string) {
 	});*/
 	// ... make query, etc. got rid of that shit
 
+	revalidatePath('/');
 	const displayTag = getDisplayTag();
 	const vintageTag = getVintageTag();
 
@@ -95,6 +95,5 @@ export async function getDisplayImages(type: string) {
 	const data = await client.product.fetchQuery({
 		query: `tag:${displayTag} AND tag:${vintageTag}`,
 	});
-	console.log(data.length, 'FUCK');
 	return data;
 }
