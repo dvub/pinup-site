@@ -19,16 +19,17 @@ import { getVintageTag } from '@/lib/variables';
 // improve documentation
 // improve logging
 
+// available text on itempanel moves when text wraps
+//
+
 // force dynamic feels wrong
 // mayube figure out a way to cache here?
 export const dynamic = 'force-dynamic';
 export default async function Page() {
-	const a = await getDisplayImages();
+	const a = await getDisplayImages('v');
 	// TODO: fix this, super jank!
 	const images = a.map((x) => x.images.map((i) => i.url || i.src)).flat();
-
 	const tag = getVintageTag();
-
 	// TODO: fix this bullshit
 	const error = undefined;
 	return (

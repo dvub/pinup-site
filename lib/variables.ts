@@ -15,3 +15,11 @@ export function getExcludeTag() {
 	}
 	return excludeTag;
 }
+
+export function getDisplayTag() {
+	const displayTag = process.env.DISPLAY_TAG;
+	if (!displayTag) {
+		throw Error('Display tag not set. Check your .env');
+	}
+	return displayTag;
+}

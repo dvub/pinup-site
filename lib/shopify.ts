@@ -2,7 +2,7 @@
 // when i come back to this hopefully the comments will help
 // PLEASE HELP ME!
 import Client from 'shopify-buy';
-import { getExcludeTag } from './variables';
+import { getDisplayTag, getExcludeTag, getVintageTag } from './variables';
 // creates a new client from variables provided from env variables.
 // IMPORTANT!! this will throw an error if the environment variable(s) isnt/arent set.
 export function generateClient() {
@@ -39,7 +39,7 @@ export async function getProducts(type: string) {
 // get a list of products that have the tag provided from environment variables.
 // IMPORTANT!! this will throw an error if the environment variable(s) isnt/arent set.
 
-export async function getDisplayImages() {
+export async function getDisplayImages(type: string) {
 	// OLD CODE!
 	// this is old code that i was using for making custom graphQL queries, using the unoptimized client.
 	// TODO: remove
@@ -85,15 +85,14 @@ export async function getDisplayImages() {
 	});*/
 	// ... make query, etc. got rid of that shit
 
-	const displayTag = process.env.DISPLAY_TAG;
-	if (!displayTag) {
-		throw Error('Display tag not set. Check your .env');
-	}
+	const displayTag = getDisplayTag();
+	const vintageTag = getVintageTag();
 
 	const client = generateClient();
 
 	const data = await client.product.fetchQuery({
-		query: `tag:${displayTag}`,
+		query: `tag:${displayTag} AND tag:${vintageTag}`,
 	});
+	console.log(data.length, 'FUCK');
 	return data;
 }

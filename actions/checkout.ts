@@ -7,7 +7,8 @@ import { revalidatePath } from 'next/cache';
 
 export async function getCheckoutUrl() {
 	// TODO: FIX THIS
-	revalidatePath('/');
+	revalidatePath('/vintage');
+	revalidatePath('/cart');
 	// console.log('The server action is running!');
 	const client = generateClient();
 	const checkout = await client.checkout.create();
@@ -19,7 +20,8 @@ export async function addToCart(
 	quantity: number,
 	variantId: string
 ) {
-	revalidatePath('/');
+	revalidatePath('/vintage');
+	revalidatePath('/cart');
 	const client = generateClient();
 	const lineItem = { quantity: quantity, variantId: variantId };
 	await client.checkout.addLineItems(id, [lineItem]);
