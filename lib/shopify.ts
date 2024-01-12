@@ -3,6 +3,7 @@
 // PLEASE HELP ME!
 import Client from 'shopify-buy';
 import { getDisplayTag, getExcludeTag, getVintageTag } from './variables';
+import { revalidatePath } from 'next/cache';
 // creates a new client from variables provided from env variables.
 // IMPORTANT!! this will throw an error if the environment variable(s) isnt/arent set.
 export function generateClient() {
@@ -40,6 +41,7 @@ export async function getProducts(type: string) {
 // IMPORTANT!! this will throw an error if the environment variable(s) isnt/arent set.
 
 export async function getDisplayImages(type: string) {
+	revalidatePath('/');
 	// OLD CODE!
 	// this is old code that i was using for making custom graphQL queries, using the unoptimized client.
 	// TODO: remove
