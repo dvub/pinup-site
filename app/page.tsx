@@ -30,7 +30,7 @@ export default async function Page() {
 	const res = await getDisplayImages('v');
 	console.log(res.length);
 	// TODO: fix this, super jank!
-	const images = res.map((x) => x.images.map((i) => i.url)).flat();
+	const images = res.map((x) => x.images.map((i) => i.src || i.url)).flat();
 	const tag = getVintageTag();
 	// TODO: fix this bullshit
 	const error = undefined;
