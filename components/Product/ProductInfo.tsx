@@ -38,7 +38,7 @@ export default function ProductInfo(props: {
 			<p className='mr-[20%]'>{props.product.description}</p>
 			<div className='flex justify-between items-center'>
 				<div>
-					<p>1/1</p>
+					<p>This item is 1/1.</p>
 				</div>
 				<div>
 					{props.product.availableForSale && (
