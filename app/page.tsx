@@ -21,7 +21,7 @@ import { getVintageTag } from '@/lib/variables';
 
 // available text on itempanel moves when text wraps
 // cart icon to text
-// swipe
+// add shadcn for image carousel
 
 // force dynamic feels wrong
 // mayube figure out a way to cache here?
