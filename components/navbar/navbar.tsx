@@ -5,6 +5,17 @@ import { ShoppingBagIcon } from '@heroicons/react/24/outline';
 import * as React from 'react';
 import useWidth from '../../hooks/useWidth';
 import MobileMenu from './mobile/MobileMenu';
+import {
+	NavigationMenu,
+	NavigationMenuContent,
+	NavigationMenuIndicator,
+	NavigationMenuItem,
+	NavigationMenuLink,
+	NavigationMenuList,
+	NavigationMenuTrigger,
+	NavigationMenuViewport,
+} from '@/components/ui/navigation-menu';
+import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
 /*
 export const Title = () => {
 	return (
@@ -15,7 +26,24 @@ export const Title = () => {
 			<p>inup</p>
 		</Link>
 	);
-};*/
+
+
+};
+
+export default function Navbar() {
+	const { width, breakpoints } = useWidth();
+
+	return (
+		<nav
+			className={`w-full z-50 sticky top-0 bg-white border-b-gray-400 border-b-[1px] border-b-solid`}
+			style={{ transition: 'height 2s' }}
+		>
+			{width >= breakpoints.medium && <MainView />}
+
+			{width < breakpoints.medium && <MobileMenu />}
+		</nav>
+	);
+*/
 
 export const Title = () => {
 	return (
@@ -51,17 +79,26 @@ const MainView = () => {
 };
 
 export default function Navbar() {
-	const { width, breakpoints } = useWidth();
-
 	return (
-		<nav
-			className={`w-full z-50 sticky top-0 bg-white border-b-gray-400 border-b-[1px] border-b-solid`}
-			style={{ transition: 'height 2s' }}
-		>
-			{/* conditional rendering based on view */}
-			{width >= breakpoints.medium && <MainView />}
-
-			{width < breakpoints.medium && <MobileMenu />}
-		</nav>
+		<NavigationMenu>
+			<NavigationMenuList>
+				<NavigationMenuItem>
+					<Link href='/'>
+						<NavigationMenuLink
+							className={navigationMenuTriggerStyle()}
+						>
+							pinup
+						</NavigationMenuLink>
+					</Link>
+					<Link href='/vintage'>
+						<NavigationMenuLink
+							className={navigationMenuTriggerStyle()}
+						>
+							vintage
+						</NavigationMenuLink>
+					</Link>
+				</NavigationMenuItem>
+			</NavigationMenuList>
+		</NavigationMenu>
 	);
 }

@@ -32,7 +32,7 @@ export default async function Page({ params }: { params: { handle: string } }) {
 	};
 	const images = product.images.map((i) => {
 		return {
-			src: i.src, // BE CAREFUL ABOUT THIS
+			src: i.src || i.url, // BE CAREFUL ABOUT THIS
 			alt: i.altText,
 		};
 	});
