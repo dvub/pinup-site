@@ -43,7 +43,7 @@ export default async function Page({ params }: { params: { handle: string } }) {
 			<div className={clsx('mx-10 my-10 gap-5', 'lg:flex')}>
 				<div
 					className={clsx(
-						'left flex justify-center ',
+						'left ',
 						'lg:w-50% md:w-full'
 					)}
 				>
