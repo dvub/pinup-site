@@ -41,14 +41,14 @@ export default function ProductDisplay(props: {
 	});
 
 	return (
-		<div className='relative w-full m-2 p-2'>
+		<div className='relative w-full'>
 			{props.images.length > 0 && (
 				<div>
 					<Carousel setApi={setApi}>
 						<CarouselContent>{content}</CarouselContent>
 						<div>
-							<CarouselPrevious />
 							<CarouselNext />
+							<CarouselPrevious />
 						</div>
 						<div className='w-full text-black/50'>
 							<p>
