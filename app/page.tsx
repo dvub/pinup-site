@@ -22,6 +22,7 @@ import { getVintageTag } from '@/lib/variables';
 // round corners of sharp stuff i guess
 // fix caching issues to maximize performance
 // add metadata exports like title, desc, etc.
+// -> improve accessibility
 
 // REFACToR AND CLEAN CODE
 // improve documentation
