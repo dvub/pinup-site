@@ -4,7 +4,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Image as ShopifyImage } from 'shopify-buy';
 import useWidth from '@/hooks/useWidth';
-import { ExclamationTriangleIcon } from '@heroicons/react/24/solid';
 import clsx from 'clsx';
 import { Product } from 'shopify-buy';
 
@@ -82,9 +81,7 @@ export const Section = (props: {
 		return (
 			<div className='OVERLAY z-10 absolute w-full h-full'>
 				{/* if something goes really wrong, red exclamation */}
-				{error && (
-					<ExclamationTriangleIcon className='w-5 h-5 absolute m-5 text-red-500' />
-				)}
+				{error && <p>error!</p>}
 				{/* if something kind of goes wrong, specifically not getting images, just a yellow exclamation }
 				{!images && (
 					<ExclamationTriangleIcon className='w-5 h-5 absolute m-5 text-yellow-500' />

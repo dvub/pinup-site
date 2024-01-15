@@ -10,7 +10,7 @@ export default function Page() {
 			<Navbar />
 			<div className=''>
 				{/* <h1 className='m-2 text-xl'>showing: all vintage products</h1> */}
-				<ItemPanel type={tag} numItems={10000} />
+				<ItemPanel type={tag} numItems={100} />
 			</div>
 		</main>
 	);

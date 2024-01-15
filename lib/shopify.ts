@@ -27,7 +27,7 @@ export function generateClient() {
 
 // gets products with a given tag
 // THIS FUNCTION DOES NOT PULL PRODUCTS WITH THE EXCLUDE TAG!!!
-export async function getProducts(type: string) {
+export async function getProducts(type: string, first: number) {
 	// important here!!
 	const exclude = getExcludeTag();
 
@@ -35,6 +35,7 @@ export async function getProducts(type: string) {
 	// actually fetch the data
 	// here, we're going to ask to NOT get products with the exclude tag
 	const products = await client.product.fetchQuery({
+		first: first,
 		query: `tag:${type} NOT tag:${exclude}`,
 	});
 	return products;

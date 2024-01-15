@@ -8,14 +8,17 @@ import { getExcludeTag } from '@/lib/variables';
 // THIS IS A SERVER COMPONENT
 export default async function ItemPanel(props: {
 	type: string;
-	numItems: number | undefined;
+	numItems: number;
 }) {
 	// we can do data fetching on the server!! this is very very cool.
-	const products = await getProducts(props.type);
+	const products = await getProducts(props.type, props.numItems);
+
+	console.log(products.length);
+
 	// we can also use certain environment variables! that's cool right?
 	const excludeTag = getExcludeTag();
 
-	const items = products.slice(0, props.numItems).map((product: Product) => {
+	const items = products.map((product: Product) => {
 		if (product.tags && product.tags.includes(excludeTag)) {
 			return;
 		}
