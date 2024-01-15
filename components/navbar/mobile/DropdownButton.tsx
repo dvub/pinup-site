@@ -1,21 +1,24 @@
-import { Bars3Icon } from '@heroicons/react/24/solid';
+import { Button } from '@/components/ui/button';
+import { HamburgerMenuIcon } from '@radix-ui/react-icons';
 
 export const DropdownButton = (props: {
 	setOpenNav: React.Dispatch<React.SetStateAction<boolean>>;
 	openNav: boolean;
 }) => {
 	return (
-		<button
+		<Button
 			onClick={() => {
 				props.setOpenNav(!props.openNav);
 			}}
+			variant='outline'
+			size='icon'
 		>
-			<Bars3Icon
+			<HamburgerMenuIcon
 				className={`
 ${
 	props.openNav ? 'rotate-90' : 'rotate-0'
-}  w-6 h-6 text-black transition-width transition-height ease-in-out transition-transform duration-500`}
+}  text-black transition-width transition-height ease-in-out transition-transform duration-500`}
 			/>
-		</button>
+		</Button>
 	);
 };

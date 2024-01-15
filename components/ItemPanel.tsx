@@ -46,6 +46,8 @@ export default async function ItemPanel(props: {
 							fill
 							// DO NOT SET QUALITY HERE! since many are rendered, best to let quality be automatically determined
 							className='object-cover'
+							// major insane optimization
+							sizes='(max-width: 640px) 50vw, (max-width: 768px) 25vw, (max-width: 1024px) 20vw, 20vw'
 						/>
 					)}
 					{product.images.length === 0 && (
@@ -56,8 +58,8 @@ export default async function ItemPanel(props: {
 				</div>
 				{/* TEXT!! */}
 				<div className='m-2'>
-					<p>{product.title}</p>
-					<div className='flex justify-between'>
+					<p className='truncate max-w-full'>{product.title}</p>
+					<div className='flex justify-between my-2 items-center'>
 						{/* TODO: fix using variants[0] */}
 						<p>
 							${product.variants[0].price.amount} (

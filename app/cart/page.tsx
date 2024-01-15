@@ -2,6 +2,7 @@
 import { getCheckoutUrl, getCheckout } from '@/actions/checkout';
 import { navigate } from '@/actions/navigate';
 import Navbar from '@/components/navbar/navbar';
+import { Button } from '@/components/ui/button';
 import * as React from 'react';
 import { Checkout, CheckoutLineItem } from 'shopify-buy';
 export default function Cart() {
@@ -93,12 +94,9 @@ export default function Cart() {
 						</div>
 
 						<div className='float-right'>
-							<button
-								onClick={async (e) => await handleClick(e)}
-								className='bg-black text-white px-4 py-1'
-							>
+							<Button onClick={async (e) => await handleClick(e)}>
 								Proceed to checkout
-							</button>
+							</Button>
 						</div>
 					</div>
 				)}

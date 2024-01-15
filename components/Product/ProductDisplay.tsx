@@ -35,7 +35,7 @@ export default function ProductDisplay(props: {
 					alt={image.alt || 'alt'}
 					width={1000}
 					height={1000}
-          sizes="1000px"
+					sizes='1000px'
 				/>
 			</CarouselItem>
 		);
@@ -48,23 +48,19 @@ export default function ProductDisplay(props: {
 					<Carousel setApi={setApi}>
 						<CarouselContent>{content}</CarouselContent>
 						<div className='w-full flex justify-between'>
-
-            <CarouselPrevious />
+							<CarouselPrevious />
 							<p className='text-black/50'>
 								[ showing image {current} of {count} ]
 							</p>
 							<CarouselNext />
-
 						</div>
-
-
 					</Carousel>
 				</div>
 			)}
 
 			{props.images.length === 0 && (
-				<div className='w-[800px] h-[800px] bg-gray-500 flex justify-center items-center'>
-					<p>Images not available</p>
+				<div className='w-full h-full flex justify-center items-center'>
+					<p className='text-black/50'>Images not available. </p>
 				</div>
 			)}
 		</div>

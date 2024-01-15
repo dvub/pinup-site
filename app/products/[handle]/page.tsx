@@ -15,8 +15,11 @@ export default async function Page({ params }: { params: { handle: string } }) {
 		return (
 			<div className='flex w-screen h-screen overflow-hidden justify-center items-center text-center'>
 				<div>
-					<h1 className='text-2xl my-2'>Error: No such product :(</h1>
-					<p>Try again with something different. </p>
+					<h1 className='text-2xl my-2'>No such product :(</h1>
+					<p>
+						Try again with a different product handle or come back
+						later.
+					</p>
 				</div>
 			</div>
 		);
@@ -40,13 +43,8 @@ export default async function Page({ params }: { params: { handle: string } }) {
 	return (
 		<div>
 			<Navbar />
-			<div className={clsx('mx-10 my-10 gap-5', 'lg:flex')}>
-				<div
-					className={clsx(
-						'left ',
-						'lg:w-50% md:w-full'
-					)}
-				>
+			<div className={clsx('mx-[10vw] my-10 gap-5', 'lg:flex')}>
+				<div className={clsx('left ', 'lg:w-50% md:w-full')}>
 					<ProductDisplay images={images} />
 				</div>
 				<div className={clsx('right', 'lg:w-50% md:w-full')}>

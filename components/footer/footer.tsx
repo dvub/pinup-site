@@ -25,17 +25,6 @@ export default function Footer() {
 					</div>
 				</div>
 			</div>
-			<div>
-				<Link
-					href='https://www.instagram.com/pinup.rags/'
-					rel='noopener noreferrer'
-					target='_blank'
-				>
-					<p className='bg-black text-white px-3 py-1 w-min'>
-						instagram
-					</p>
-				</Link>
-			</div>
 			<div className=' text-xs absolute bottom-0 left-0 text-black/50'>
 				<Link href='https://www.dvub.net/'>
 					<p>made by dvub</p>

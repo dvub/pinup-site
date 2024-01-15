@@ -9,29 +9,32 @@ import { getVintageTag } from '@/lib/variables';
 // TODO:
 // finish product page (image navigation) - DONE
 // improve product-not-found page thing - DONE
-// create 404 page
+// create 404 page - DONE
 // create checkout - DONE
 // error handling for server actions
-
+// improve item page - DONE
 // final polish - IN PROGRESS
 // testing - IN PROGRESS
+// available text on itempanel moves when text wraps - DONE
+// cart icon to text - DONE
+// add shadcn for image carousel - DONE
 
+// round corners of sharp stuff i guess
+// fix caching issues to maximize performance
+// add metadata exports like title, desc, etc.
+
+// REFACToR AND CLEAN CODE
 // improve documentation
 // improve logging
-
-// available text on itempanel moves when text wraps
-// cart icon to text
-// add shadcn for image carousel
 
 // force dynamic feels wrong
 // mayube figure out a way to cache here?
 export const dynamic = 'force-dynamic';
 export default async function Page() {
-	const res = await getDisplayImages('v');
-	console.log(res.length);
+	const vintageTag = getVintageTag();
+	const res = await getDisplayImages(vintageTag);
 	// TODO: fix this, super jank!
 	const images = res.map((x) => x.images.map((i) => i.src || i.url)).flat();
-	const tag = getVintageTag();
 	// TODO: fix this bullshit
 	const error = undefined;
 	return (
@@ -47,7 +50,7 @@ export default async function Page() {
 						href='/vintage'
 					/>
 				</div>
-				<ItemPanel type={tag} numItems={5} />
+				<ItemPanel type={vintageTag} numItems={5} />
 				{/*
 				<div className='SMALL-SECTIONS w-full lg:flex xl:flex'>
 					<div className='h-[50vh] w-full'>

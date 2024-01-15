@@ -2,6 +2,7 @@
 import { addToCart, getCheckoutUrl } from '@/actions/checkout';
 import * as React from 'react';
 import CartButton from './CartButton';
+import { Button } from '../ui/button';
 
 export default function ProductInfo(props: {
 	product: {
@@ -29,27 +30,59 @@ export default function ProductInfo(props: {
 
 	return (
 		<div>
-			<h1 className='text-3xl'>{props.product.title}</h1>
-			<h1 className='text-2xl'>
-				${props.product.price} ({props.product.cc})
-			</h1>
-
-			<h1 className='mt-10 text-2xl'>Details</h1>
-			<p className='mr-[20%]'>{props.product.description}</p>
-			<div className='flex justify-between items-center'>
+			{/* title and cost */}
+			<div className='mb-5'>
+				<h1 className='text-3xl'>{props.product.title}</h1>
+				<h1 className='text-2xl'>
+					${props.product.price} ({props.product.cc})
+				</h1>
+			</div>
+			{/* section for description */}
+			<hr />
+			<div className='my-5'>
+				<h1 className='text-2xl'>Details</h1>
+				<p className='mr-[20%]'>
+					{props.product.description}
+					{/*
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+					do eiusmod tempor incididunt ut labore et dolore magna
+					aliqua. Eu ultrices vitae auctor eu augue ut. Sollicitudin
+					aliquam ultrices sagittis orci a scelerisque purus. Tellus
+					in metus vulputate eu. Nec ullamcorper sit amet risus nullam
+					eget felis eget. Massa sapien faucibus et molestie ac
+					feugiat sed. Posuere ac ut consequat semper viverra. Quis
+					enim lobortis scelerisque fermentum dui faucibus. Id donec
+					ultrices tincidunt arcu non. Nunc mi ipsum faucibus vitae
+					aliquet nec ullamcorper sit amet. Aliquam etiam erat velit
+					scelerisque in. Faucibus et molestie ac feugiat sed lectus.
+					Et leo duis ut diam quam nulla. Non arcu risus quis varius
+					quam quisque id diam vel. Arcu vitae elementum curabitur
+					vitae nunc sed velit dignissim. Nisl pretium fusce id velit
+					ut tortor pretium. Urna porttitor rhoncus dolor purus non.
+					Nisi scelerisque eu ultrices vitae auctor. Est ultricies
+					integer quis auctor elit sed vulputate mi sit. Sollicitudin
+					ac orci phasellus egestas. Mauris augue neque gravida in.
+					Mattis vulputate enim nulla aliquet. Sit amet nisl suscipit
+					adipiscing bibendum. Facilisis magna etiam tempor orci eu
+					lobortis elementum nibh tellus. Laoreet suspendisse interdum
+					consectetur libero id faucibus.
+					*/}
+				</p>
+			</div>
+			<hr />
+			{/* section for quantity (todo) and button to add to cart */}
+			<div className='flex justify-between items-center my-5'>
 				<div>
 					<p>This item is 1/1.</p>
 				</div>
 				<div>
 					{props.product.availableForSale && (
 						<CartButton
-							product={{ variantId: props.product.variantId }}
+							product={{
+								variantId: props.product.variantId,
+								available: props.product.availableForSale,
+							}}
 						/>
-					)}
-					{!props.product.availableForSale && (
-						<div className='bg-gray-500 text-white px-4 py-1 float-right my-10'>
-							<p>not available</p>
-						</div>
 					)}
 				</div>
 			</div>

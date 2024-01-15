@@ -93,10 +93,7 @@ export const Section = (props: {
 				<div className='w-full h-full flex justify-center items-center'>
 					<div>
 						<h1 className=' text-2xl text-center text-white my-2 p-1'>
-							{title}
-						</h1>
-						<h1 className='bg-black w-full text-center text-md text-white my-2 py-2 px-8'>
-							shop now
+							{title} <br /> shop now
 						</h1>
 					</div>
 				</div>

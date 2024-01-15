@@ -1,62 +1,16 @@
 'use client';
 import NavbarItem from './navbarItem';
 import Link from 'next/link';
-import { ShoppingBagIcon } from '@heroicons/react/24/outline';
 import * as React from 'react';
 import useWidth from '../../hooks/useWidth';
 import MobileMenu from './mobile/MobileMenu';
-import {
-	NavigationMenu,
-	NavigationMenuContent,
-	NavigationMenuIndicator,
-	NavigationMenuItem,
-	NavigationMenuLink,
-	NavigationMenuList,
-	NavigationMenuTrigger,
-	NavigationMenuViewport,
-} from '@/components/ui/navigation-menu';
-import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
-/*
-export const Title = () => {
-	return (
-		<Link href='/' className='flex items-center'>
-			<div className=' w-5 h-5 bg-black rounded-full z-10 flex justify-center items-center'>
-				<p className='text-white'>p</p>
-			</div>
-			<p>inup</p>
-		</Link>
-	);
-
-
-};
-
-export default function Navbar() {
-	const { width, breakpoints } = useWidth();
-
-	return (
-		<nav
-			className={`w-full z-50 sticky top-0 bg-white border-b-gray-400 border-b-[1px] border-b-solid`}
-			style={{ transition: 'height 2s' }}
-		>
-			{width >= breakpoints.medium && <MainView />}
-
-			{width < breakpoints.medium && <MobileMenu />}
-		</nav>
-	);
-*/
+import Instagram from './Instagram';
+import Cart from './Cart';
 
 export const Title = () => {
 	return (
 		<Link href='/' className=''>
 			pinup
-		</Link>
-	);
-};
-
-export const Cart = () => {
-	return (
-		<Link href='/cart' className='flex'>
-			<ShoppingBagIcon className='w-6 h-6' />
 		</Link>
 	);
 };
@@ -73,32 +27,23 @@ const MainView = () => {
 					<NavbarItem text='about' link='/about' />
 				</ul>
 			</div>
-			<Cart />
+			<div className='flex gap-5 items-center'>
+				<Cart />
+				<Instagram />
+			</div>
 		</nav>
 	);
 };
-
 export default function Navbar() {
+	const { width, breakpoints } = useWidth();
+
 	return (
-		<NavigationMenu>
-			<NavigationMenuList>
-				<NavigationMenuItem>
-					<Link href='/'>
-						<NavigationMenuLink
-							className={navigationMenuTriggerStyle()}
-						>
-							pinup
-						</NavigationMenuLink>
-					</Link>
-					<Link href='/vintage'>
-						<NavigationMenuLink
-							className={navigationMenuTriggerStyle()}
-						>
-							vintage
-						</NavigationMenuLink>
-					</Link>
-				</NavigationMenuItem>
-			</NavigationMenuList>
-		</NavigationMenu>
+		<div
+			className={`w-full z-50 top-0 bg-white border-b-gray-400 border-b-[1px] border-b-solid`}
+			style={{ transition: 'height 2s' }}
+		>
+			{width >= breakpoints.medium && <MainView />}
+			{width < breakpoints.medium && <MobileMenu />}
+		</div>
 	);
 }
