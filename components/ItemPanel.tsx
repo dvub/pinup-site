@@ -4,6 +4,7 @@ import { Product } from 'shopify-buy';
 import Image from 'next/image';
 import { getProducts } from '@/lib/shopify';
 import { getExcludeTag } from '@/lib/variables';
+import { Badge } from '@/components/ui/badge';
 
 // THIS IS A SERVER COMPONENT
 export default async function ItemPanel(props: {
@@ -68,9 +69,7 @@ export default async function ItemPanel(props: {
 							${product.variants[0].price.amount} (
 							{product.variants[0].price.currencyCode})
 						</p>
-						<p className='bg-black text-white px-4 py-1'>
-							{isAvailable}
-						</p>
+						<Badge>{isAvailable}</Badge>
 					</div>
 				</div>
 			</Link>
