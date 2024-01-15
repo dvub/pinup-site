@@ -36,6 +36,7 @@ export default function ProductDisplay(props: {
 					width={1000}
 					height={1000}
 					sizes='1000px'
+					priority
 				/>
 			</CarouselItem>
 		);
