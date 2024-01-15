@@ -23,6 +23,11 @@ export default function CartButton(props: {
 		// disable the button to prevent spamming or something dumb, idfk
 		setButtonDisabled(true);
 	};
+
+	if (props.product.available === false) {
+		return <Button disabled>Not available</Button>;
+	}
+
 	if (isLoading) {
 		return (
 			<Button disabled>
@@ -30,10 +35,6 @@ export default function CartButton(props: {
 				Adding to cart...
 			</Button>
 		);
-	}
-
-	if (!props.product.available) {
-		return <Button disabled>Not available</Button>;
 	}
 
 	return (

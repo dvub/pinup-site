@@ -4,7 +4,8 @@ import { navigate } from '@/actions/navigate';
 import Navbar from '@/components/navbar/navbar';
 import { Button } from '@/components/ui/button';
 import * as React from 'react';
-import { Checkout, CheckoutLineItem } from 'shopify-buy';
+
+export const dynamic = 'force-dynamic';
 export default function Cart() {
 	const [checkoutUrl, setCheckoutUrl] = React.useState('');
 	const [checkout, setCheckout] = React.useState<{

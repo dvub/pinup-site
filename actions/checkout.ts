@@ -46,7 +46,8 @@ export async function getCheckout(id: string) {
 			id: item.id,
 		};
 	});
-
+	revalidatePath('/cart');
+	revalidatePath('/');
 	return {
 		items: items,
 		subtotal: {
