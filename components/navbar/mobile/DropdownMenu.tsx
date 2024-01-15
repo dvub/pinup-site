@@ -1,6 +1,3 @@
-import FadeWrapper from '@/components/fadeWrapper';
-import SlideWrapper from '@/components/slideWrapper';
-import { Transition } from '@headlessui/react';
 import NavbarItem from '../navbarItem';
 import clsx from 'clsx';
 
@@ -17,7 +14,6 @@ export const DropdownMenu = (props: { openNav: boolean }) => {
 					<ul className="list-['→']">
 						<NavbarItem text='vintage' link='/vintage' />
 						<NavbarItem text='production' link='/production' />
-
 						<NavbarItem text='reworked' link='/reworked' />
 						<NavbarItem text='about' link='/about' />
 					</ul>

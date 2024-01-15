@@ -1,19 +1,11 @@
 'use client';
 import NavbarItem from './navbarItem';
-import Link from 'next/link';
 import * as React from 'react';
 import useWidth from '../../hooks/useWidth';
 import MobileMenu from './mobile/MobileMenu';
 import Instagram from './Instagram';
 import Cart from './Cart';
-
-export const Title = () => {
-	return (
-		<Link href='/' className=''>
-			pinup
-		</Link>
-	);
-};
+import Title from './Title';
 
 const MainView = () => {
 	return (
