@@ -23,10 +23,16 @@ import { getVintageTag } from '@/lib/variables';
 // fix caching issues to maximize performance
 // add metadata exports like title, desc, etc.
 // -> improve accessibility
+// only 20 products showing on vintage page :(
+// fix issues on cart page
+// fix perms w/ sean - reinstall app maybe
+// finalize front page
 
 // REFACToR AND CLEAN CODE
 // improve documentation
 // improve logging
+
+// TAKE A BREAK!
 
 // force dynamic feels wrong
 // mayube figure out a way to cache here?
