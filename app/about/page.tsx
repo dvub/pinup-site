@@ -1,4 +1,11 @@
 import Navbar from '@/components/navbar/navbar';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	title: 'About - Pinup',
+	description:
+		'Pinup Rags was founded by Nate Forchelli and began with selling thoughtfully curated vintage clothing locally and online. Nate was eventually joined by designer Sean Hayes in order to venture into producing ethically made garments inspired by the very same vintage pieces they shared a love for. ',
+};
 
 export default function About() {
 	return (

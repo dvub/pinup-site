@@ -1,6 +1,5 @@
 import { hedvig } from '@/lib/fontLoader';
 import './globals.css';
-import type { Metadata } from 'next';
 import { Analytics } from '@vercel/analytics/react';
 import { useRouter } from 'next/navigation';
 

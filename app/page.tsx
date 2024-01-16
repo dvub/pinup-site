@@ -5,6 +5,14 @@ import { Section } from '@/components/home/Section';
 import { getVintageTag } from '@/lib/variables';
 import { Image } from 'shopify-buy';
 import { getDisplayImages } from '@/lib/shopify';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	title: 'Home - Pinup',
+	description:
+		'Created through an admiration for the garments of the past, pinup is a modern homage to classic Americana and Japanese artisanship. Classic clothing for the contemporary palette.',
+};
+
 // TODO: fix mobile navbar animation :(
 
 // TODO:

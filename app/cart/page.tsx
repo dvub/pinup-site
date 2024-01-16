@@ -5,6 +5,14 @@ import * as React from 'react';
 import { getCheckout, navigate } from './action';
 import { createCheckout } from '@/actions/checkout';
 import { localStorageKeywords } from '@/lib/constants';
+// TODO: fix
+/*
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	title: 'Cart - Pinup',
+	description: '...',
+};*/
 
 export const dynamic = 'force-dynamic';
 export default function Cart() {

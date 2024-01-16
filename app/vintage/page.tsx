@@ -1,6 +1,12 @@
 import ItemPanel from '@/components/ItemPanel';
 import Navbar from '@/components/navbar/navbar';
 import { getVintageTag } from '@/lib/variables';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	title: 'Vintage - Pinup',
+	description: '...',
+};
 
 export const dynamic = 'force-dynamic';
 export default function Page() {

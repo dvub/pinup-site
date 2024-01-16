@@ -8,6 +8,14 @@ import ProductDisplay from '@/components/Product/ProductDisplay';
 import { getImageObject } from '@/lib/utils';
 import NoProduct from '@/components/Product/NoProductFound';
 
+import type { Metadata } from 'next';
+
+// TODO: FIX THIS
+export const metadata: Metadata = {
+	title: 'Pinup Rags',
+	description: '...',
+};
+
 export const dynamic = 'force-dynamic';
 export default async function Page({ params }: { params: { handle: string } }) {
 	const product = await getProduct(params.handle);
