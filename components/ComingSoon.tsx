@@ -8,7 +8,11 @@ export default function ComingSoon(props: { pageName: string }) {
 				<h1 className='text-4xl'>pinup</h1>
 				<p className='py-1'>coming soon...</p>
 				<div className='flex w-full justify-center my-5 '>
-					<Link href={'/'} className='bg-black text-white px-2 py-1'>
+					<Link
+						href={'/'}
+						className='bg-black text-white px-2 py-1'
+						aria-label='back to home'
+					>
 						← home
 					</Link>
 				</div>

@@ -112,8 +112,11 @@ export default function Cart() {
 						</div>
 
 						<div className='float-right'>
-							<Button onClick={async (e) => await handleClick(e)}>
-								Proceed to checkout
+							<Button
+								onClick={async (e) => await handleClick(e)}
+								aria-label='proceed to checkout'
+							>
+								proceed to checkout
 							</Button>
 						</div>
 					</div>

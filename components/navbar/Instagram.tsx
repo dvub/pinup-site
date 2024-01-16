@@ -8,6 +8,7 @@ export default function Instagram() {
 				href='https://www.instagram.com/pinup.rags/'
 				rel='noopener noreferrer'
 				target='_blank'
+				aria-label='instagram'
 			>
 				<InstagramLogoIcon className='' />
 			</Link>
