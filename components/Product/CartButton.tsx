@@ -24,14 +24,18 @@ export default function CartButton(props: {
 	};
 
 	if (props.product.available === false) {
-		return <Button disabled>Not available</Button>;
+		return (
+			<Button disabled aria-label='not available'>
+				not available
+			</Button>
+		);
 	}
 
 	if (isLoading) {
 		return (
-			<Button disabled>
+			<Button disabled aria-label='adding to cart'>
 				<ReloadIcon className='mr-2 h-4 w-4 animate-spin' />
-				Adding to cart...
+				adding to cart...
 			</Button>
 		);
 	}
@@ -42,8 +46,9 @@ export default function CartButton(props: {
 				await addItemToCart(e);
 			}}
 			disabled={buttonDisabled}
+			aria-label='add to cart'
 		>
-			{!buttonDisabled ? 'add to cart' : 'added'}
+			{!buttonDisabled ? 'add to cart' : 'added!'}
 		</Button>
 	);
 }

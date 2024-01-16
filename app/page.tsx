@@ -30,16 +30,17 @@ export const metadata: Metadata = {
 
 // round corners of sharp stuff i guess - IN PROGRESS
 // fix caching issues to maximize performance
-// add metadata exports like title, desc, etc.
-// -> improve accessibility
+// add metadata exports like title, desc, etc. - DONE
+// -> improve accessibility - WIP - NEED TO LABEL BUTTONS
 // only 20 products showing on vintage page :( - easy fix DONE
 // fix issues on cart page
 // fix perms w/ sean - reinstall app maybe
 // finalize front page
 
+// add notifications (toasts, etc. with shadcn )
 // REFACToR AND CLEAN CODE - WIP
 // improve documentation - WIP
-// improve logging
+// improve logging - WIP
 
 // TAKE A BREAK!
 
@@ -49,9 +50,10 @@ export const dynamic = 'force-dynamic';
 export default async function Page() {
 	const vintageTag = getVintageTag();
 	// TODO: remove ()!
-	const images = (await getDisplayImages(vintageTag))!;
+	const images = await getDisplayImages(vintageTag);
+	const error = images === undefined;
+
 	// TODO: fix
-	const error = undefined;
 	return (
 		<div className='overflow-hidden'>
 			<Navbar />

@@ -12,8 +12,8 @@ import { ImageObject } from '@/lib/types';
 export const Section = (props: {
 	title: string;
 	wide: boolean;
-	images: ImageObject[];
-	error: any;
+	images: ImageObject[] | undefined;
+	error: boolean;
 	href: string;
 }) => {
 	const { width, breakpoints } = useWidth();

@@ -13,6 +13,8 @@ export function generateClient() {
 			'Error fetching products: Client info was not specified (either API ver., domain, or token). Check your .env file!'
 		);
 
+	// console.log('successfully built a new client');
+
 	return Client.buildClient({
 		domain: domain,
 		storefrontAccessToken: token,
@@ -29,6 +31,9 @@ export async function getProducts(type: string, first: number) {
 			first: first,
 			query: `tag:${type} NOT tag:${exclude}`,
 		});
+		// console.log(
+		//	`successully fetched ${products.length} products with tags \"${type}\" (excluding \"${exclude}\")`
+		// );
 		return products;
 	} catch (e) {
 		console.log(e);
@@ -53,6 +58,7 @@ export async function getDisplayImages(type: string) {
 		const images = res!.map((image) => {
 			return getImageObject(image);
 		});
+		// console.log('successfully fetched banner products');
 		return images;
 	} catch (error) {
 		console.log(error);

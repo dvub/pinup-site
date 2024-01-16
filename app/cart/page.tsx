@@ -28,7 +28,8 @@ export default function Cart() {
 		subtotal: { amt: number; cc: string };
 	}>();
 
-	const createNewCheckout = async () => {
+	// TODO: fix code smell (function does 2 things and is poorly named)
+	const updateLocalStorage = async () => {
 		const newCheckout = await createCheckout();
 		localStorage.setItem(localStorageKeywords.checkoutUrl, newCheckout.url);
 		localStorage.setItem(localStorageKeywords.checkoutId, newCheckout.id);
@@ -38,7 +39,7 @@ export default function Cart() {
 	const updateCheckoutDetails = async () => {
 		const url = localStorage.getItem(localStorageKeywords.checkoutUrl);
 		if (!url) {
-			const newCheckout = await createNewCheckout();
+			const newCheckout = await updateLocalStorage();
 			setCheckoutUrl(newCheckout.url);
 		} else {
 			setCheckoutUrl(url);
@@ -59,8 +60,9 @@ export default function Cart() {
 		e: React.MouseEvent<HTMLButtonElement, MouseEvent>
 	) => {
 		e.preventDefault();
-		// TODO: fix these 2 lines LMAO
-		localStorage.clear();
+		localStorage.removeItem(localStorageKeywords.checkoutId);
+		localStorage.removeItem(localStorageKeywords.checkoutUrl);
+		// TODO: make this better
 		await navigate(checkoutUrl);
 	};
 
@@ -93,9 +95,7 @@ export default function Cart() {
 			<Navbar />
 			<div className='mx-[10vw] my-10'>
 				<h1 className='text-4xl'>Cart</h1>
-
 				{/* HELP!! ! !!!!   */}
-
 				{items && items.length > 0 && (
 					<div>
 						<div className='my-10'>{items}</div>

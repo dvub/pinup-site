@@ -1,3 +1,4 @@
+'use server';
 // TODO: IMPLEMENT SERVER ACTION ERROR HANDLING
 
 import { generateClient } from '@/lib/shopify';

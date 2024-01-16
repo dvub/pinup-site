@@ -1,4 +1,3 @@
-// panel of mini-display for a determined number of items
 import Link from 'next/link';
 import { Product } from 'shopify-buy';
 import Image from 'next/image';
@@ -6,22 +5,13 @@ import { getProducts } from '@/lib/shopify';
 import { getExcludeTag } from '@/lib/variables';
 import { Badge } from '@/components/ui/badge';
 
-// THIS IS A SERVER COMPONENT
 export default async function ItemPanel(props: {
 	type: string;
 	numItems: number;
 }) {
-	// we can do data fetching on the server!! this is very very cool.
 	const products = await getProducts(props.type, props.numItems);
-
-	// we can also use certain environment variables! that's cool right?
-	const excludeTag = getExcludeTag();
-
 	// fix !
 	const items = products!.map((product: Product) => {
-		if (product.tags && product.tags.includes(excludeTag)) {
-			return;
-		}
 		const isAvailable = product.availableForSale
 			? 'available'
 			: 'not available';

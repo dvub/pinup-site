@@ -1,6 +1,4 @@
 import Navbar from '@/components/navbar/navbar';
-import Client from 'shopify-buy';
-import clsx from 'clsx';
 import React from 'react';
 import { generateClient, getProduct } from '@/lib/shopify';
 import ProductInfo from '@/components/Product/ProductInfo';
@@ -27,11 +25,11 @@ export default async function Page({ params }: { params: { handle: string } }) {
 	return (
 		<div>
 			<Navbar />
-			<div className={clsx('mx-[10vw] my-10 gap-5', 'lg:flex')}>
-				<div className={clsx('left ', 'lg:w-50% md:w-full')}>
+			<div className='container mx-[10vw] my-10 gap-5 lg:flex'>
+				<div className='left images lg:w-[50%] md:w-full'>
 					<ProductDisplay images={product.images} />
 				</div>
-				<div className={clsx('right', 'lg:w-50% md:w-full')}>
+				<div className='right info lg:w-[50%] md:w-full'>
 					<ProductInfo product={product.productInfo} />
 				</div>
 			</div>

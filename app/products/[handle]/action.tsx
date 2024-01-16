@@ -1,3 +1,4 @@
+'use server';
 import { generateClient } from '@/lib/shopify';
 
 export async function addToCart(

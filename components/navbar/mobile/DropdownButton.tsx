@@ -12,6 +12,7 @@ export const DropdownButton = (props: {
 			}}
 			variant='outline'
 			size='icon'
+			aria-label='expand/close menu'
 		>
 			<HamburgerMenuIcon
 				className={`

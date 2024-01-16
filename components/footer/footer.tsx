@@ -26,9 +26,12 @@ export default function Footer() {
 				</div>
 			</div>
 			<div className=' text-xs absolute bottom-0 left-0 text-black/50'>
-				<Link href='https://www.dvub.net/'>
-					<p>made by dvub</p>
-				</Link>
+				<span>
+					<Link href='https://www.dvub.net/'>
+						<p>~made by dvub</p>
+					</Link>
+					<p>inquiries: dvubdevs@gmail.com</p>
+				</span>
 			</div>
 		</div>
 	);
