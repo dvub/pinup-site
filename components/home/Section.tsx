@@ -6,12 +6,13 @@ import { Image as ShopifyImage } from 'shopify-buy';
 import useWidth from '@/hooks/useWidth';
 import clsx from 'clsx';
 import { Product } from 'shopify-buy';
+import { ImageObject } from '@/lib/types';
 
-// TODO: make sure 2 images exist at all
+// TODO: clean this code up
 export const Section = (props: {
 	title: string;
 	wide: boolean;
-	images: string[] | undefined;
+	images: ImageObject[];
 	error: any;
 	href: string;
 }) => {
@@ -32,9 +33,7 @@ export const Section = (props: {
 	// BACKGROUND WITH IMAGES
 	//
 	const Background = () => {
-		const defaultAltText = 'alt text';
 		const isFullSize = width > breakpoints.medium && wide;
-
 		//
 		return (
 			<div className='BACKGROUND flex w-full h-full'>
@@ -47,8 +46,8 @@ export const Section = (props: {
 				>
 					{images && (
 						<Image
-							src={images[0]}
-							alt={defaultAltText}
+							src={images[0].src}
+							alt={images[0].alt}
 							quality={100}
 							fill
 							className='object-cover'
@@ -59,8 +58,8 @@ export const Section = (props: {
 					<div className='relative w-[50%] '>
 						{images && (
 							<Image
-								src={images[1]}
-								alt={defaultAltText}
+								src={images[1].src}
+								alt={images[1].alt}
 								quality={100}
 								priority
 								fill

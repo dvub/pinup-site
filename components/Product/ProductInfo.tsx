@@ -1,8 +1,9 @@
 'use client';
-import { addToCart, getCheckoutUrl } from '@/actions/checkout';
 import * as React from 'react';
 import CartButton from './CartButton';
 import { Button } from '../ui/button';
+import { createCheckout } from '@/actions/checkout';
+import { localStorageKeywords } from '@/lib/constants';
 
 export default function ProductInfo(props: {
 	product: {
@@ -14,16 +15,24 @@ export default function ProductInfo(props: {
 		variantId: string;
 	};
 }) {
-	// server actions are the fucking SHIT
-	// they are really cool
+	// TODO: fix refactor shared with cart/page.tsx
+
 	React.useEffect(() => {
-		const checkoutUrl = localStorage.getItem('checkoutUrl');
+		const checkoutUrl = localStorage.getItem(
+			localStorageKeywords.checkoutUrl
+		);
 		const updateCheckoutUrl = async () => {
 			if (!checkoutUrl) {
-				const newUrl = await getCheckoutUrl();
-				localStorage.setItem('checkoutUrl', newUrl.url);
-				localStorage.setItem('checkoutId', newUrl.id);
-			} else console.log('already have a URL..', checkoutUrl);
+				const newUrl = await createCheckout();
+				localStorage.setItem(
+					localStorageKeywords.checkoutUrl,
+					newUrl.url
+				);
+				localStorage.setItem(
+					localStorageKeywords.checkoutId,
+					newUrl.id
+				);
+			}
 		};
 		updateCheckoutUrl();
 	}, []);

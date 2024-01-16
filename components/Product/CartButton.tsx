@@ -1,26 +1,25 @@
+// TODO: clean up all of this code
 'use client';
-import { addToCart, getCheckoutUrl } from '@/actions/checkout';
 import * as React from 'react';
 import { Button } from '@/components/ui/button';
 import { ReloadIcon } from '@radix-ui/react-icons';
+import { addToCart } from '@/app/products/[handle]/action';
+import { localStorageKeywords } from '@/lib/constants';
 export default function CartButton(props: {
 	product: { variantId: string; available: boolean };
 }) {
-	// button state
 	const [buttonDisabled, setButtonDisabled] = React.useState(false);
 	const [isLoading, setIsLoading] = React.useState(false);
 
 	const addItemToCart = async (e: any) => {
 		e.preventDefault();
-		// provide a loading message here to improve UI
 		setIsLoading(true);
 		await addToCart(
-			localStorage.getItem('checkoutId')!,
+			localStorage.getItem(localStorageKeywords.checkoutId)!,
 			1,
 			props.product.variantId
 		);
 		setIsLoading(false);
-		// disable the button to prevent spamming or something dumb, idfk
 		setButtonDisabled(true);
 	};
 

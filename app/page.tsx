@@ -1,9 +1,10 @@
 import Navbar from '@/components/navbar/navbar';
 import Footer from '@/components/footer/footer';
-import { getDisplayImages } from '@/lib/shopify';
 import ItemPanel from '@/components/ItemPanel';
 import { Section } from '@/components/home/Section';
 import { getVintageTag } from '@/lib/variables';
+import { Image } from 'shopify-buy';
+import { getDisplayImages } from '@/lib/shopify';
 // TODO: fix mobile navbar animation :(
 
 // TODO:
@@ -19,7 +20,7 @@ import { getVintageTag } from '@/lib/variables';
 // cart icon to text - DONE
 // add shadcn for image carousel - DONE
 
-// round corners of sharp stuff i guess
+// round corners of sharp stuff i guess - IN PROGRESS
 // fix caching issues to maximize performance
 // add metadata exports like title, desc, etc.
 // -> improve accessibility
@@ -28,8 +29,8 @@ import { getVintageTag } from '@/lib/variables';
 // fix perms w/ sean - reinstall app maybe
 // finalize front page
 
-// REFACToR AND CLEAN CODE
-// improve documentation
+// REFACToR AND CLEAN CODE - WIP
+// improve documentation - WIP
 // improve logging
 
 // TAKE A BREAK!
@@ -39,10 +40,9 @@ import { getVintageTag } from '@/lib/variables';
 export const dynamic = 'force-dynamic';
 export default async function Page() {
 	const vintageTag = getVintageTag();
-	const res = await getDisplayImages(vintageTag);
-	// TODO: fix this, super jank!
-	const images = res.map((x) => x.images.map((i) => i.src || i.url)).flat();
-	// TODO: fix this bullshit
+	// TODO: remove ()!
+	const images = (await getDisplayImages(vintageTag))!;
+	// TODO: fix
 	const error = undefined;
 	return (
 		<div className='overflow-hidden'>

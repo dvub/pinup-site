@@ -8,7 +8,7 @@ export default function Page() {
 	return (
 		<main>
 			<Navbar />
-			<div className=''>
+			<div>
 				{/* <h1 className='m-2 text-xl'>showing: all vintage products</h1> */}
 				<ItemPanel type={tag} numItems={100} />
 			</div>

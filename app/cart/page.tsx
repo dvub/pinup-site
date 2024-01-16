@@ -1,9 +1,10 @@
 'use client';
-import { getCheckoutUrl, getCheckout } from '@/actions/checkout';
-import { navigate } from '@/actions/navigate';
 import Navbar from '@/components/navbar/navbar';
 import { Button } from '@/components/ui/button';
 import * as React from 'react';
+import { getCheckout, navigate } from './action';
+import { createCheckout } from '@/actions/checkout';
+import { localStorageKeywords } from '@/lib/constants';
 
 export const dynamic = 'force-dynamic';
 export default function Cart() {
@@ -18,36 +19,44 @@ export default function Cart() {
 		}[];
 		subtotal: { amt: number; cc: string };
 	}>();
-	React.useEffect(() => {
-		const updateCheckoutUrl = async () => {
-			const url = localStorage.getItem('checkoutUrl');
-			if (!url) {
-				const newUrl = await getCheckoutUrl();
-				localStorage.setItem('checkoutUrl', newUrl.url);
-				localStorage.setItem('checkoutId', newUrl.id);
-				setCheckoutUrl(localStorage.getItem('checkoutUrl')!);
-			} else {
-				console.log('already have a URL..');
-				setCheckoutUrl(localStorage.getItem('checkoutUrl')!);
-			}
-			const serverCheckout = await getCheckout(
-				localStorage.getItem('checkoutId')!
-			);
-			setCheckout(serverCheckout);
-			console.log(serverCheckout);
-		};
 
-		updateCheckoutUrl();
+	const createNewCheckout = async () => {
+		const newCheckout = await createCheckout();
+		localStorage.setItem(localStorageKeywords.checkoutUrl, newCheckout.url);
+		localStorage.setItem(localStorageKeywords.checkoutId, newCheckout.id);
+		return newCheckout;
+	};
+
+	const updateCheckoutDetails = async () => {
+		const url = localStorage.getItem(localStorageKeywords.checkoutUrl);
+		if (!url) {
+			const newCheckout = await createNewCheckout();
+			setCheckoutUrl(newCheckout.url);
+		} else {
+			setCheckoutUrl(url);
+		}
+
+		const serverCheckout = await getCheckout(
+			localStorage.getItem(localStorageKeywords.checkoutId)!
+		);
+
+		setCheckout(serverCheckout);
+	};
+
+	React.useEffect(() => {
+		updateCheckoutDetails();
 	}, []);
 
 	const handleClick = async (
 		e: React.MouseEvent<HTMLButtonElement, MouseEvent>
 	) => {
 		e.preventDefault();
+		// TODO: fix these 2 lines LMAO
 		localStorage.clear();
 		await navigate(checkoutUrl);
 	};
 
+	// some shittily thrown together code here
 	const items = checkout?.items.map((item) => {
 		return (
 			<div key={item.id} className='border-t-2 border-gray-200'>

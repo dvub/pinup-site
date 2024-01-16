@@ -14,12 +14,11 @@ export default async function ItemPanel(props: {
 	// we can do data fetching on the server!! this is very very cool.
 	const products = await getProducts(props.type, props.numItems);
 
-	console.log(products.length);
-
 	// we can also use certain environment variables! that's cool right?
 	const excludeTag = getExcludeTag();
 
-	const items = products.map((product: Product) => {
+	// fix !
+	const items = products!.map((product: Product) => {
 		if (product.tags && product.tags.includes(excludeTag)) {
 			return;
 		}

@@ -9,9 +9,8 @@ import {
 } from '@/components/ui/carousel';
 import { type CarouselApi } from '@/components/ui/carousel';
 import React from 'react';
-export default function ProductDisplay(props: {
-	images: { src: string | undefined; alt: string | undefined }[];
-}) {
+import { ImageObject } from '@/lib/types';
+export default function ProductDisplay(props: { images: ImageObject[] }) {
 	const [api, setApi] = React.useState<CarouselApi>();
 	const [current, setCurrent] = React.useState(0);
 	const [count, setCount] = React.useState(0);
@@ -48,7 +47,7 @@ export default function ProductDisplay(props: {
 				<div>
 					<Carousel setApi={setApi}>
 						<CarouselContent>{content}</CarouselContent>
-						<div className='w-full flex justify-between'>
+						<div className='w-full flex justify-between my-2'>
 							<CarouselPrevious />
 							<p className='text-black/50'>
 								[ showing image {current} of {count} ]
