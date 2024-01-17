@@ -23,9 +23,9 @@ export default async function Page({ params }: { params: { handle: string } }) {
 	}
 
 	return (
-		<div>
+		<div className='w-screen overflow-hidden'>
 			<Navbar />
-			<div className='container mx-[10vw] my-10 gap-5 lg:flex'>
+			<div className='mx-[10vw] my-10 gap-5 lg:flex'>
 				<div className='left images lg:w-[50%] md:w-full'>
 					<ProductDisplay images={product.images} />
 				</div>

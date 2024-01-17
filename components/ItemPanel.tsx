@@ -22,25 +22,21 @@ export default async function ItemPanel(props: {
 				className='relative w-full h-full text-sm border-[1px] border-solid border-gray-500'
 				key={product.id}
 			>
-				{/* gray translucent overlay to indicate that an item is not available for sale */}
 				{!product.availableForSale && (
 					<div className='absolute z-30 w-full h-full bg-gray-200/40' />
 				)}
-
-				{/* this div defines the boundaries of the image, and also provides a background color in case the image fails to load for some reason. */}
-				<div className='relative w-full  bg-gray-500 h-72'>
+				<div className='relative w-full p-1'>
 					{product.images[0] && (
 						<Image
-							// TODO: fix using images[0]
-							// and fix this || jank shit FFS
-							// JFC
-							src={product.images[0].url || product.images[0].src} // for some reason, need to use .src property?
+							src={product.images[0].url || product.images[0].src}
 							alt={product.images[0].altText || 'alt text'}
-							fill
-							// DO NOT SET QUALITY HERE! since many are rendered, best to let quality be automatically determined
-							className='object-cover'
+							//fill
+							className=' object-contain'
+							width={500}
+							height={500}
 							// major insane optimization
-							sizes='(max-width: 640px) 50vw, (max-width: 768px) 25vw, (max-width: 1024px) 20vw, 20vw'
+							//sizes='(max-width: 640px) 50vw, (max-width: 768px) 25vw, (max-width: 1024px) 20vw, 20vw'
+							sizes='500px'
 						/>
 					)}
 					{product.images.length === 0 && (
@@ -49,11 +45,10 @@ export default async function ItemPanel(props: {
 						</div>
 					)}
 				</div>
-				{/* TEXT!! */}
+
 				<div className='m-2'>
 					<p className='truncate max-w-full'>{product.title}</p>
 					<div className='flex justify-between my-2 items-center'>
-						{/* TODO: fix using variants[0] */}
 						<p>
 							${product.variants[0].price.amount} (
 							{product.variants[0].price.currencyCode})
@@ -66,9 +61,7 @@ export default async function ItemPanel(props: {
 	});
 
 	return (
-		<div
-			className={`grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-2 grid-cols-2`}
-		>
+		<div className='grid gap-1 m-1 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-2 grid-cols-2'>
 			{items}
 		</div>
 	);

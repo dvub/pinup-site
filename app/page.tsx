@@ -3,9 +3,10 @@ import Footer from '@/components/footer/footer';
 import ItemPanel from '@/components/ItemPanel';
 import { Section } from '@/components/home/Section';
 import { getVintageTag } from '@/lib/variables';
-import { Image } from 'shopify-buy';
+import Image from 'next/image';
 import { getDisplayImages } from '@/lib/shopify';
 import type { Metadata } from 'next';
+import MainBanner from '@/components/home/MainBanner';
 
 export const metadata: Metadata = {
 	title: 'Home - Pinup',
@@ -31,11 +32,12 @@ export const metadata: Metadata = {
 // round corners of sharp stuff i guess - IN PROGRESS
 // fix caching issues to maximize performance
 // add metadata exports like title, desc, etc. - DONE
-// -> improve accessibility - WIP - NEED TO LABEL BUTTONS
+// -> improve accessibility - WIP - NEED TO LABEL BUTTONS - ALMOST DONE
 // only 20 products showing on vintage page :( - easy fix DONE
 // fix issues on cart page
 // fix perms w/ sean - reinstall app maybe
 // finalize front page
+// fix clear cart page - add finalization
 
 // add notifications (toasts, etc. with shadcn )
 // REFACToR AND CLEAN CODE - WIP
@@ -57,16 +59,8 @@ export default async function Page() {
 	return (
 		<div className='overflow-hidden'>
 			<Navbar />
-			<div className='w-full h-full'>
-				<div className='h-screen'>
-					<Section
-						images={images}
-						error={error}
-						wide={true}
-						title='vintage'
-						href='/vintage'
-					/>
-				</div>
+			<div className='w-full '>
+				<MainBanner src={images![0].src} alt={images![0].alt} />
 				<ItemPanel type={vintageTag} numItems={5} />
 				{/*
 				<div className='SMALL-SECTIONS w-full lg:flex xl:flex'>
@@ -91,8 +85,8 @@ export default async function Page() {
 					</div>
 				</div>
 				*/}
-				<div className='w-full h-screen flex justify-center items-center bg-gray-400'>
-					<h1 className='text-white/50 text-xl text-center'>
+				<div className='w-full h-screen flex justify-center items-center bg-gray-200'>
+					<h1 className='text-black text-xl text-center'>
 						production & reworked coming soon <br /> stay tuned :)
 					</h1>
 				</div>

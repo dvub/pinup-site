@@ -5,6 +5,10 @@ import * as React from 'react';
 import { getCheckout, navigate } from './action';
 import { createCheckout } from '@/actions/checkout';
 import { localStorageKeywords } from '@/lib/constants';
+import { revalidatePath } from 'next/cache';
+import ClearCheckoutButton from '@/components/cart/ClearButton';
+import ProceedToCheckout from '@/components/cart/ProceedButton';
+import formatCost from '@/lib/formatCost';
 // TODO: fix
 /*
 import type { Metadata } from 'next';
@@ -56,14 +60,15 @@ export default function Cart() {
 		updateCheckoutDetails();
 	}, []);
 
-	const handleClick = async (
-		e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-	) => {
-		e.preventDefault();
-		localStorage.removeItem(localStorageKeywords.checkoutId);
-		localStorage.removeItem(localStorageKeywords.checkoutUrl);
-		// TODO: make this better
-		await navigate(checkoutUrl);
+	const EmptyCart = () => {
+		return (
+			<div>
+				<p className='text-2xl mt-10'>Your cart is empty.</p>
+				<p className='text-lg my-2'>
+					Check out our vintage section and grab something!
+				</p>
+			</div>
+		);
 	};
 
 	// some shittily thrown together code here
@@ -102,28 +107,25 @@ export default function Cart() {
 						<hr />
 						<div className='text-right my-5'>
 							<h1 className='text-xl'>
-								Subtotal: {checkout?.subtotal.amt}{' '}
-								{checkout?.subtotal.cc}
+								Subtotal:{' '}
+								{formatCost(
+									checkout?.subtotal.amt!,
+									checkout?.subtotal.cc!
+								)}
 							</h1>
 							<p className='text-sm my-2'>
 								Taxes, shipping, and other costs will be applied
 								at checkout.
 							</p>
 						</div>
-
-						<div className='float-right'>
-							<Button
-								onClick={async (e) => await handleClick(e)}
-								aria-label='proceed to checkout'
-							>
-								proceed to checkout
-							</Button>
+						{/* buttons go here */}
+						<div className='flex w-full justify-between'>
+							<ClearCheckoutButton setCheckout={setCheckout} />
+							<ProceedToCheckout checkoutUrl={checkoutUrl} />
 						</div>
 					</div>
 				)}
-				{items && items.length === 0 && (
-					<p className='text-2xl my-10'>Your cart is empty.</p>
-				)}
+				{!checkout || (items && items.length === 0 && <EmptyCart />)}
 			</div>
 		</div>
 	);

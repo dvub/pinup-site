@@ -27,9 +27,16 @@ export const Section = (props: {
 			aria-label={`to ${title}`}
 		>
 			<div className='w-full h-full absolute '>
-				<Overlay />
+				<Overlay error={error} title={title} />
 			</div>
-			{images && images.length > 0 && <Background />}
+			{images && images.length > 0 && (
+				<Background
+					width={width}
+					breakpoints={breakpoints}
+					wide={wide}
+					images={images}
+				/>
+			)}
 			{(error || !images || images.length === 0) && <ErrorBackground />}
 		</Link>
 	);
@@ -43,7 +50,9 @@ const Background = (props: {
 	width: any;
 	breakpoints: any;
 	images: ImageObject[];
+	wide: boolean;
 }) => {
+	const { width, breakpoints, images, wide } = props;
 	const isFullSize = width > breakpoints.medium && wide;
 	//
 	return (
@@ -67,7 +76,7 @@ const Background = (props: {
 			</div>
 			{isFullSize && (
 				<div className='relative w-[50%] '>
-					{images && (
+					{images[1] && (
 						<Image
 							src={images[1].src}
 							alt={images[1].alt}
@@ -83,7 +92,8 @@ const Background = (props: {
 	);
 };
 
-const Overlay = () => {
+const Overlay = (props: { error: boolean; title: string }) => {
+	const { error, title } = props;
 	return (
 		<div className='OVERLAY z-10 absolute w-full h-full'>
 			{error && <p>error!</p>}

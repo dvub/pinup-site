@@ -9,7 +9,6 @@ export async function navigate(url: string) {
 }
 
 export async function getCheckout(id: string) {
-	//revalidatePath('/');
 	const client = generateClient();
 	const checkout = await client.checkout.fetch(id);
 
@@ -26,7 +25,7 @@ export async function getCheckout(id: string) {
 			id: item.id,
 		};
 	});
-	//revalidatePath('/cart');
+	revalidatePath('/cart');
 	//revalidatePath('/');
 	return {
 		items: items,
