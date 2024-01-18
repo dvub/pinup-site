@@ -11,7 +11,7 @@ export default function ClearCheckoutButton(props: { setCheckout: any }) {
 	};
 	return (
 		<Button
-			variant='destructive'
+			variant='secondary'
 			onClick={async (e) => {
 				await handleClearCheckout(e);
 			}}

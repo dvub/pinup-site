@@ -23,7 +23,7 @@ export default function MainBanner(props: { src: string; alt: string }) {
 						alt={props.alt}
 						className='object-cover object-right'
 						//objectPosition='right'
-						//sizes='200vw'
+						sizes='100vw'
 						quality={100}
 						fill
 					/>

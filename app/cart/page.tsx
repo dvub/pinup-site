@@ -101,8 +101,14 @@ export default function Cart() {
 			<div className='mx-[10vw] my-10'>
 				<h1 className='text-4xl'>Cart</h1>
 				{/* HELP!! ! !!!!   */}
+
 				{items && items.length > 0 && (
-					<div>
+					<div className='my-2'>
+						<p>
+							Take a moment to review the products in your cart.
+							When you&apos;re ready, clicking &quot;proceed to
+							checkout&quot; will redirect you to a checkout page.
+						</p>
 						<div className='my-10'>{items}</div>
 						<hr />
 						<div className='text-right my-5'>
@@ -119,7 +125,7 @@ export default function Cart() {
 							</p>
 						</div>
 						{/* buttons go here */}
-						<div className='flex w-full justify-between'>
+						<div className='flex float-right gap-3'>
 							<ClearCheckoutButton setCheckout={setCheckout} />
 							<ProceedToCheckout checkoutUrl={checkoutUrl} />
 						</div>

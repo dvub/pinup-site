@@ -28,7 +28,7 @@ export default function ProductDisplay(props: { images: ImageObject[] }) {
 	}, [api]);
 	const content = props.images.map((image, index) => {
 		return (
-			<CarouselItem key={index}>
+			<CarouselItem key={image.src}>
 				<Image
 					src={image.src!}
 					alt={image.alt || 'alt'}
