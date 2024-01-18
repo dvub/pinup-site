@@ -1,36 +1,34 @@
-'use client';
 import useWidth from '@/hooks/useWidth';
 import clsx from 'clsx';
+import Link from 'next/link';
 import Image from 'next/image';
 export default function MainBanner(props: { src: string; alt: string }) {
-	const { width, breakpoints } = useWidth();
 	return (
-		<div
-			className={clsx(
-				'w-full relative',
-				width >= breakpoints.medium ? ' h-[125vh]' : 'h-screen'
-			)}
-		>
-			<div className='w-full h-full absolute z-30 flex items-center'>
-				<h1
-					className={clsx(
-						'text-center text-3xl',
-						width >= breakpoints.medium ? 'w-[33%]' : 'w-full'
-					)}
-				>
-					vintage <br /> shop now
-				</h1>
-			</div>
-			<Image
-				src={props.src}
-				alt={props.alt}
-				layout='fill'
-				objectFit='cover'
-				priority
-				quality={100}
-				// objectPosition='100% 50%'
-				sizes='100vw'
-			/>
+		<div className='relative w-screen h-screen'>
+			<Link href='/vintage' className=''>
+				<div className='w-full h-full absolute z-30 flex items-center justify-center text-md'>
+					<div>
+						<h1 className=' bg-black text-white text-center px-4 py-1 my-2'>
+							vintage
+						</h1>
+						<h1 className=' bg-black text-white text-center px-4 py-1'>
+							shop now
+						</h1>
+					</div>
+				</div>
+
+				<div className='relative w-full h-full'>
+					<Image
+						src={props.src}
+						alt={props.alt}
+						className='object-cover object-right'
+						//objectPosition='right'
+						//sizes='200vw'
+						quality={100}
+						fill
+					/>
+				</div>
+			</Link>
 		</div>
 	);
 }

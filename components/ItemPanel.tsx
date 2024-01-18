@@ -19,19 +19,20 @@ export default async function ItemPanel(props: {
 		return (
 			<Link
 				href={`/products/${product.handle}`}
-				className='relative w-full h-full text-sm border-[1px] border-solid border-gray-500'
+				// border-[1px] border-solid border-gray-500
+				className='relative w-full h-full text-sm '
 				key={product.id}
 			>
 				{!product.availableForSale && (
 					<div className='absolute z-30 w-full h-full bg-gray-200/40' />
 				)}
-				<div className='relative w-full p-1'>
+				<div className='relative w-full '>
 					{product.images[0] && (
 						<Image
 							src={product.images[0].url || product.images[0].src}
 							alt={product.images[0].altText || 'alt text'}
 							//fill
-							className=' object-contain'
+							className='object-contain'
 							width={500}
 							height={500}
 							// major insane optimization
