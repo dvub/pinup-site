@@ -28,7 +28,7 @@ export default function RootLayout({
 			<body>
 				{!isSiteOpen && <Closed />}
 				{isSiteOpen && children}
-				{/*<Analytics />*/}
+				{<Analytics />}
 			</body>
 		</html>
 	);
