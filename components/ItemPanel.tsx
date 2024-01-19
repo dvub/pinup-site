@@ -36,8 +36,8 @@ export default async function ItemPanel(props: {
 							width={500}
 							height={500}
 							// major insane optimization
-							//sizes='(max-width: 640px) 50vw, (max-width: 768px) 25vw, (max-width: 1024px) 20vw, 20vw'
-							sizes='500px'
+							sizes='(max-width: 640px) 50vw, (max-width: 768px) 25vw, (max-width: 1024px) 20vw, 20vw'
+							// sizes='500px'
 						/>
 					)}
 					{product.images.length === 0 && (

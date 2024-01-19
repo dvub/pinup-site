@@ -49,6 +49,7 @@ export const metadata: Metadata = {
 // force dynamic feels wrong
 // mayube figure out a way to cache here?
 export const dynamic = 'force-dynamic';
+
 export default async function Page() {
 	const vintageTag = getVintageTag();
 	// TODO: remove ()!
@@ -59,7 +60,7 @@ export default async function Page() {
 	return (
 		<div className='overflow-hidden'>
 			<Navbar />
-			<div className='w-full '>
+			<div className='w-full'>
 				<MainBanner src={images![0].src} alt={images![0].alt} />
 				<ItemPanel type={vintageTag} numItems={5} />
 				{/*
