@@ -23,6 +23,8 @@ export default function CartButton(props: {
 		setButtonDisabled(true);
 	};
 
+	// console.log('help!');
+	// console.log(props.product.available);
 	if (props.product.available === false) {
 		return (
 			<Button disabled aria-label='not available'>

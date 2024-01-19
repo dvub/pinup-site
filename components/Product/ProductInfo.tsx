@@ -85,14 +85,12 @@ export default function ProductInfo(props: {
 					<p>This item is 1/1.</p>
 				</div>
 				<div>
-					{props.product.availableForSale && (
-						<CartButton
-							product={{
-								variantId: props.product.variantId,
-								available: props.product.availableForSale,
-							}}
-						/>
-					)}
+					<CartButton
+						product={{
+							variantId: props.product.variantId,
+							available: props.product.availableForSale,
+						}}
+					/>
 				</div>
 			</div>
 		</div>
