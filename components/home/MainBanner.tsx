@@ -26,6 +26,7 @@ export default function MainBanner(props: { src: string; alt: string }) {
 						sizes='100vw'
 						quality={100}
 						fill
+						priority
 					/>
 				</div>
 			</Link>
