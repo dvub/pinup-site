@@ -14,7 +14,10 @@ export const metadata: Metadata = {
 	description: '...',
 };
 
-export const dynamic = 'force-dynamic';
+// export const dynamic = 'force-dynamic';
+//
+// this will revalidate every minute. helpful to make sure someone doesnt get snaked.
+export const revalidate = 60;
 export default async function Page({ params }: { params: { handle: string } }) {
 	const product = await getProduct(params.handle);
 
