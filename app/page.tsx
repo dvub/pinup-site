@@ -9,9 +9,9 @@ import type { Metadata } from 'next';
 import MainBanner from '@/components/home/MainBanner';
 
 export const metadata: Metadata = {
-	title: 'Home - Pinup',
-	description:
-		'Created through an admiration for the garments of the past, pinup is a modern homage to classic Americana and Japanese artisanship. Classic clothing for the contemporary palette.',
+  title: 'Home - Pinup',
+  description:
+    'Created through an admiration for the garments of the past, pinup is a modern homage to classic Americana and Japanese artisanship. Classic clothing for the contemporary palette.',
 };
 
 // TODO: fix mobile navbar animation :(
@@ -48,22 +48,25 @@ export const metadata: Metadata = {
 
 // force dynamic feels wrong
 // mayube figure out a way to cache here?
-export const dynamic = 'force-dynamic';
+// export const dynamic = 'force-dynamic';
+//
+// this will revalidate every 5 minutes to massively improve performance
+export const revalidate = 300;
 
 export default async function Page() {
-	const vintageTag = getVintageTag();
-	// TODO: remove ()!
-	const images = await getDisplayImages(vintageTag);
-	const error = images === undefined;
+  const vintageTag = getVintageTag();
+  // TODO: remove ()!
+  const images = await getDisplayImages(vintageTag);
+  const error = images === undefined;
 
-	// TODO: fix
-	return (
-		<div className='overflow-hidden'>
-			<Navbar />
-			<div className='w-full'>
-				<MainBanner src={images![0].src} alt={images![0].alt} />
-				<ItemPanel type={vintageTag} numItems={5} />
-				{/*
+  // TODO: fix
+  return (
+    <div className='overflow-hidden'>
+      <Navbar />
+      <div className='w-full'>
+        <MainBanner src={images![0].src} alt={images![0].alt} />
+        <ItemPanel type={vintageTag} numItems={5} />
+        {/*
 				<div className='SMALL-SECTIONS w-full lg:flex xl:flex'>
 					<div className='h-[50vh] w-full'>
 						<Section
@@ -86,13 +89,13 @@ export default async function Page() {
 					</div>
 				</div>
 				*/}
-				<div className='w-full h-screen flex justify-center items-center bg-gray-200'>
-					<h1 className='text-black text-xl text-center'>
-						production & reworked coming soon <br /> stay tuned :)
-					</h1>
-				</div>
-			</div>
-			<Footer />
-		</div>
-	);
+        <div className='w-full h-screen flex justify-center items-center bg-gray-200'>
+          <h1 className='text-black text-xl text-center'>
+            production & reworked coming soon <br /> stay tuned :)
+          </h1>
+        </div>
+      </div>
+      <Footer />
+    </div>
+  );
 }
