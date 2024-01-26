@@ -51,8 +51,8 @@ export const metadata: Metadata = {
 // export const dynamic = 'force-dynamic';
 //
 // this will revalidate every 5 minutes to massively improve performance
-export const revalidate = 300;
-
+//export const revalidate = 300;
+export const dynamic = 'force-dynamic';
 export default async function Page() {
   const vintageTag = getVintageTag();
   // TODO: remove ()!

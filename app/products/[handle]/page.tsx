@@ -10,32 +10,33 @@ import type { Metadata } from 'next';
 
 // TODO: FIX THIS
 export const metadata: Metadata = {
-	title: 'Pinup Rags',
-	description: '...',
+  title: 'Pinup Rags',
+  description: '...',
 };
 
 // export const dynamic = 'force-dynamic';
 //
 // this will revalidate every minute. helpful to make sure someone doesnt get snaked.
-export const revalidate = 60;
+// export const revalidate = 60;
+export const dynamic = 'force-dynamic';
 export default async function Page({ params }: { params: { handle: string } }) {
-	const product = await getProduct(params.handle);
+  const product = await getProduct(params.handle);
 
-	if (!product) {
-		return <NoProduct />;
-	}
+  if (!product) {
+    return <NoProduct />;
+  }
 
-	return (
-		<div className='w-screen overflow-hidden'>
-			<Navbar />
-			<div className='mx-[10vw] my-10 gap-5 lg:flex'>
-				<div className='left images lg:w-[50%] md:w-full'>
-					<ProductDisplay images={product.images} />
-				</div>
-				<div className='right info lg:w-[50%] md:w-full'>
-					<ProductInfo product={product.productInfo} />
-				</div>
-			</div>
-		</div>
-	);
+  return (
+    <div className='w-screen overflow-hidden'>
+      <Navbar />
+      <div className='mx-[10vw] my-10 gap-5 lg:flex'>
+        <div className='left images lg:w-[50%] md:w-full'>
+          <ProductDisplay images={product.images} />
+        </div>
+        <div className='right info lg:w-[50%] md:w-full'>
+          <ProductInfo product={product.productInfo} />
+        </div>
+      </div>
+    </div>
+  );
 }
